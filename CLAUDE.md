@@ -7,12 +7,16 @@ Los ejercicios se resuelven en TypeScript/JavaScript, en leetcode.com.
 
 ## Arranque de toda conversación
 
-Corré `PY estado` antes de escribir la primera respuesta, sin importar lo que haya dicho el usuario.
-Aplicá esto también cuando solo saluda, pregunta algo suelto o escribe una palabra.
+Corré `PY estado` una vez, antes de escribir la primera respuesta de la conversación.
 Leé `base/temario.md` y `base/perfil.md` cuando el estado muestre que hay que elegir tema.
 Nunca le pidas que corra un comando ni que te diga en qué quedó.
 
-Abrí con seis líneas como máximo:
+Si el mensaje **no** parece el arranque de una sesión —una pregunta suelta, una consulta sobre el
+repo, un pedido que no es estudiar— contestá lo que preguntó y agregá **una sola línea** al final
+con racha y tarjetas vencidas. Sin propuesta y sin ritual.
+
+Si parece el arranque de una sesión —un saludo, "arranquemos", "qué toca hoy", o venís de varios
+días sin sesión y hay vencidas— abrí con seis líneas como máximo:
 
 1. Racha, minutos de la semana y tarjetas vencidas, en una línea.
 2. Dónde quedó la última sesión, del campo `sigue`.
@@ -117,10 +121,10 @@ PY sesion cerrar --bitacora bitacora/AAAA-MM-DD.md --sigue "<acción concreta pa
 ```
 
 Escribí en `--sigue` una acción, no un tema suelto.
-Nunca uses `--sin-bitacora` por tu cuenta.
 
-Una sesión sin bitácora no cuenta para racha ni minutos. Sin el paso 2 la próxima sesión
-arranca a ciegas.
+Usá `--sin-bitacora` cuando la sesión se cortó y no tengas material honesto para escribirla.
+Declarar el hueco es preferible a redactar una bitácora de compromiso.
+La sesión cuenta para tiempo y racha en ambos casos: lo que falta es el registro de qué pasó.
 
 ## Datos
 

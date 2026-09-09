@@ -224,8 +224,8 @@ def cmd_cerrar(args) -> None:
             die(f"la bitacora {args.bitacora} no existe. Escribila antes de cerrar la sesion.")
         bitacora = str(bpath.relative_to(ROOT))
     elif not args.sin_bitacora:
-        die("falta --bitacora RUTA. Sin bitacora la sesion no cuenta; "
-            "usa --sin-bitacora para dejarla incompleta.")
+        die("falta --bitacora RUTA, o --sin-bitacora si la sesion se corto y no hay "
+            "material honesto para escribirla. La sesion cuenta igual en ambos casos.")
 
     eventos = cur.get("eventos", [])
     record = {
@@ -250,7 +250,7 @@ def cmd_cerrar(args) -> None:
 
     print(f"Sesion {record['id']} cerrada: {minutos} min reales, "
           f"{len(record['ejercicios'])} ejercicios, {len(record['repasos'])} repasos, "
-          f"estado {record['estado']}.")
+          f"bitacora {"si" if bitacora else "NO"}.")
     if record["cortada_por_inactividad"]:
         print(f"Se conto hasta el ultimo evento por inactividad mayor a {STALE_HOURS}h.")
 
@@ -325,12 +325,22 @@ def cmd_vencidas(args) -> None:
 
 # ----------------------------------------------------------------- agregado
 
-def completas() -> list:
-    return [s for s in sessions() if s.get("estado") == "completa"]
+def cerradas() -> list:
+    """Todas las sesiones cerradas cuentan para tiempo y racha.
+
+    Falta de bitacora es metadata incompleta, no una sesion inexistente:
+    borrarla sesgaba la adherencia y hacia que inventar una bitacora de
+    compromiso fuera mas barato que declarar el hueco.
+    """
+    return sessions()
+
+
+def incompletas() -> list:
+    return [s for s in sessions() if s.get("estado") != "completa"]
 
 
 def racha() -> int:
-    dias = {parse_dt(s["iniciada"]).date() for s in completas()}
+    dias = {parse_dt(s["iniciada"]).date() for s in cerradas()}
     if not dias:
         return 0
     cursor = today()
@@ -347,7 +357,7 @@ def racha() -> int:
 
 def minutos_por_dia() -> dict:
     acc = defaultdict(int)
-    for s in completas():
+    for s in cerradas():
         acc[parse_dt(s["iniciada"]).date()] += s["minutos"]
     return acc
 
@@ -355,7 +365,7 @@ def minutos_por_dia() -> dict:
 def ultimo_contacto() -> dict:
     """tema -> fecha del ultimo evento registrado sobre ese tema."""
     acc = {}
-    for s in completas():
+    for s in cerradas():
         d = parse_dt(s["iniciada"]).date().isoformat()
         for tema in s.get("temas", []):
             if tema not in acc or d > acc[tema]:
@@ -375,7 +385,7 @@ def resumen_por_tema() -> dict:
         cards_by_topic[c["tema"]].append(c)
 
     ej_by_topic = defaultdict(lambda: {"intentados": 0, "solo": 0})
-    for s in completas():
+    for s in cerradas():
         for e in s.get("ejercicios", []):
             b = ej_by_topic[e["tema"]]
             b["intentados"] += 1
@@ -437,11 +447,11 @@ def cmd_estado(args) -> None:
 
     mpd = minutos_por_dia()
     y, w, _ = today().isocalendar()
-    sem = [s for s in completas() if parse_dt(s["iniciada"]).date().isocalendar()[:2] == (y, w)]
+    sem = [s for s in cerradas() if parse_dt(s["iniciada"]).date().isocalendar()[:2] == (y, w)]
     print(f"\nRacha: {racha()} dia(s). Hoy: {mpd.get(today(), 0)} min. "
           f"Esta semana: {sum(s['minutos'] for s in sem)} min en {len(sem)} sesiones.")
 
-    ss = completas()
+    ss = cerradas()
     if ss:
         u = ss[-1]
         print(f"\nUltima sesion: {u['id']} ({u['modo']}, {u['minutos']} min, "
@@ -456,14 +466,14 @@ def cmd_estado(args) -> None:
 
 
 def cmd_metricas(args) -> None:
-    ss = completas()
-    incompletas = [s for s in sessions() if s.get("estado") != "completa"]
+    ss = cerradas()
+    sin_bitacora = incompletas()
 
     print("=" * 58 + "\n  METRICAS\n" + "=" * 58)
     if not ss:
         print("\nTodavia no hay sesiones completas registradas.")
-        if incompletas:
-            print(f"Hay {len(incompletas)} sesion(es) cerradas sin bitacora, que no cuentan.")
+        if sin_bitacora:
+            print(f"Hay {len(sin_bitacora)} sesion(es) sin bitacora.")
         return
 
     mpd = minutos_por_dia()
@@ -600,8 +610,9 @@ def cmd_metricas(args) -> None:
             print(f"  {t} (ultimo: {f})")
 
     print("\nCompara esto contra base/temario.md para juzgar cobertura.")
-    if incompletas:
-        print(f"{len(incompletas)} sesion(es) sin bitacora. No cuentan para racha ni minutos.")
+    if sin_bitacora:
+        print(f"\n{len(sin_bitacora)} de {len(ss)} sesion(es) sin bitacora. Cuentan para tiempo y "
+              "racha; lo que falta es el registro cualitativo de que paso.")
 
 
 def build_parser() -> argparse.ArgumentParser:
