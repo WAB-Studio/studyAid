@@ -1,6 +1,7 @@
 # Jargon decoder
 
-Every term below in one plain sentence. When algotrace is asked to "say it simply", it speaks at this level. No term on the left may appear in a simple-mode explanation without its right-side meaning attached.
+Cada término en una oración llana. Cuando el usuario pide que se lo digas simple, hablás en este
+registro y no aparece ningún término de la izquierda sin su significado de la derecha pegado.
 
 | Term | What it actually means |
 |---|---|

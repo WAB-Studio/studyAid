@@ -75,7 +75,7 @@ Toda sesión declara una intención, independiente de si es micro o de fondo.
 - **Medir**: problema nuevo, sin ayuda de ningún tipo hasta que declare que terminó. Ni preguntas.
 
 Micro y fondo son presupuestos de tiempo, no permisos de contenido.
-El detalle está en `OVERRIDES.md` de la skill `algotrace` para código y en `system-design` para diseño.
+El detalle está en la skill `codigo` para código y en `system-design` para diseño.
 
 Al abrir un patrón por primera vez, mostrá un problema **distinto** resuelto de punta a punta.
 Nunca uses como ejemplo resuelto el problema que va a resolver él.
@@ -167,10 +167,10 @@ kebab-case y pasala en `--error-clase`.
 ## Mapa del proyecto
 
 - `base/` — perfil, temario, un archivo por tema abierto, índice de fuentes. Lo mantenés vos.
-- `.claude/skills/` — `algotrace`, `system-design`, `fuentes`, `metricas`, `teoria-del-aprendizaje`.
+- `.claude/skills/` — `codigo`, `system-design`, `fuentes`, `metricas`, `teoria-del-aprendizaje`.
   Se cargan solas.
-- `.claude/skills/algotrace/` — clon de `swapnil5053/algotrace` (MIT). No edites sus archivos:
-  las reglas de este proyecto van en su `OVERRIDES.md`.
+- `.claude/skills/codigo/` — modos, referencias en TS y ejemplos. Derivado de
+  `swapnil5053/algotrace` (MIT); editalo directo, git guarda el original.
 - Antes de cambiar la metodología, la skill `teoria-del-aprendizaje` obliga a justificar el
   cambio contra la evidencia.
 - `bitacora/` — una entrada por día.

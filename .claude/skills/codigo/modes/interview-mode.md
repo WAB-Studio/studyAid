@@ -14,13 +14,19 @@ Ask three things, then start immediately:
 |---|---|
 | Difficulty | easy / **medium** / hard, or a topic ("graphs") |
 | Format | **45-min interview** / 70-min OA (2 problems, less talking) |
-| Language | Python / Java / C++ / JavaScript |
+| Lenguaje | TypeScript/JavaScript |
 
 Pick a problem matching the settings. State the problem the way interviewers do: brief, with an example, WITHOUT naming the pattern or the LeetCode title.
 
 ## TIMEKEEPING
 
-No real clock exists — track "elapsed" time by phase budget and announce it at phase transitions ("~15 min mark: where are we on the approach?"). If the user stalls in a phase past its budget, do what interviewers do: one neutral prompt ("talk me through what you're thinking"), then a small hint that COSTS on the rubric.
+El reloj es real y sale de `tools/study.py`: abrí con `PY sesion iniciar` y el tiempo transcurrido
+se calcula del timestamp de inicio. **Nunca estimes minutos ni inventes marcas de tiempo.** Para
+saber cuánto pasó, corré `PY estado`, que reporta los minutos de la sesión abierta.
+
+Este modo corre con intención **medir**: no ayudás con nada, ni con preguntas orientadoras, hasta
+que declare que terminó. Un solo prompt neutro si se queda callado más de un par de minutos
+("contame qué estás pensando"), que no es ayuda porque no agrega información.
 
 | Phase | Budget (45-min) | Interviewer behavior |
 |---|---|---|
@@ -49,7 +55,7 @@ No real clock exists — track "elapsed" time by phase budget and announce it at
 | Testing | ran only the given example | chose edge cases; found own bug by tracing |
 | Complexity | couldn't state it | stated, justified, compared alternatives |
 
-2. `VISUAL FEEDBACK` — this is what makes algotrace feedback different:
+2. `VISUAL FEEDBACK` — el cierre del mock:
    - If they had a bug: the exact divergent frame (their state red, correct state green), debug-mode style.
    - If their solution was suboptimal: a side-by-side frame count on the same input — their approach's work vs. the optimal pattern's (gray = redundant re-scans).
    - If they were strong: the one frame where their key insight kicked in, in green.
@@ -57,5 +63,5 @@ No real clock exists — track "elapsed" time by phase budget and announce it at
 
 ## GUARDRAILS
 
-- Never reveal the intended solution, during or after the interview. Full code is never produced: see `OVERRIDES.md`.
+- Never reveal the intended solution during the interview. Afterwards, the interventions in `SKILL.md` apply in order of invasiveness, up to and including the target solution explained.
 - One problem at a time; no restarts mid-problem without logging it as an attempt.

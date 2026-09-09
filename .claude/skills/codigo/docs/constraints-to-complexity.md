@@ -1,6 +1,12 @@
-# Reading constraints before reading the problem
+# Las restricciones, para podar
 
-The constraints block tells you the intended complexity before you understand a single word of the story. Most online judges allow roughly 10^8 simple operations per second-limit. Work backwards from n.
+Se leen **después** de entender y reformular el problema, no antes. Leerlas primero entrena a
+emparejar por rasgos superficiales del enunciado —el heurístico de LeetCode— en vez de por la
+estructura del problema.
+
+Una vez que el problema está entendido, la cota de `n` descarta complejidades y deja un conjunto
+chico de enfoques candidatos. La mayoría de los jueces admite del orden de 10^8 operaciones
+simples por segundo de límite. Se razona hacia atrás desde `n`.
 
 | n up to | Slowest acceptable | What that usually means |
 |---|---|---|

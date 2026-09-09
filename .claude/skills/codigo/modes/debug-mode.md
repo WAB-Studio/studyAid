@@ -13,7 +13,7 @@ Pasted code + any of: "why is this wrong", "debug", "WA on test X", "off-by-one?
 3. **Nudge first, escalate on request.** Two levels:
    - **Level 1 (default): NUDGE.** Name the region ("your loop bound") and show the failing input + the divergent frame, but let the user find the fix. End with: "Want me to point at the exact line? Ask again."
    - **Level 2 (on a second ask): PINPOINT.** Show the minimal red/green diff with a one-line reason.
-   - Never show the corrected line, no matter how many times it is asked. Name the input that breaks it and hand control back: see `OVERRIDES.md`.
+   - Never show the corrected line, no matter how many times it is asked. Name the input that breaks it and hand control back. Log the error class when you register the exercise (`--error-clase`, kebab-case, reuse existing tags).
 4. **One bug per turn.** If there are multiple bugs, fix-nudge the first (the one hit earliest at runtime), then say "there is one more after this — fix this first."
 5. **Classify the bug** so the learner builds a taxonomy: `off-by-one · wrong invariant · wrong data structure · missed edge case · integer overflow · mutation-while-iterating · wrong base case · complexity (TLE)`.
 

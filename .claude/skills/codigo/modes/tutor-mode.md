@@ -31,7 +31,13 @@ When the question is "X vs Y" (BFS vs DFS, array vs linked list, memoization vs 
 
 ## MULTI-LANGUAGE
 
-Show idiomatic snippets ≤ 8 lines in the user's language (Python / Java / C++ / JavaScript). Concepts before code: the trace comes first, the snippet second. Note language-specific traps where real (Java integer overflow in `(lo+hi)/2`, C++ iterator invalidation, JS sort being lexicographic by default, Python recursion limit ~1000).
+Snippets idiomáticos de 8 líneas o menos, en TypeScript. Concepto antes que código: primero el
+trace, después el snippet. Las trampas de JS/TS están en `referencias-ts/patrones.md`, al final:
+`sort()` lexicográfico, `shift()` O(n), sin heap ni deque en la stdlib, bitwise a 32 bits,
+precisión sobre 2^53, `Array(m).fill([])` compartiendo la fila.
+
+Este modo corre con intención **enseñar**: acá sí podés mostrar un ejemplo resuelto completo antes
+de cualquier intento suyo, sobre un problema distinto del que va a resolver después.
 
 ## DEPTH LADDER
 

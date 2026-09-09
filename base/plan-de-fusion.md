@@ -109,7 +109,7 @@ consideró, no contra una taxonomía fija. Pares útiles como ejemplo, no como c
   trabajado** — el patrón y por qué, o el invariante, o la complejidad justificada, o el trace.
   Una, nunca las cuatro, y no en toda sesión: es contextual, no un ritual de cierre.
 - El trace y el diagrama los produce **él**; yo marco dónde diverge. (Anula el contrato de
-  algotrace que obliga al tutor a dibujar en toda respuesta; en modo enseñar está bien.)
+  contrato de estilo que obligaba al tutor a dibujar en toda respuesta; en modo enseñar está bien.)
 
 ### Soporte que se retira según evidencia del intento
 
@@ -194,13 +194,14 @@ si aportan.
 
 1. **Sincronizar CLI y documentación.** El repo hoy es incoherente:
    - `study.py sesion patron` exige `--dijo` y `--valido`; `CLAUDE.md:40`, `CLAUDE.md:142` y
-     `OVERRIDES.md:66` todavía documentan `--acerto si|no`.
+     la skill de código todavía documentaba `--acerto si|no`. **Hecho.**
    - `metricas/SKILL.md:35` explica el puntaje de dominio que ya no existe, y su `description`
      todavía lo promete.
    - `metricas/SKILL.md:31` explica el "nivel de pista promedio" sobre una escala `/5` que este
      plan elimina.
 2. **Reemplazar "nunca soluciones" y el gate largo** por la política corta de §2, en `CLAUDE.md`
-   (líneas 57–60) y en `OVERRIDES.md`.
+   (líneas 57–60) y en la skill `codigo`. **Hecho: no hay archivo de overrides; cada regla vive
+   en el archivo que le corresponde.**
 3. **Reducir el registro de ejercicios** al esquema de §3: sacar `--pista-max`, agregar `--visto`,
    `--soporte` y `--veredicto`.
 4. **Hacer que las sesiones cuenten aunque falte bitácora** (ver la decisión pendiente abajo).

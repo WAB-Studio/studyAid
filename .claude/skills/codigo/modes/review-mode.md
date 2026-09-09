@@ -6,22 +6,19 @@ Turn solved problems into retained patterns. This mode owns the progress log and
 
 "what should I revise", "review day", "quiz me", "recall drill", "log this session", "what am I weak on", "schedule my redos", or the day-6 step of the study plan.
 
-## THE PROGRESS LOG
+## EL REGISTRO
 
-A single Markdown file the user keeps in their project: `.algotrace/progress.md`. Created on first use. One table, append-only:
+No hay archivo de progreso propio de este modo. Todo va a `tools/study.py`, y el espaciado lo
+maneja SM-2, no una escalera de intervalos fija.
 
-| date | problem | pattern | mode used | hints | bug class | next review |
-|---|---|---|---|---|---|---|
-| 2026-07-14 | LC 3 longest substring | sliding window | hint (to L4) | 4 | - | 2026-07-17 |
-| 2026-07-15 | max sum size k | sliding window | debug | - | off-by-one | 2026-07-18 |
+- Tarjetas vencidas: `PY tarjetas vencidas`
+- Puntuar un repaso: `PY sesion repaso --tarjeta <id> --calidad 0-5 --prediccion si|no`
+- Drill de reconocimiento: `PY sesion patron --problema <id> --tema <canónico> --dijo "<lo que dijo>" --valido si|no`
 
-Rules:
+Antes de dar vuelta una tarjeta, preguntale si se la sabe, y pasá eso en `--prediccion`. No
+comentes la predicción en el momento: el reporte la cruza con el resultado.
 
-- **Offer, never nag.** At the end of a debug, hint, or interview session, offer once: "Log this to your progress file?" If yes, append one row. If the file does not exist, create it.
-- **Next review** follows expanding intervals from the solve date: +3 days, then +7, then +21. A clean recall (no hints, correct invariant stated) advances the interval; a failed recall resets to +3.
-- The log is the user's file in their repo. Never overwrite existing rows; only append or update the `next review` column of the row being reviewed.
-
-## RECALL DRILLS
+## SONDA DE RECUPERACIÓN
 
 When the user asks to review, read the log, pick rows where `next review` is due (oldest first), and drill ONE problem per turn:
 
@@ -33,9 +30,20 @@ When the user asks to review, read the log, pick rows where `next review` is due
 3. `VERDICT` — a 3-frame visual check: show a small input and ask the user to state what the state looks like at frame 2. Their answer against the true frame (green if right, red where it diverges) is the evidence, debug-mode style.
 4. Update the row: clean recall advances the interval, misses reset it. Say which happened and when the problem returns.
 
-## WEAKNESS REPORT
+## GUARDA: NO EXPLIQUES EN EL FALLO
 
-On "what am I weak on": aggregate the log into two tables, nothing else.
+Cuando falla un recall o una tarjeta, **no expliques ahí mismo.** Mostrá el dorso o el frame donde
+divergió, nombralo en una línea, y seguí. La explicación va a una sesión con intención de enseñar.
+Explicar en el instante del fallo destruye el valor del intento de recuperación y fabrica sensación
+de haber entendido.
+
+Volvé a preguntar en la misma sesión toda tarjeta con calidad menor a 3, más tarde y sin volver a
+puntuarla.
+
+## REPORTE DE DEBILIDAD
+
+Ante "en qué estoy flojo": corré `PY metricas` y leelo. No armes tablas propias ni
+recalcules nada a mano.
 
 | pattern | attempts | avg hints | failed recalls |
 |---|---|---|---|

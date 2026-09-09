@@ -1,6 +1,11 @@
-# algotrace Style Contract
+# Contrato de estilo de los traces
 
-Every algotrace response — in every mode — follows this contract. It exists so output reads like a clean, hand-drawn study guide, not AI slop.
+Este contrato aplica a los visuales que produzco yo: formato, subtítulos, definiciones en cita,
+tablas, y la semántica de los cuatro colores.
+
+**No obliga a que toda respuesta lleve un visual.** En recuperación, medición y práctica, el trace
+y el diagrama los produce **él** y yo marco dónde diverge: dibujarlo yo le saca el trabajo
+generativo, que es donde está el aprendizaje. En modo enseñar y visualizar, el visual es mío.
 
 ## PAGE STRUCTURE
 
@@ -12,7 +17,7 @@ Every algotrace response — in every mode — follows this contract. It exists 
 
    `DEFINITION · INTUITION · TRACE · COMPLEXITY · PITFALLS`
 
-   Modes may add their own (e.g., `THE BUG`, `HINT 2 OF 5`, `RUBRIC`) — always ALL-CAPS.
+   Modes may add their own (e.g., `THE BUG`, `INVARIANTE`, `RUBRIC`) — always ALL-CAPS.
 
 3. **Definitions live in blockquotes** with **key terms bolded**:
 
