@@ -8,6 +8,10 @@ el título manda: que lo busque por nombre.
 
 Marcas: `F` fácil, `M` medio, `D` difícil. `*` = el que conviene primero al abrir el tema.
 
+**Los marcados `[RESERVADO: línea base B]` no se usan para enseñar ni practicar.** Están
+apartados para la segunda medición de `base/linea-base.md`. Si el usuario los pide igual,
+avisale que gasta la línea base antes de elegir.
+
 ## complejidad
 
 No tiene problemas propios. Se practica preguntando la complejidad de lo que resuelve
@@ -24,14 +28,14 @@ en cualquier otro tema.
 
 - 1 Two Sum `F` * — `two-sum`
 - 49 Group Anagrams `M` — `group-anagrams`
-- 347 Top K Frequent Elements `M` — `top-k-frequent-elements`
+- 347 Top K Frequent Elements `M` — `top-k-frequent-elements` **[RESERVADO: línea base B]**
 - 128 Longest Consecutive Sequence `M` — `longest-consecutive-sequence`
 
 ## two-pointers
 
 - 125 Valid Palindrome `F` * — `valid-palindrome`
 - 167 Two Sum II `M` — `two-sum-ii-input-array-is-sorted`
-- 15 3Sum `M` — `3sum`
+- 15 3Sum `M` — `3sum` **[RESERVADO: línea base B]**
 - 11 Container With Most Water `M` — `container-with-most-water`
 - 42 Trapping Rain Water `D` — `trapping-rain-water`
 
@@ -47,14 +51,14 @@ en cualquier otro tema.
 
 - 303 Range Sum Query - Immutable `F` * — `range-sum-query-immutable`
 - 724 Find Pivot Index `F` — `find-pivot-index`
-- 560 Subarray Sum Equals K `M` — `subarray-sum-equals-k`
+- 560 Subarray Sum Equals K `M` — `subarray-sum-equals-k` **[RESERVADO: línea base B]**
 
 ## binary-search
 
 - 704 Binary Search `F` * — `binary-search`
 - 74 Search a 2D Matrix `M` — `search-a-2d-matrix`
 - 153 Find Minimum in Rotated Sorted Array `M` — `find-minimum-in-rotated-sorted-array`
-- 33 Search in Rotated Sorted Array `M` — `search-in-rotated-sorted-array`
+- 33 Search in Rotated Sorted Array `M` — `search-in-rotated-sorted-array` **[RESERVADO: línea base B]**
 - 875 Koko Eating Bananas `M` — `koko-eating-bananas` (binaria sobre la respuesta)
 
 ## intervalos
@@ -76,7 +80,7 @@ en cualquier otro tema.
 
 - 20 Valid Parentheses `F` * — `valid-parentheses`
 - 155 Min Stack `M` — `min-stack`
-- 150 Evaluate Reverse Polish Notation `M` — `evaluate-reverse-polish-notation`
+- 150 Evaluate Reverse Polish Notation `M` — `evaluate-reverse-polish-notation` **[RESERVADO: línea base B]**
 - 739 Daily Temperatures `M` — `daily-temperatures` (pila monótona)
 - 84 Largest Rectangle in Histogram `D` — `largest-rectangle-in-histogram`
 
@@ -122,7 +126,7 @@ Se practica dentro de trees-bst y backtracking. Para aislarlo:
 ## graphs-bfs-dfs
 
 - 200 Number of Islands `M` * — `number-of-islands`
-- 695 Max Area of Island `M` — `max-area-of-island`
+- 695 Max Area of Island `M` — `max-area-of-island` **[RESERVADO: línea base B]**
 - 133 Clone Graph `M` — `clone-graph`
 - 994 Rotting Oranges `M` — `rotting-oranges`
 - 417 Pacific Atlantic Water Flow `M` — `pacific-atlantic-water-flow`
@@ -142,7 +146,7 @@ Se practica dentro de trees-bst y backtracking. Para aislarlo:
 ## dp-1d
 
 - 70 Climbing Stairs `F` * — `climbing-stairs`
-- 198 House Robber `M` — `house-robber`
+- 198 House Robber `M` — `house-robber` **[RESERVADO: línea base B]**
 - 213 House Robber II `M` — `house-robber-ii`
 - 322 Coin Change `M` — `coin-change`
 - 139 Word Break `M` — `word-break`

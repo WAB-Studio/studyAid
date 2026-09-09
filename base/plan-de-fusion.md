@@ -58,8 +58,10 @@ mucho más que dar la respuesta pelada o el mero correcto/incorrecto (Van der Kl
 
 ### Escalera de ayuda
 
-Cuando deja de progresar, **no se salta de una pista a la solución completa**. Los peldaños
-intermedios son la parte que enseña:
+Cuando deja de progresar, **no se salta de una pista a la solución completa**. Estas son las
+intervenciones disponibles, no una secuencia que se recorra entera: elegí la menos invasiva que
+probablemente le devuelva progreso, y si lo que falta es conocimiento y no razonamiento, salteá
+peldaños sin culpa.
 
 1. Pista sobre lo que se le pasó.
 2. Enseñar el concepto que falta, si lo que falta es conocimiento.
@@ -68,11 +70,11 @@ intermedios son la parte que enseña:
 5. La solución del problema objetivo, explicada: por qué ese enfoque, cuál es el invariante, dónde
    divergió el suyo.
 
-Escalá cuando el peldaño actual dejó de mover la aguja. **No le digas "acá ya no estás
+Escalá cuando la intervención actual dejó de mover la aguja. **No le digas "acá ya no estás
 aprendiendo"** —no lo sabés—. Decí: *"parece más útil cambiar de estrategia y enseñarte la pieza
 que falta"*.
 
-Cruzar hasta el peldaño 5 crea una **prioridad de repaso**, no una deuda de un problema análogo
+Llegar a mostrar la solución objetivo crea una **prioridad de repaso**, no una deuda de un problema análogo
 uno a uno: el tema vuelve antes y con un problema variado, y un mismo ejercicio posterior puede
 verificar varias piezas.
 
@@ -99,12 +101,13 @@ consideró, no contra una taxonomía fija. Pares útiles como ejemplo, no como c
 ### Errores y cierre
 
 - **Los errores importantes se corrigen en la misma sesión.** La secuencia: resultado crudo →
-  5–10 min de trace y autodiagnóstico suyos → pista mínima si sigue bloqueado → corrección
-  conceptual completa, dentro de la sesión.
+  una oportunidad breve de trace y autodiagnóstico suyos, mientras siga produciendo información
+  útil → ayuda si sigue bloqueado → corrección conceptual completa, dentro de la sesión.
 - Lo que se mantiene de la guarda vieja es **el orden, no la demora**: producción antes de
   explicación. No es timing de feedback, es generación y autoexplicación.
-- **El cierre tiene UNA sola producción diagnóstica**, elegida según lo que pasó: el patrón y por
-  qué, o el invariante, o la complejidad justificada, o el trace. No las cuatro.
+- **Al cierre, pedí una producción diagnóstica cuando ayude a comprobar o consolidar lo
+  trabajado** — el patrón y por qué, o el invariante, o la complejidad justificada, o el trace.
+  Una, nunca las cuatro, y no en toda sesión: es contextual, no un ritual de cierre.
 - El trace y el diagrama los produce **él**; yo marco dónde diverge. (Anula el contrato de
   algotrace que obliga al tutor a dibujar en toda respuesta; en modo enseñar está bien.)
 
@@ -116,8 +119,9 @@ fija.
 
 ### Medición fría
 
-Periódica y de cadencia adaptativa (del orden de cada 1–2 semanas): un problema nuevo, sin ayuda
-disponible durante el intento.
+Un problema nuevo, sin ayuda disponible durante el intento, programado con separación suficiente
+para que un cambio sea observable. La primera repetición de la línea base va a las 4–6 semanas;
+esa separación es un default para arrancar, no una cadencia permanente.
 
 **Se reporta desagregada por tema, dificultad y novedad. No se resume en una sola curva.** Si yo
 elijo la dificultad y después juzgo mi propio éxito con un único porcentaje, el número no sirve:
@@ -154,7 +158,11 @@ invariante, una pista de debugging no entra en la escala, y system design necesi
 ayuda. Si más adelante sirve, se guarda el **tipo** de pista como nota (comprensión, estrategia,
 implementación, debugging) — nunca como `/3` ni `/5`.
 
-**Procedencia en vez de taxonomía.** Todo valor ambiguo lleva su fuente:
+**Procedencia declarada en el reporte, todavía no en el esquema.** El campo `fuente:` por
+registro queda en backlog hasta que haya un consumidor: agregarlo ahora es otra pieza sin uso.
+Lo que sí es obligatorio desde el día uno es que el reporte y la documentación digan de dónde
+sale cada número — el veredicto de LeetCode lo reporta él, los tiempos salen del reloj, las
+evaluaciones las produzco yo. La forma futura del campo, cuando haga falta:
 
 ```
 fuente: plataforma | reloj | usuario | IA
@@ -177,6 +185,12 @@ si aportan.
 ## 4. Cambios de ahora, y backlog
 
 ### Ahora — unas pocas horas, y el momento más barato porque no hay datos que migrar
+
+0. **Fijar la línea base y ejecutar la forma A.** Es la única tarea que pierde valor por
+   postergarse: no existe una observación del nivel de partida, y esa observación no se
+   reconstruye después. Formas A y B especificadas en `base/linea-base.md`; los problemas de B
+   están marcados `[RESERVADO]` en el índice y no se usan para enseñar ni practicar. Ejecutar A
+   **antes** de la primera sesión de estudio.
 
 1. **Sincronizar CLI y documentación.** El repo hoy es incoherente:
    - `study.py sesion patron` exige `--dijo` y `--valido`; `CLAUDE.md:40`, `CLAUDE.md:142` y
