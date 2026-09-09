@@ -1,0 +1,23 @@
+# Entorno
+.venv/
+__pycache__/
+*.py[cod]
+
+# Estado transitorio de la sesión en curso: se reconstruye o se descarta,
+# no tiene sentido versionarlo y cambia varias veces por sesión.
+data/current_session.json
+*.tmp
+
+# Material descargado: puede ser pesado y no es nuestro.
+# El índice de qué se consultó vive en base/fuentes.md, que sí se versiona.
+fuentes/*
+!fuentes/.gitkeep
+
+# Permisos locales de la máquina
+.claude/settings.local.json
+
+# Ruido de editores y sistema
+.DS_Store
+*.swp
+.idea/
+.vscode/
