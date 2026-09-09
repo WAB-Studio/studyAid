@@ -63,7 +63,8 @@ En micro-sesión, mezclá enunciados de temas ya cubiertos y pedí solo el patr�
 enfoque, sin resolver. Nunca digas de qué tema es antes de preguntar. Registrá cada uno:
 
 ```bash
-.venv/bin/python tools/study.py sesion patron --problema <id> --tema <tema-correcto> --acerto si|no
+.venv/bin/python tools/study.py sesion patron --problema <id> --tema <canónico> \
+  --dijo "<lo que dijo, textual>" --valido si|no
 ```
 
 ## Ediciones hechas al clon, y por qué

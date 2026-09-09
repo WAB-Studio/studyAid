@@ -23,9 +23,6 @@ SESSIONS_FILE = DATA / "sessions.jsonl"
 CURRENT_FILE = DATA / "current_session.json"
 
 STALE_HOURS = 4
-# Intervalo SM-2 a partir del cual una tarjeta cuenta como retenida del todo.
-# Atado al horizonte de 6-12 meses: con 21 dias se declaraba dominio a las 3 semanas.
-HORIZONTE_DOMINIO_DIAS = 60
 # Tope por defecto de tarjetas vencidas por sesion, para que una pausa no genere un muro.
 TOPE_VENCIDAS = 20
 RESULTS = ("solo", "con_pistas", "abandonado")
@@ -167,16 +164,20 @@ def cmd_patron(args) -> None:
     cur = require_current()
     dijo = args.dijo.strip().lower()
     tema = args.tema.strip().lower()
-    acerto = dijo == tema
+    valido = args.valido == "si"
     push_event(cur, {
         "tipo": "patron",
         "problema": args.problema,
-        "tema": tema,
-        "dijo": dijo,
-        "acerto": acerto,
+        "tema": tema,           # patron canonico del indice
+        "dijo": dijo,           # lo que dijo el usuario, textual
+        "acerto": valido,       # JUICIO DEL ASISTENTE, no igualdad de strings
+        "juicio": True,
     })
-    detalle = "acertado" if acerto else f"fallado: dijo {dijo}, era {tema}"
-    print(f"Reconocimiento: {args.problema} ({detalle}).")
+    if valido:
+        extra = "" if dijo == tema else f" (dijo {dijo}, tambien valido)"
+        print(f"Reconocimiento: {args.problema} valido{extra}.")
+    else:
+        print(f"Reconocimiento: {args.problema} no valido: dijo {dijo}, era {tema}.")
 
 
 def cmd_repaso(args) -> None:
@@ -362,7 +363,13 @@ def ultimo_contacto() -> dict:
     return acc
 
 
-def dominio_por_tema() -> dict:
+def resumen_por_tema() -> dict:
+    """Componentes crudos por tema. Sin puntaje compuesto.
+
+    No se combina nada en un solo numero: el intervalo SM-2 mide cuando toca
+    preguntar, no cuanto sabe la persona, y mezclarlo con ratios de ejercicios
+    fabrica una medicion que no existe.
+    """
     cards_by_topic = defaultdict(list)
     for c in cards_db()["cards"]:
         cards_by_topic[c["tema"]].append(c)
@@ -375,27 +382,20 @@ def dominio_por_tema() -> dict:
             if e["resultado"] == "solo":
                 b["solo"] += 1
 
+    contacto = ultimo_contacto()
     out = {}
     for tid in sorted(set(cards_by_topic) | set(ej_by_topic)):
         cards = cards_by_topic.get(tid, [])
-        ej = ej_by_topic.get(tid)
-        partes, pesos = [], []
-        if cards:
-            partes.append(sum(min(c["sm2"]["interval"] / HORIZONTE_DOMINIO_DIAS, 1.0) for c in cards) / len(cards))
-            pesos.append(0.4)
-            revs = [h for c in cards for h in c["historial"]]
-            if revs:
-                partes.append(sum(1 for h in revs if h["calidad"] >= 3) / len(revs))
-                pesos.append(0.2)
-        if ej and ej["intentados"]:
-            partes.append(ej["solo"] / ej["intentados"])
-            pesos.append(0.4)
-        if not partes:
-            continue
-        p = round(100 * sum(a * w for a, w in zip(partes, pesos)) / sum(pesos))
-        etiqueta = "iniciado" if p < 25 else "practicando" if p < 50 else "firme" if p < 75 else "solido"
-        out[tid] = {"puntaje": p, "etiqueta": etiqueta,
-                    "tarjetas": len(cards), "ejercicios": ej["intentados"] if ej else 0}
+        revs = [h for c in cards for h in c["historial"]]
+        ej = ej_by_topic.get(tid, {"intentados": 0, "solo": 0})
+        out[tid] = {
+            "ejercicios": ej["intentados"],
+            "sin_ayuda": ej["solo"],
+            "tarjetas": len(cards),
+            "repasos": len(revs),
+            "aciertos": sum(1 for h in revs if h["calidad"] >= 3),
+            "ultimo": contacto.get(tid, "-"),
+        }
     return out
 
 
@@ -524,8 +524,10 @@ def cmd_metricas(args) -> None:
     else:
         print("\nTarjetas: ningun repaso registrado todavia.")
 
-    preds_ej = [e for s in ss for e in s.get("ejercicios", []) if e.get("prediccion")]
-    preds_tar = [r for s in ss for r in s.get("repasos", []) if r.get("prediccion")]
+    preds_ej = [e for s in ss for e in s.get("ejercicios", [])
+                if e.get("prediccion") and e["prediccion"] != "no-preguntada"]
+    preds_tar = [r for s in ss for r in s.get("repasos", [])
+                 if r.get("prediccion") and r["prediccion"] != "no-preguntada"]
     if preds_ej or preds_tar:
         print("\nCalibracion (lo que predijiste contra lo que paso):")
     if preds_ej:
@@ -580,12 +582,14 @@ def cmd_metricas(args) -> None:
         for cls, d in sorted(errores.items(), key=lambda kv: -kv[1]["n"]):
             print(f"  {cls:<24} {d['n']:>3}  ultimo: {d['ultimo']}")
 
-    dom = dominio_por_tema()
-    if dom:
-        print(f"\nDominio por tema ({len(dom)} temas con actividad):")
-        for tid, d in sorted(dom.items(), key=lambda x: -x[1]["puntaje"]):
-            print(f"  {tid:<22} {d['puntaje']:>3} {'#' * (d['puntaje'] // 10):<10} "
-                  f"{d['etiqueta']:<12} ({d['tarjetas']} tarj, {d['ejercicios']} ejerc)")
+    resumen = resumen_por_tema()
+    if resumen:
+        print(f"\nPor tema ({len(resumen)} con actividad). Sin puntaje compuesto: "
+              "cada columna es lo que se midio, no una estimacion de dominio.")
+        print(f"  {'tema':<22} {'ejerc':>6} {'s/ayuda':>8} {'repasos':>8} {'aciertos':>9}  ultimo")
+        for tid, d in sorted(resumen.items(), key=lambda kv: kv[1]["ultimo"], reverse=True):
+            print(f"  {tid:<22} {d['ejercicios']:>6} {d['sin_ayuda']:>8} "
+                  f"{d['repasos']:>8} {d['aciertos']:>9}  {d['ultimo']}")
 
     contacto = ultimo_contacto()
     frios = [(t, f) for t, f in contacto.items()
@@ -621,7 +625,7 @@ def build_parser() -> argparse.ArgumentParser:
     b.add_argument("--resultado", required=True, choices=RESULTS)
     b.add_argument("--pista-max", type=int, default=0, dest="pista_max")
     b.add_argument("--prediccion", required=True,
-                   choices=["solo", "con_pistas", "no_lo_saco"])
+                   choices=["solo", "con_pistas", "no_lo_saco", "no-preguntada"])
     b.add_argument("--error-clase", default=None, dest="error_clase",
                    help="etiquetas kebab-case separadas por coma")
     b.set_defaults(func=cmd_ejercicio)
@@ -629,13 +633,15 @@ def build_parser() -> argparse.ArgumentParser:
     bp = ss_.add_parser("patron")
     bp.add_argument("--problema", required=True)
     bp.add_argument("--tema", required=True)
-    bp.add_argument("--dijo", required=True, help="el patron que dijo el usuario")
+    bp.add_argument("--dijo", required=True, help="lo que dijo el usuario, textual")
+    bp.add_argument("--valido", required=True, choices=["si", "no"],
+                    help="juicio del asistente: el enfoque es defendible, aunque no sea el canonico")
     bp.set_defaults(func=cmd_patron)
 
     c = ss_.add_parser("repaso")
     c.add_argument("--tarjeta", required=True)
     c.add_argument("--calidad", type=int, required=True)
-    c.add_argument("--prediccion", required=True, choices=["si", "no"])
+    c.add_argument("--prediccion", required=True, choices=["si", "no", "no-preguntada"])
     c.set_defaults(func=cmd_repaso)
 
     d = ss_.add_parser("cerrar")

@@ -37,7 +37,9 @@ Preguntá siempre antes de iniciar. Nunca inicies una sesión sin confirmación 
 Solo tarjetas vencidas, ejercicios cortos de temas ya abiertos, o drill intercalado de patrones.
 En el drill intercalado mezclá enunciados de temas ya cubiertos y pedí solo el patrón y una
 oración de enfoque, sin resolver. Nunca digas de qué tema es antes de preguntar.
-Registrá cada uno con `PY sesion patron --problema <id> --tema <tema-correcto> --acerto si|no`.
+Registrá cada uno con `PY sesion patron --problema <id> --tema <canónico> --dijo "<lo que dijo>" --valido si|no`.
+`--valido` es tu juicio sobre si el enfoque que propuso es defendible, no si coincide con el canónico:
+muchos problemas admiten más de un patrón válido.
 No expliques teoría nueva. No abras un tema que no esté en `base/temas/`.
 Registrá cada tarjeta y cada ejercicio apenas termina, antes de pasar al siguiente.
 Cortá en cuanto lo pida y cerrá con lo que haya hecho.
@@ -139,7 +141,7 @@ kebab-case y pasala en `--error-clase`.
 .venv/bin/python tools/study.py metricas
 .venv/bin/python tools/study.py sesion iniciar --modo micro|fondo [--tema TEMA]
 .venv/bin/python tools/study.py sesion ejercicio --ejercicio ID --tema TEMA --resultado solo|con_pistas|abandonado --pista-max N [--prediccion solo|con_pistas|no_lo_saco] [--error-clase "off-by-one,caso-vacio"]
-.venv/bin/python tools/study.py sesion patron --problema ID --tema TEMA --acerto si|no
+.venv/bin/python tools/study.py sesion patron --problema ID --tema CANONICO --dijo "TEXTO" --valido si|no
 .venv/bin/python tools/study.py sesion repaso --tarjeta ID --calidad 0-5 [--prediccion si|no]
 .venv/bin/python tools/study.py sesion cerrar --bitacora RUTA --sigue "TEXTO"
 .venv/bin/python tools/study.py tarjetas agregar --archivo RUTA.json

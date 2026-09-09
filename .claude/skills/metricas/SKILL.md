@@ -1,6 +1,6 @@
 ---
 name: metricas
-description: Generar e interpretar el reporte de progreso: minutos por día y semana, racha, ejercicios intentados contra resueltos sin ayuda, precisión en tarjetas y dominio por tema. Usar cuando el usuario pregunte cómo viene, cuánto estudió, cómo va la racha, si está mejorando, o pida un reporte. Triggers "cómo voy", "cómo vengo", "métricas", "reporte", "cuánto estudié", "la racha", "estoy mejorando", "dominio".
+description: Generar e interpretar el reporte de progreso: minutos por día y semana, racha, ejercicios intentados contra resueltos sin ayuda, precisión en tarjetas y resultados por tema. Usar cuando el usuario pregunte cómo viene, cuánto estudió, cómo va la racha, si está mejorando, o pida un reporte. Triggers "cómo voy", "cómo vengo", "métricas", "reporte", "cuánto estudié", "la racha", "estoy mejorando", "dominio".
 ---
 
 # Métricas
@@ -32,9 +32,10 @@ Decí en cada reporte:
   patrón. Si se queda en 4 o 5, el tema no está entendido y hay que volver al modelo mental.
 - **Precisión en tarjetas**: por debajo de 80% sostenido, las tarjetas están mal redactadas o el
   tema se generó antes de tiempo.
-- **Dominio por tema**: 0 a 100 combinando retención de tarjetas (40%), precisión en repasos
-  (20%) y ratio de ejercicios resueltos solo (40%). Es una fórmula propia, no un estándar: si el
-  número no coincide con la sensación del usuario, decilo y ofrecé ajustar los pesos.
+- **Resultados por tema**: columnas crudas, sin puntaje compuesto. No existe un número de
+  dominio: el intervalo SM-2 dice cuándo toca preguntar una tarjeta, no cuánto sabe él, y
+  combinarlo con ratios de ejercicios fabricaba una medición que no se estaba midiendo.
+  Leé las columnas juntas y decí qué muestran; no las promedies.
 - **Temas fríos**: tocados y sin actividad hace 21 días o más. Son los primeros candidatos para
   la próxima sesión.
 
