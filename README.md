@@ -40,7 +40,7 @@ la medición a las 4–6 semanas.
 ## Dónde está qué
 
 ```
-AGENTS.md          cómo trabajo yo  (CLAUDE.md es un symlink a este archivo)
+AGENTS.md          cómo trabajo yo  (CLAUDE.md lo importa con @AGENTS.md)
 base/              perfil, temario, un archivo por tema, línea base, fuentes
 bitacora/          una entrada por día
 data/              tarjetas SM-2 y log de sesiones (los escribe la tool, no a mano)

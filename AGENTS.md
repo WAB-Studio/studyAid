@@ -190,11 +190,12 @@ kebab-case y pasala en `--error-clase`.
 - `base/` — perfil, temario, un archivo por tema abierto, índice de fuentes. Lo mantenés vos.
 - `.claude/skills/` — `codigo`, `system-design`, `fuentes`, `metricas`, `teoria-del-aprendizaje`.
   Se cargan solas.
-- **Dos agentes, un solo contenido.** Este archivo es `AGENTS.md`, que es lo que lee Codex, y
-  `CLAUDE.md` es un symlink a él. Las skills viven en `.claude/skills/` y `.agents/skills` es un
-  symlink a esa carpeta, que es donde las busca Codex. No dupliques archivos ni conviertas un
-  symlink en copia: se desincronizan en silencio y cada agente termina leyendo una versión
-  distinta del método.
+- **Dos agentes, un solo contenido.** Este archivo es `AGENTS.md`, que es lo que lee Codex.
+  `CLAUDE.md` existe solo para importarlo con `@AGENTS.md`, que es el mecanismo documentado de
+  Claude Code. Las skills viven en `.claude/skills/`, y `.agents/skills` es un symlink a esa
+  carpeta porque Codex las busca ahí y sigue enlaces. No copies contenido de un lado al otro ni
+  uses `/import`, que duplica: se desincronizan en silencio y cada agente termina leyendo una
+  versión distinta del método.
 - `.claude/skills/codigo/` — modos, referencias en C++ y ejemplos. Derivado de
   `swapnil5053/algotrace` (MIT); editalo directo, git guarda el original.
 - Antes de cambiar la metodología, la skill `teoria-del-aprendizaje` obliga a justificar el
