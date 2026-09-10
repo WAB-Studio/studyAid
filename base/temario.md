@@ -72,3 +72,11 @@ Dosis chicas y sostenidas, nunca un bloque al final.
 ## Cambios al plan
 
 - 2026-09-09: versión inicial.
+- 2026-09-09: la línea base A confirma el orden, no lo cambia. `complejidad` sigue primero y
+  ahora con motivo medido: sin la notación no puede usar las restricciones del enunciado como
+  señal de patrón, que es exactamente donde falló 4 de 6 veces en A1.
+- 2026-09-09: dentro de `arrays-strings`, agregar un rato corto de API de arrays de JS
+  (argumentos de `map`/`filter`/`reduce`, `const` vs `let`). En A2 dos de los tres errores
+  fueron de lenguaje, no de algoritmo.
+- 2026-09-09: `prefix-sum` gana prioridad dentro del bloque 01. 238 quedó abandonado y es el
+  caso canónico de acumulados por izquierda y por derecha.
