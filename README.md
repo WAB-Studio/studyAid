@@ -40,12 +40,13 @@ la medición a las 4–6 semanas.
 ## Dónde está qué
 
 ```
-CLAUDE.md          cómo trabajo yo
+AGENTS.md          cómo trabajo yo  (CLAUDE.md es un symlink a este archivo)
 base/              perfil, temario, un archivo por tema, línea base, fuentes
 bitacora/          una entrada por día
 data/              tarjetas SM-2 y log de sesiones (los escribe la tool, no a mano)
 tools/study.py     reloj, SM-2 y métricas
 .claude/skills/    codigo, system-design, fuentes, metricas, teoria-del-aprendizaje
+.agents/skills     symlink a .claude/skills, que es donde las busca Codex
 referencia/        repos ajenos de los que salió parte del método
 ```
 

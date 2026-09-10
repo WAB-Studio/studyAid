@@ -15,7 +15,7 @@ Buscá material externo solo en estos casos:
 - Una explicación propia saldría vaga o insegura sobre un dato factual.
 - Hay que verificar un número, una API o un comportamiento del lenguaje.
 
-No busques afuera para explicar un patrón que ya está en `.claude/skills/leetcode/referencias/`.
+No busques afuera para explicar un patrón que ya está en `.claude/skills/codigo/referencias-cpp/`.
 No busques afuera en una micro-sesión.
 No interrumpas un ejercicio en curso para buscar una fuente: anotalo y buscá al cerrar.
 

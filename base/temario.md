@@ -91,5 +91,5 @@ Dosis chicas y sostenidas, nunca un bloque al final.
   concretas: (a) `heaps` se abarata, porque `priority_queue` viene en la stdlib y ya no hay que
   escribir el heap a mano como habría hecho falta en JS; (b) `linked-lists` y `trees-bst` se
   vuelven más valiosos de lo que eran, porque ahí los punteros dejan de ser teoría. Mientras dure
-  la rampa rige la regla de la carga cognitiva del CLAUDE.md: tema nuevo y lenguaje nuevo no se
+  la rampa rige la regla de la carga cognitiva del AGENTS.md: tema nuevo y lenguaje nuevo no se
   estrenan en el mismo ejercicio.
