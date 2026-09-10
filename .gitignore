@@ -8,6 +8,18 @@ __pycache__/
 data/current_session.json
 *.tmp
 
+# Datos de estudio de una persona concreta: perfil, línea base, avance por tema,
+# bitácoras y el registro de sesiones y tarjetas. El sistema (AGENTS.md, skills,
+# tools/, temario, plantillas) sí se versiona; lo que una persona estudió, no.
+base/perfil.md
+base/linea-base.md
+base/temas/*.md
+!base/temas/PLANTILLA.md
+bitacora/*.md
+!bitacora/PLANTILLA.md
+data/cards.json
+data/sessions.jsonl
+
 # Material descargado: puede ser pesado y no es nuestro.
 # El índice de qué se consultó vive en base/fuentes.md, que sí se versiona.
 fuentes/*
