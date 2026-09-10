@@ -79,3 +79,32 @@ Sirve para que la próxima sesión no proponga cosas sin sentido.
   167 y cerró con "creo que tiene un bug, no se me ocurre nada más". Es la misma raíz que las
   predicciones falladas hacia abajo. Vale devolverle la pregunta "¿qué te haría dudar de eso?"
   en vez de confirmar de una: el hueco es de criterio de validación, no de ideas.
+- 2026-09-10 (fondo in-place): **no se le puede pedir notación de complejidad hablada.** Dicta por
+  voz y el micrófono transcribe cualquier cosa cuando dice "O de n". Pedile el razonamiento en
+  palabras ("una sola pasada", "nada que crezca con el input") y dejá la notación para el editor.
+- 2026-09-10: **subestima sistemáticamente lo que puede.** Segunda predicción fallada hacia abajo
+  en dos sesiones: predijo "con pistas" en 27 y lo sacó solo con cero. El motivo que declara es el
+  lenguaje, no el algoritmo, y después no pregunta nada de sintaxis. Vale nombrárselo cuando la
+  brecha se sostenga unas sesiones más, con los datos en la mano.
+- 2026-09-10: **ya busca casos borde, pero solo en dos ejes**: tamaño de la entrada y rango de
+  valores. No mira el extremo del resultado (respuesta 0, respuesta n), que es el que ejercita
+  las ramas que nunca se toman. Se le dio el método de los tres ejes; chequear si lo aplica solo.
+- 2026-09-10: **le faltaba el vocabulario, no el razonamiento.** No sabía qué era un "invariante"
+  después de haberlo aplicado bien toda la sesión. Vale nombrar los términos técnicos cuando
+  aparezcan en vez de suponerlos: el hueco es de léxico y se tapa en una oración.
+- 2026-09-10: **razona los detalles cuando se le pregunta por ellos.** Explicó por qué `write`
+  arranca en 0 acá y en 1 en el 26, y por qué no necesita la guarda de vector vacío, sin ayuda.
+  Preguntar "¿por qué esta línea y no la otra?" le rinde más que explicarle.
+- 2026-09-10 (micro 283): **reusa un patrón recién aprendido sin releer qué cambió el enunciado.**
+  Aplicó la variante swap del 27 a un problema que exige preservar el orden. Al abrir un problema
+  parecido a uno reciente, vale pedirle explícitamente qué restricción cambió antes de que codee.
+- 2026-09-10: **declara invariantes débiles.** Enuncia una propiedad verdadera pero insuficiente
+  para demostrar el problema. Chequear que el invariante mencione todo lo que el enunciado exige,
+  no solo lo que el código hace.
+- 2026-09-10: **el trace le rinde más que la explicación.** Nivel 1 de debug (input que falla +
+  frames hasta la divergencia, sin decirle la corrección) le alcanzó para reformular el problema
+  solo. No hace falta escalar rápido con él.
+- 2026-09-10: **desconfía de soluciones correctas cuando le parecen poco elegantes.** Trató su
+  segundo loop de relleno como una deuda ("no supe hacerlo en el mismo loop"). Es la misma raíz
+  que las predicciones falladas hacia abajo: no reconoce lo correcto como correcto.
+

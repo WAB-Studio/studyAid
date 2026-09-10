@@ -28,7 +28,7 @@ array de entrada" y "el orden de los elementos restantes puede cambiar".
 - [x] `unordered_set` / `unordered_map`: API, `count` vs `[]`, y por qué `[]` inserta al leer
 - [x] `map` vs `unordered_map`: árbol O(log n) contra tabla hash O(1)
 - [x] Costo real en memoria de un contenedor basado en nodos (8–10x los datos crudos)
-- [ ] Patrón de dos punteros lectura/escritura para in-place
+- [x] Patrón de dos punteros lectura/escritura para in-place
 - [ ] Strings mutables: `s[i] = c`, y por qué eso no se podía en JS
 - [ ] `size()` sin signo y las restas que se desbordan
 - [ ] Rangos medio abiertos: `[begin, end)` y por qué `end()` va después del último
@@ -60,3 +60,25 @@ el espacio O(1).
   (pidió "todas distintas", resolvió "todas iguales"). Las restricciones sí las leyó y las evaluó.
   El bloque in-place —dos punteros lectura/escritura, strings mutables, `size()` sin signo,
   rangos medio abiertos— sigue sin tocar. Es lo que falta para cerrar el tema.
+- 2026-09-10 (fondo, in-place): abierto el bloque que faltaba. Ejemplo resuelto de punta a punta
+  de **26 Remove Duplicates** en C++ (invariante `a[0..write-1]`, `write=1`, guarda de vacío,
+  cast de `size()`), y después **27 Remove Element: Accepted, solo, 0 pistas** — predijo "con
+  pistas". Razonó solo por qué acá `write` arranca en 0 y por qué no necesita la guarda `empty()`.
+  Leyó las restricciones y notó que `val` puede no estar en ningún elemento. Se cubrió la segunda
+  familia (swap con el último, trade-off n−k contra k escrituras, trampa del `i` que no avanza),
+  a la que llegó él después de descartar ordenar por cara.
+  Bien: la analogía del array nuevo viviendo encima del viejo la construyó solo; justificó la
+  ausencia de la guarda por la razón correcta.
+  Falló: casos borde solo por tamaño y por rango de valores, nunca por el extremo del resultado
+  (todos `val` / ninguno `val`). No conocía la palabra "invariante" pese a estar usándolo.
+  Confundió "una pasada" (tiempo) con "memoria constante" (espacio) como señal del patrón.
+  Pendiente: strings mutables, `size()` sin signo, rangos medio abiertos. Es lo único que queda
+  para cerrar el tema.
+- 2026-09-10 (micro, 283 Move Zeroes): **Accepted, con pistas (máx 2)**, `error-clase: operador-js`.
+  Reusó el swap-con-el-último del 27 sin releer que 283 exige preservar el orden relativo.
+  Con el trace de `[1,0,2,3]` llegó solo a la reformulación correcta: mover los no-ceros al
+  principio, no los ceros al final. Segunda versión limpia al primer intento, con loop de relleno.
+  Bien: aplicó los tres ejes de casos borde por su cuenta, incluido el del extremo del resultado.
+  Falló: invariante declarado demasiado débil (sin "exactamente" ni "en su orden original"), que
+  es precisamente lo que su primera versión violaba.
+

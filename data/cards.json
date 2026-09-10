@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "next_id": 17,
+  "next_id": 25,
   "cards": [
     {
       "id": "c0001",
@@ -240,6 +240,126 @@
       "tema": "arrays-strings",
       "frente": "Para detectar duplicados en un array con n <= 10^5, ¿cuáles son las dos familias válidas y qué las separa?",
       "dorso": "Hash set: O(n) tiempo, O(n) espacio, no toca la entrada.\nOrdenar y comparar adyacentes: O(n log n) tiempo, O(1) espacio, pero muta la entrada.",
+      "creada": "2026-09-10",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-11"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0017",
+      "tema": "arrays-strings",
+      "frente": "Estas leyendo un enunciado. Que frases te dicen que el problema quiere una solucion in-place con dos punteros?",
+      "dorso": "\"in-place\", \"O(1) extra memory\", \"modify the input array\", \"el orden de los restantes puede cambiar\", y devolver un int k en vez del array.",
+      "creada": "2026-09-10",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-11"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0018",
+      "tema": "arrays-strings",
+      "frente": "En el patron lectura/escritura sobre un array, cual es el invariante que sostenes en cada vuelta del bucle?",
+      "dorso": "a[0..write-1] es exactamente la respuesta construida con lo leido hasta read-1. De write en adelante es basura que ya no importa.",
+      "creada": "2026-09-10",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-11"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0019",
+      "tema": "arrays-strings",
+      "frente": "Por que es seguro escribir en a[write] mientras seguis leyendo a[read] en el mismo array?",
+      "dorso": "write y read arrancan juntos y write avanza igual o menos veces, asi que siempre write <= read. Nunca pisas algo que no leiste.",
+      "creada": "2026-09-10",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-11"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0020",
+      "tema": "arrays-strings",
+      "frente": "Que es un invariante de bucle y para que sirve, mas alla de definirlo?",
+      "dorso": "Una afirmacion verdadera antes y despues de cada vuelta. Al salir del bucle, combinada con la condicion de corte, demuestra que el codigo es correcto sin simular casos.",
+      "creada": "2026-09-10",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-11"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0021",
+      "tema": "arrays-strings",
+      "frente": "En 26 Remove Duplicates write arranca en 1 y en 27 Remove Element arranca en 0. Por que la diferencia?",
+      "dorso": "En 26 el primer elemento siempre sobrevive y ademas se compara contra a[write-1], que con write=0 leeria fuera del array. En 27 el primero puede ser val, asi que no se da por aceptado nada.",
+      "creada": "2026-09-10",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-11"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0022",
+      "tema": "arrays-strings",
+      "frente": "Ademas de los extremos del tamano y de los valores, que tercer eje de casos borde tenes que revisar siempre?",
+      "dorso": "Los extremos de la RESPUESTA: que pasa si es 0 y si es n. Es el eje que ejercita las ramas que nunca se toman.",
+      "creada": "2026-09-10",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-11"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0023",
+      "tema": "arrays-strings",
+      "frente": "En 27, la variante que hace swap con el ultimo elemento: por que NO se avanza i despues del swap?",
+      "dorso": "El elemento traido del final tampoco fue revisado y puede ser val. Avanzar i lo dejaria adentro. Caso que lo caza: [3,3] con val=3.",
+      "creada": "2026-09-10",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-11"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0024",
+      "tema": "arrays-strings",
+      "frente": "Cuando una micro-optimizacion (un if de mas para evitar una escritura redundante) vale la pena?",
+      "dorso": "Solo si cambia el orden de complejidad. Si no, dejalo simple: una rama mal predicha suele costar mas que el store que ahorras.",
       "creada": "2026-09-10",
       "sm2": {
         "ease": 2.5,
