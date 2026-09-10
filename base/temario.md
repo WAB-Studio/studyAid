@@ -93,3 +93,9 @@ Dosis chicas y sostenidas, nunca un bloque al final.
   vuelven más valiosos de lo que eran, porque ahí los punteros dejan de ser teoría. Mientras dure
   la rampa rige la regla de la carga cognitiva del AGENTS.md: tema nuevo y lenguaje nuevo no se
   estrenan en el mismo ejercicio.
+- 2026-09-10: **el scheduler de tarjetas no se toca hasta el 2026-10-10**, por decisión suya.
+  Hoy hay 16 tarjetas y cero repasos registrados: cualquier cambio sería contra una intuición.
+  Qué revisar ese día, con un mes de datos: si el primer vencimiento conviene repartirse en 1-3
+  días en vez de caer todo junto al día siguiente, y cuál es la tasa real de lapsos (calidad
+  menor a 3), que es lo que apila la cola. La cantidad generada por tema (6 a 8) no está en
+  discusión: cubre señal, complejidad, error típico y caso borde.

@@ -19,6 +19,11 @@ Actualizado: 2026-09-10
 - Riesgo conocido de su estilo: leer de más y practicar de menos. Un tema no cuenta como
   cubierto hasta que lo explicó con sus palabras y resolvió un ejercicio.
 - No quiere acordarse de comandos. Todo arranca conversando.
+- **Habla, no escribe.** Dicta por voz y no puede editar lo que ya dijo, así que se autocorrige
+  dentro de la misma oración ("no me diste restricciones, o por lo menos ninguna fuerte").
+  Juzgá siempre la oración completa, nunca el primer fragmento, y no registres como error algo
+  que él ya corrigió al hablar. Esperá lo mismo en enunciados largos: repite y se reencauza en
+  voz alta, y eso es pensar, no titubear.
 - Le importa mucho la métrica de tiempo real y la racha, pero pidió explícitamente que la
   cobertura del temario no se pierda de vista por perseguir la racha.
 
@@ -66,3 +71,11 @@ Sirve para que la próxima sesión no proponga cosas sin sentido.
   todo lo necesario está escrito.
 - 2026-09-10: se subestima. Segunda predicción seguida errada, ahora hacia abajo: dijo "con
   pistas" y sacó Two Sum solo, sin una sola pista de algoritmo.
+- 2026-09-10: lo que se lee incompleto es el **predicado**, no las restricciones. En 1207 invirtió
+  "todas distintas" por "todas iguales"; las cotas sí las leyó y las evaluó bien. Con la lectura
+  corregida sacó el canónico solo. Vale pedirle que reformule el contrato en voz alta antes del
+  enfoque, siempre, no solo en ejercicios.
+- 2026-09-10: no reconoce una solución correcta como correcta. Dio el enfoque canónico completo de
+  167 y cerró con "creo que tiene un bug, no se me ocurre nada más". Es la misma raíz que las
+  predicciones falladas hacia abajo. Vale devolverle la pregunta "¿qué te haría dudar de eso?"
+  en vez de confirmar de una: el hueco es de criterio de validación, no de ideas.

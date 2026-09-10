@@ -55,3 +55,8 @@ el espacio O(1).
   Falló: errores de entorno de C++ (`#include`, `using namespace std;`, la clase adentro de
   `main()`) y un set nombrado `lookup` consultado como `s`. Pendiente: todo el bloque in-place,
   que es la mitad del tema y no se tocó.
+- 2026-09-10 (micro, drill): sin ejercicio de este tema. En el drill de reconocimiento apareció
+  que la lectura del enunciado sigue siendo el cuello de botella: invirtió el predicado en 1207
+  (pidió "todas distintas", resolvió "todas iguales"). Las restricciones sí las leyó y las evaluó.
+  El bloque in-place —dos punteros lectura/escritura, strings mutables, `size()` sin signo,
+  rangos medio abiertos— sigue sin tocar. Es lo que falta para cerrar el tema.
