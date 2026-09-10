@@ -1,6 +1,6 @@
 # Sistema de estudio para entrevistas
 
-Preparación para entrevistas de big tech. Ejercicios en TypeScript, resueltos en leetcode.com.
+Preparación para entrevistas de big tech. Ejercicios en C++, resueltos en leetcode.com.
 
 ## Cómo se usa
 

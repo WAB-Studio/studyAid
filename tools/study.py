@@ -122,6 +122,44 @@ def push_event(cur: dict, event: dict) -> None:
     save(CURRENT_FILE, cur)
 
 
+def cerrar_pausa(cur: dict, hasta: datetime) -> int:
+    """Cierra una pausa abierta y acumula los minutos en afk_medido. Devuelve lo acumulado ahora."""
+    desde = cur.get("pausa_desde")
+    if not desde:
+        return 0
+    minutos = max(0, round((hasta - parse_dt(desde)).total_seconds() / 60))
+    cur["afk_medido"] = cur.get("afk_medido", 0) + minutos
+    cur.pop("pausa_desde", None)
+    return minutos
+
+
+def efectivos(s: dict) -> int:
+    """Minutos de estudio real de una sesion cerrada. Las sesiones viejas no tienen el campo."""
+    return max(1, s.get("minutos_efectivos", s["minutos"]))
+
+
+def cmd_pausar(args) -> None:
+    cur = require_current()
+    if cur.get("pausa_desde"):
+        desde = parse_dt(cur["pausa_desde"]).strftime("%H:%M")
+        die(f"la sesion ya estaba pausada desde las {desde}.")
+    cur["pausa_desde"] = now().isoformat(timespec="seconds")
+    push_event(cur, {"tipo": "pausa"})
+    print(f"Sesion pausada a las {now().strftime('%H:%M')}. "
+          "El reloj sigue corriendo pero estos minutos no cuentan. "
+          "Reanudala con: study.py sesion reanudar")
+
+
+def cmd_reanudar(args) -> None:
+    cur = require_current()
+    if not cur.get("pausa_desde"):
+        die("la sesion no esta pausada. Nada que reanudar.")
+    minutos = cerrar_pausa(cur, now())
+    push_event(cur, {"tipo": "reanudacion", "afk_min": minutos})
+    print(f"Sesion reanudada a las {now().strftime('%H:%M')}. "
+          f"{minutos} min descontados, {cur['afk_medido']} min de AFK medido en total.")
+
+
 def cmd_iniciar(args) -> None:
     cur = current_session()
     if cur:
@@ -214,7 +252,15 @@ def cmd_cerrar(args) -> None:
     cur = require_current()
     started = parse_dt(cur["iniciada"])
     ended = last_activity(cur) if is_stale(cur) else now()
+    cerrar_pausa(cur, ended)
     minutos = max(1, round((ended - started).total_seconds() / 60))
+
+    afk_medido = cur.get("afk_medido", 0)
+    afk_declarado = max(0, args.afk or 0)
+    if afk_medido + afk_declarado >= minutos:
+        die(f"el AFK ({afk_medido + afk_declarado} min) se come toda la sesion "
+            f"({minutos} min de reloj). Revisa el numero.")
+    minutos_efectivos = minutos - afk_medido - afk_declarado
 
     bitacora = None
     if args.bitacora:
@@ -234,6 +280,9 @@ def cmd_cerrar(args) -> None:
         "iniciada": cur["iniciada"],
         "terminada": ended.isoformat(timespec="seconds"),
         "minutos": minutos,
+        "afk_medido": afk_medido,
+        "afk_declarado": afk_declarado,
+        "minutos_efectivos": minutos_efectivos,
         "estado": "completa" if bitacora else "incompleta",
         "temas": sorted({e["tema"] for e in eventos if e.get("tema")}),
         "bitacora": bitacora,
@@ -248,9 +297,18 @@ def cmd_cerrar(args) -> None:
         fh.write(json.dumps(record, ensure_ascii=False) + "\n")
     CURRENT_FILE.unlink(missing_ok=True)
 
-    print(f"Sesion {record['id']} cerrada: {minutos} min reales, "
+    reloj = (f"{minutos} min de reloj, {minutos_efectivos} min efectivos"
+             if afk_medido or afk_declarado else f"{minutos} min")
+    print(f"Sesion {record['id']} cerrada: {reloj}, "
           f"{len(record['ejercicios'])} ejercicios, {len(record['repasos'])} repasos, "
           f"bitacora {"si" if bitacora else "NO"}.")
+    if afk_medido or afk_declarado:
+        partes = []
+        if afk_medido:
+            partes.append(f"{afk_medido} medidos con pausar/reanudar")
+        if afk_declarado:
+            partes.append(f"{afk_declarado} declarados al cerrar")
+        print(f"  AFK descontado: {' + '.join(partes)}. El reloj crudo queda guardado igual.")
     if record["cortada_por_inactividad"]:
         print(f"Se conto hasta el ultimo evento por inactividad mayor a {STALE_HOURS}h.")
 
@@ -358,7 +416,7 @@ def racha() -> int:
 def minutos_por_dia() -> dict:
     acc = defaultdict(int)
     for s in cerradas():
-        acc[parse_dt(s["iniciada"]).date()] += s["minutos"]
+        acc[parse_dt(s["iniciada"]).date()] += efectivos(s)
     return acc
 
 
@@ -418,6 +476,13 @@ def cmd_estado(args) -> None:
         transcurrido = round((ahora - parse_dt(cur["iniciada"])).total_seconds() / 60)
         print(f"\nSESION ABIERTA: {cur['id']} (modo {cur['modo']}, {transcurrido} min, "
               f"{len(cur.get('eventos', []))} eventos).")
+        if cur.get("pausa_desde"):
+            desde = parse_dt(cur["pausa_desde"])
+            print(f"  PAUSADA desde las {desde.strftime('%H:%M')} "
+                  f"({round((ahora - desde).total_seconds() / 60)} min). "
+                  "Reanudala antes de seguir.")
+        if cur.get("afk_medido"):
+            print(f"  AFK descontado hasta ahora: {cur['afk_medido']} min.")
         print("  Quedo colgada por inactividad: cierrala o descartala."
               if is_stale(cur) else "  Retomala donde quedo o cierrala.")
 
@@ -449,12 +514,12 @@ def cmd_estado(args) -> None:
     y, w, _ = today().isocalendar()
     sem = [s for s in cerradas() if parse_dt(s["iniciada"]).date().isocalendar()[:2] == (y, w)]
     print(f"\nRacha: {racha()} dia(s). Hoy: {mpd.get(today(), 0)} min. "
-          f"Esta semana: {sum(s['minutos'] for s in sem)} min en {len(sem)} sesiones.")
+          f"Esta semana: {sum(efectivos(s) for s in sem)} min en {len(sem)} sesiones.")
 
     ss = cerradas()
     if ss:
         u = ss[-1]
-        print(f"\nUltima sesion: {u['id']} ({u['modo']}, {u['minutos']} min, "
+        print(f"\nUltima sesion: {u['id']} ({u['modo']}, {efectivos(u)} min, "
               f"temas: {', '.join(u['temas']) or '-'})")
         if u.get("sigue"):
             print(f"  Dejaste anotado: {u['sigue']}")
@@ -491,7 +556,7 @@ def cmd_metricas(args) -> None:
     semanas, sesiones_semana = defaultdict(int), defaultdict(int)
     for s in ss:
         y, w, _ = parse_dt(s["iniciada"]).date().isocalendar()
-        semanas[(y, w)] += s["minutos"]
+        semanas[(y, w)] += efectivos(s)
         sesiones_semana[(y, w)] += 1
     print("\nPor semana (ultimas 8):")
     for k in sorted(semanas)[-8:]:
@@ -500,7 +565,7 @@ def cmd_metricas(args) -> None:
     por_modo = defaultdict(lambda: [0, 0])
     for s in ss:
         por_modo[s["modo"]][0] += 1
-        por_modo[s["modo"]][1] += s["minutos"]
+        por_modo[s["modo"]][1] += efectivos(s)
     print("\nPor modo:")
     for modo, (n, m) in sorted(por_modo.items()):
         print(f"  {modo:<7} {n} sesiones, {m} min")
@@ -655,10 +720,15 @@ def build_parser() -> argparse.ArgumentParser:
     c.add_argument("--prediccion", required=True, choices=["si", "no", "no-preguntada"])
     c.set_defaults(func=cmd_repaso)
 
+    ss_.add_parser("pausar").set_defaults(func=cmd_pausar)
+    ss_.add_parser("reanudar").set_defaults(func=cmd_reanudar)
+
     d = ss_.add_parser("cerrar")
     d.add_argument("--bitacora", default=None)
     d.add_argument("--sigue", default=None)
     d.add_argument("--sin-bitacora", action="store_true", dest="sin_bitacora")
+    d.add_argument("--afk", type=int, default=0,
+                   help="minutos AFK declarados a posteriori, cuando no se uso pausar/reanudar")
     d.set_defaults(func=cmd_cerrar)
 
     t = sub.add_parser("tarjetas")

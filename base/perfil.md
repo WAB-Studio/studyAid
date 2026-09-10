@@ -1,11 +1,12 @@
 # Perfil
 
-Actualizado: 2026-09-09
+Actualizado: 2026-09-10
 
 ## Datos fijos
 
 - Experiencia: 1–3 años escribiendo software profesionalmente.
-- Stack: TypeScript/JavaScript. Los ejercicios se resuelven en TS/JS.
+- Stack profesional: TypeScript/JavaScript. **Los ejercicios se resuelven en C++** desde el
+  2026-09-10, por decisión suya: quiere entender el manejo de memoria, no solo pasar entrevistas.
 - Objetivo: big tech, horizonte 6–12 meses.
 - Disponibilidad: trabaja full time. 3–4 sesiones de fondo por semana, de noche.
   Micro-sesiones en ratos muertos durante el día.
@@ -45,3 +46,23 @@ Sirve para que la próxima sesión no proponga cosas sin sentido.
   cuándo arranca el reloj). Conviene explicar las reglas completas al abrir el tramo, una vez.
 - 2026-09-09: tiende a decir "en una entrevista lo dejaría acá". Hay que recordarle que la
   entrevista no permite abandonar: se sigue hasta el final o se negocia una solución peor.
+- 2026-09-10: absorbe teoría rápido cuando está bien trazada. Contestó los tres controles del
+  bloque de complejidad sin ayuda, incluido el bucle escondido en `includes`. El hueco declarado
+  ("no manejo la notación") era de herramienta, no de capacidad.
+- 2026-09-10: generaliza de más con las constantes. Pasó de "no es un array" a "no entra en la
+  complejidad" y se comió que `k` viene en el input. Vale chequear explícitamente "¿este valor
+  hace que el algoritmo trabaje más?" cada vez que aparezca un segundo parámetro.
+- 2026-09-10: no tenía método para buscar casos borde, y lo dijo derecho. No alcanza con pedirle
+  que pruebe: hay que darle de dónde salen (extremos del contrato, ramas del propio código,
+  valores que rompen la estructura elegida). Con el método puesto, los encontró.
+- 2026-09-10: defiende su código con argumento correcto cuando lo cuestiono mal. Le dije que
+  `[3,3]` era el caso que rompía y me respondió que no, porque consulta antes de insertar.
+  Tenía razón. No acepta la autoridad sin verificar, lo que hace que sus "sí, entendí" valgan.
+- 2026-09-10: objeta el trabajo mecánico. Cuando le di la corrección con el código ya escrito y
+  después le pedí que lo reescribiera, preguntó para qué servía. Tiene razón: o se da la
+  dirección sin el código listo, o se admite que el tipeo es trámite y no aprendizaje.
+- 2026-09-10: trató un enunciado nuevo y autocontenido como algo que tenía que recordar ("no me
+  acuerdo del ejercicio"). Al dar un problema inventado, aclarar que no es de LeetCode y que
+  todo lo necesario está escrito.
+- 2026-09-10: se subestima. Segunda predicción seguida errada, ahora hacia abajo: dijo "con
+  pistas" y sacó Two Sum solo, sin una sola pista de algoritmo.

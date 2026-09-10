@@ -80,3 +80,16 @@ Dosis chicas y sostenidas, nunca un bloque al final.
   fueron de lenguaje, no de algoritmo.
 - 2026-09-09: `prefix-sum` gana prioridad dentro del bloque 01. 238 quedó abandonado y es el
   caso canónico de acumulados por izquierda y por derecha.
+- 2026-09-10: `complejidad` abierto y cubierto. No se toca más como tema propio: los subtemas
+  que quedaron (recursión, amortizado) se enseñan cuando aparezcan en `recursion` y en las
+  estructuras que los necesiten. La lectura restricción → orden pasa a ser un paso fijo del
+  protocolo de cada ejercicio, no un tema.
+- 2026-09-10: 1 Two Sum queda gastado como vehículo de `complejidad`. Al abrir `hash-maps`,
+  arrancar por 49 Group Anagrams.
+- 2026-09-10: **cambio de lenguaje a C++**, decidido por él a mitad de la segunda sesión del día.
+  El orden de los bloques no cambia; el temario es de patrones, no de sintaxis. Dos consecuencias
+  concretas: (a) `heaps` se abarata, porque `priority_queue` viene en la stdlib y ya no hay que
+  escribir el heap a mano como habría hecho falta en JS; (b) `linked-lists` y `trees-bst` se
+  vuelven más valiosos de lo que eran, porque ahí los punteros dejan de ser teoría. Mientras dure
+  la rampa rige la regla de la carga cognitiva del CLAUDE.md: tema nuevo y lenguaje nuevo no se
+  estrenan en el mismo ejercicio.

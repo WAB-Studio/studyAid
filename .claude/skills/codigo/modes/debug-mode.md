@@ -91,7 +91,7 @@ When a loop bound "feels safe" with a `-1`, name the last index that MUST be pro
 | Python | `range` bounds, mutable default args, `//` vs `/`, deep vs shallow copy, recursion limit |
 | Java | `int` overflow in `(lo+hi)/2` and products, `==` on Integer/String, integer division |
 | C++ | unsigned underflow (`v.size() - 1` when empty), iterator invalidation, uninitialized vars, `INT_MAX` overflow |
-| JavaScript | default lexicographic `sort()`, `==` coercion, floating point on big ints, forgetting `let` scoping in closures |
+| C++ | pasar contenedores por valor sin `&`, `m[k]` que inserta al leer, `size()` sin signo en restas, iteradores invalidados por `push_back`, `int` desbordado |
 
 ## GUARDRAILS
 

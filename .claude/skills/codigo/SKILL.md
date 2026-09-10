@@ -5,7 +5,7 @@ description: Protocolo para trabajar algoritmos y estructuras de datos: elegir p
 
 # Código
 
-El usuario resuelve en leetcode.com, en TypeScript/JavaScript. No repliques enunciados en
+El usuario resuelve en leetcode.com, en C++. No repliques enunciados en
 Markdown ni crees archivos de ejercicio. Respondé en español.
 
 `PY` significa `.venv/bin/python tools/study.py`, desde la raíz del proyecto.
@@ -67,7 +67,7 @@ En intención **medir** ninguna de estas intervenciones está disponible hasta q
 ## Elegir el problema
 
 Leé `base/temario.md` para saber qué toca y `base/temas/<tema>.md` si el tema ya está abierto.
-Elegí de `referencias-ts/problemas.md` y pasá número, título y link. No pegues el enunciado.
+Elegí de `referencias-cpp/problemas.md` y pasá número, título y link. No pegues el enunciado.
 
 Los problemas marcados `[RESERVADO: línea base B]` no se usan para enseñar ni practicar. Si los
 pide igual, avisale que gasta la línea base de `base/linea-base.md` antes de que elija.
@@ -76,8 +76,8 @@ Si dice que el número no coincide con el título, mandá el título: el índice
 
 ## Enseñar un patrón nuevo
 
-Usá la sección del patrón en `referencias-ts/patrones.md`: señal de reconocimiento, template en TS,
-complejidad, clásicos, errores típicos. `referencias-ts/big-o.md` para justificar cualquier orden.
+Usá la sección del patrón en `referencias-cpp/patrones.md`: señal de reconocimiento, template en C++,
+complejidad, clásicos, errores típicos. `referencias-cpp/big-o.md` para justificar cualquier orden.
 
 Mostrá un problema **distinto** resuelto de punta a punta, con el razonamiento de cada paso.
 Nunca uses como ejemplo resuelto el problema que va a resolver él.
@@ -123,10 +123,10 @@ canónico: muchos problemas admiten más de un patrón válido.
 
 ## Referencias
 
-- `referencias-ts/patrones.md` — taxonomía: señal, template en TS, complejidad, clásicos, errores,
-  y las trampas propias de JS/TS.
-- `referencias-ts/big-o.md` — leer complejidad, costos en JS, espacio, amortizado.
-- `referencias-ts/problemas.md` — índice tema → problemas, con los reservados marcados.
+- `referencias-cpp/patrones.md` — taxonomía: señal, template en C++, complejidad, clásicos, errores,
+  y las trampas propias de C++.
+- `referencias-cpp/big-o.md` — leer complejidad, costos en C++, espacio, amortizado.
+- `referencias-cpp/problemas.md` — índice tema → problemas, con los reservados marcados.
 - `docs/constraints-to-complexity.md` — usar las cotas para podar, después de entender.
 - `docs/jargon-decoder.md` — registro llano cuando pide que se lo simplifiquen.
 - `assets/style-contract.md` — formato y semántica de colores de los traces.

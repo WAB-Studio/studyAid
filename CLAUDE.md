@@ -1,7 +1,7 @@
 # Sistema de estudio para entrevistas
 
 Preparación para entrevistas de big tech. El usuario trabaja full time.
-Los ejercicios se resuelven en TypeScript/JavaScript, en leetcode.com.
+Los ejercicios se resuelven en C++, en leetcode.com.
 
 `PY` significa `.venv/bin/python tools/study.py`, desde la raíz del proyecto.
 
@@ -80,6 +80,13 @@ El detalle está en la skill `codigo` para código y en `system-design` para dis
 Al abrir un patrón por primera vez, mostrá un problema **distinto** resuelto de punta a punta.
 Nunca uses como ejemplo resuelto el problema que va a resolver él.
 
+**Rampa de C++, hasta noviembre de 2026.** Cambió de TypeScript a C++ el 2026-09-10. Mientras
+dure la rampa, no estrenes tema nuevo y lenguaje nuevo en el mismo ejercicio: cuando el patrón
+sea nuevo, el ejemplo resuelto va sobre un problema que **él ya resolvió**, para que lo único
+nuevo sea la sintaxis. Es carga cognitiva, no ceremonia: aprender el algoritmo y el lenguaje a
+la vez compite por el mismo presupuesto. Un error de compilación o de API no cuenta como pista
+ni como fracaso del ejercicio; se registra en `--error-clase`.
+
 ## Repaso intercalado
 
 Corré `PY tarjetas vencidas` al iniciar cualquier sesión.
@@ -144,6 +151,11 @@ Escribí en `data/` únicamente a través de `tools/study.py`.
 Para descartar una sesión abierta por error, borrá `data/current_session.json`.
 Escribí a mano `base/`, `bitacora/` y `fuentes/`.
 Nunca estimes minutos: salen del reloj de la tool.
+Si se va un rato largo —comer, una reunión, cualquier cosa fuera de la sesión— corré
+`PY sesion pausar` y `PY sesion reanudar` al volver. Si te enterás después de que estuvo AFK,
+pasá `--afk MINUTOS` al cerrar. El reloj crudo se guarda igual: lo que cambia es qué minutos
+cuentan para racha y métricas. Preguntale si estuvo AFK cuando el reloj no coincida con lo que
+efectivamente pasó en la conversación.
 
 ## Comandos
 
@@ -159,7 +171,9 @@ kebab-case y pasala en `--error-clase`.
 .venv/bin/python tools/study.py sesion ejercicio --ejercicio ID --tema TEMA --resultado solo|con_pistas|abandonado --pista-max N [--prediccion solo|con_pistas|no_lo_saco] [--error-clase "off-by-one,caso-vacio"]
 .venv/bin/python tools/study.py sesion patron --problema ID --tema CANONICO --dijo "TEXTO" --valido si|no
 .venv/bin/python tools/study.py sesion repaso --tarjeta ID --calidad 0-5 [--prediccion si|no]
-.venv/bin/python tools/study.py sesion cerrar --bitacora RUTA --sigue "TEXTO"
+.venv/bin/python tools/study.py sesion pausar
+.venv/bin/python tools/study.py sesion reanudar
+.venv/bin/python tools/study.py sesion cerrar --bitacora RUTA --sigue "TEXTO" [--afk MINUTOS]
 .venv/bin/python tools/study.py tarjetas agregar --archivo RUTA.json
 .venv/bin/python tools/study.py tarjetas vencidas [--limite N]
 ```
@@ -169,7 +183,7 @@ kebab-case y pasala en `--error-clase`.
 - `base/` — perfil, temario, un archivo por tema abierto, índice de fuentes. Lo mantenés vos.
 - `.claude/skills/` — `codigo`, `system-design`, `fuentes`, `metricas`, `teoria-del-aprendizaje`.
   Se cargan solas.
-- `.claude/skills/codigo/` — modos, referencias en TS y ejemplos. Derivado de
+- `.claude/skills/codigo/` — modos, referencias en C++ y ejemplos. Derivado de
   `swapnil5053/algotrace` (MIT); editalo directo, git guarda el original.
 - Antes de cambiar la metodología, la skill `teoria-del-aprendizaje` obliga a justificar el
   cambio contra la evidencia.

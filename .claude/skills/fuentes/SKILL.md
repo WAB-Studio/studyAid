@@ -43,8 +43,9 @@ Citá siempre la fuente y la fecha cuando uses un dato que salió de ahí.
 No hace falta buscarlas: usalas directo.
 
 **Lenguaje**
-- MDN Web Docs — referencia de JavaScript.
-- TypeScript Handbook, en typescriptlang.org.
+- cppreference.com — la referencia de C++ y su librería estándar. La canónica.
+- learncpp.com — tutorial largo y gratuito, bueno para el modelo de memoria.
+- C++ Core Guidelines, de Stroustrup y Sutter — qué es idiomático y por qué.
 
 **Algoritmos y estructuras**
 - "Algorithms", de Jeff Erickson — libro completo y gratuito del autor, en jeffe.cs.illinois.edu.
