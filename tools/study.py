@@ -223,6 +223,9 @@ def cmd_repaso(args) -> None:
     card = next((c for c in db["cards"] if c["id"] == args.tarjeta), None)
     if card is None:
         die(f"no existe la tarjeta {args.tarjeta}")
+    if card.get("retirada"):
+        die(f"la tarjeta {args.tarjeta} esta retirada desde el "
+            f"{card['retirada']['fecha']} ({card['retirada']['motivo']}). No se puntua.")
     if not 0 <= args.calidad <= 5:
         die("calidad fuera de rango (0-5)")
 
@@ -350,7 +353,8 @@ def due_cards(limit=None) -> list:
     que salgan en bloque por tema, que es lo que anula el efecto de intercalado.
     """
     hoy = today().isoformat()
-    vencidas = [c for c in cards_db()["cards"] if c["sm2"]["due"] <= hoy]
+    vencidas = [c for c in cards_db()["cards"]
+                if c["sm2"]["due"] <= hoy and not c.get("retirada")]
     vencidas.sort(key=lambda c: (c["sm2"]["due"], c["id"]))
 
     por_tema: dict = {}
@@ -379,6 +383,44 @@ def cmd_vencidas(args) -> None:
     for c in vencidas:
         print(f"[{c['id']}] ({c['tema']}) {c['frente']}")
         print(f"    -> {c['dorso']}\n")
+
+
+def cmd_retirar(args) -> None:
+    """Retira una tarjeta sin borrarla.
+
+    Borrarla dejaria los repasos ya registrados en sessions.jsonl apuntando a un id
+    inexistente, y las metricas de calibracion empezarian a mentir. Retirada sale de
+    circulacion pero conserva su historial y el motivo.
+    """
+    db = cards_db()
+    card = next((c for c in db["cards"] if c["id"] == args.tarjeta), None)
+    if card is None:
+        die(f"no existe la tarjeta {args.tarjeta}")
+    if card.get("retirada"):
+        die(f"la tarjeta {args.tarjeta} ya estaba retirada el {card['retirada']['fecha']}: "
+            f"{card['retirada']['motivo']}")
+    if not args.motivo.strip():
+        die("--motivo no puede estar vacio: el registro tiene que decir por que salio.")
+
+    card["retirada"] = {"fecha": today().isoformat(), "motivo": args.motivo.strip()}
+    save(CARDS_FILE, db)
+    repasos = len(card.get("historial", []))
+    print(f"Tarjeta {card['id']} ({card['tema']}) retirada: {args.motivo.strip()}")
+    print(f"  Se conservan sus {repasos} repaso(s). Deja de aparecer en vencidas.")
+
+
+def cmd_retiradas(args) -> None:
+    fuera = [c for c in cards_db()["cards"] if c.get("retirada")]
+    if not fuera:
+        print("No hay tarjetas retiradas.")
+        return
+    fuera.sort(key=lambda c: (c["retirada"]["fecha"], c["id"]))
+    print(f"{len(fuera)} tarjeta(s) retirada(s):\n")
+    for c in fuera:
+        print(f"[{c['id']}] ({c['tema']}) retirada el {c['retirada']['fecha']}")
+        print(f"    {c['frente']}")
+        print(f"    motivo: {c['retirada']['motivo']}")
+        print(f"    repasos conservados: {len(c.get('historial', []))}\n")
 
 
 # ----------------------------------------------------------------- agregado
@@ -737,6 +779,14 @@ def build_parser() -> argparse.ArgumentParser:
     e = ts.add_parser("agregar")
     e.add_argument("--archivo", required=True)
     e.set_defaults(func=cmd_agregar)
+
+    g = ts.add_parser("retirar")
+    g.add_argument("--tarjeta", required=True)
+    g.add_argument("--motivo", required=True,
+                   help="por que sale de circulacion; queda guardado con la tarjeta")
+    g.set_defaults(func=cmd_retirar)
+
+    ts.add_parser("retiradas").set_defaults(func=cmd_retiradas)
 
     f = ts.add_parser("vencidas")
     f.add_argument("--limite", type=int, default=None)

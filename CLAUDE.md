@@ -123,6 +123,11 @@ Redactá el frente como pregunta de recuperación activa, nunca como título de 
 Redactá el dorso en dos líneas como máximo.
 Cubrí: señal de reconocimiento del patrón, complejidad, error típico y caso borde.
 
+Retirá con `PY tarjetas retirar` la tarjeta que quedó mal escrita, falsa o fuera de temario,
+con el motivo escrito. No se borra: los repasos ya registrados apuntan a su id, y borrarla
+haría mentir a las métricas de calibración. Una tarjeta retirada no vuelve a aparecer ni se
+puede puntuar. Proponé retirar, no lo decidas solo.
+
 ## Cierre de sesión
 
 Cerrá toda sesión, incluidas las cortadas a la mitad.
@@ -176,6 +181,8 @@ kebab-case y pasala en `--error-clase`.
 .venv/bin/python tools/study.py sesion cerrar --bitacora RUTA --sigue "TEXTO" [--afk MINUTOS]
 .venv/bin/python tools/study.py tarjetas agregar --archivo RUTA.json
 .venv/bin/python tools/study.py tarjetas vencidas [--limite N]
+.venv/bin/python tools/study.py tarjetas retirar --tarjeta ID --motivo "TEXTO"
+.venv/bin/python tools/study.py tarjetas retiradas
 ```
 
 ## Mapa del proyecto

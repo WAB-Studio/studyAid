@@ -105,7 +105,11 @@
         "lapses": 0,
         "due": "2026-09-11"
       },
-      "historial": []
+      "historial": [],
+      "retirada": {
+        "fecha": "2026-09-10",
+        "motivo": "obsoleta: narrowing de TypeScript, se dejo de practicar en TS el 2026-09-10"
+      }
     },
     {
       "id": "c0008",
@@ -120,7 +124,11 @@
         "lapses": 0,
         "due": "2026-09-11"
       },
-      "historial": []
+      "historial": [],
+      "retirada": {
+        "fecha": "2026-09-10",
+        "motivo": "obsoleta: ?? vs || de JS, se dejo de practicar en TS el 2026-09-10"
+      }
     },
     {
       "id": "c0009",
