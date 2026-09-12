@@ -108,3 +108,16 @@ Sirve para que la próxima sesión no proponga cosas sin sentido.
   segundo loop de relleno como una deuda ("no supe hacerlo en el mismo loop"). Es la misma raíz
   que las predicciones falladas hacia abajo: no reconoce lo correcto como correcto.
 
+- 2026-09-12 (micro 344): **el invariante le suena a ceremonia, no a herramienta.** Preguntó
+  derecho para qué sirve y si se lo piden en entrevistas. Es la tercera sesión que el invariante
+  aparece como el hueco. Dejar de pedírselo como ritual: cada vez que se pida, mostrar qué
+  decisión concreta resuelve —dónde corta el loop, qué caso borde queda cubierto— antes o
+  inmediatamente después de pedirlo.
+- 2026-09-12: **cuando el esquema aprendido no encaja, se queda sin nada en vez de razonar de
+  cero.** Intentó meter el write buffer de 26/27/283 en un problema que no descarta elementos, vio
+  que no calzaba y se detuvo. Distinto de aplicarlo mal (283): acá el problema fue no tener un
+  plan B. Vale preguntarle "¿qué hace este problema con cada elemento?" para que reconstruya en
+  lugar de buscar en su catálogo.
+- 2026-09-12: **pregunta por los tipos del lenguaje en el momento en que le estorban, y ahí lo
+  absorbe.** La duda de división entera y flotantes salió sola, con el código escrito. La rampa de
+  C++ rinde más contestando estas preguntas cuando aparecen que dando un bloque de sintaxis aparte.

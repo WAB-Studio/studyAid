@@ -30,7 +30,7 @@ array de entrada" y "el orden de los elementos restantes puede cambiar".
 - [x] Costo real en memoria de un contenedor basado en nodos (8–10x los datos crudos)
 - [x] Patrón de dos punteros lectura/escritura para in-place
 - [ ] Strings mutables: `s[i] = c`, y por qué eso no se podía en JS
-- [ ] `size()` sin signo y las restas que se desbordan
+- [x] `size()` sin signo y las restas que se desbordan
 - [ ] Rangos medio abiertos: `[begin, end)` y por qué `end()` va después del último
 
 ## Criterio de dominio
@@ -81,4 +81,20 @@ el espacio O(1).
   Bien: aplicó los tres ejes de casos borde por su cuenta, incluido el del extremo del resultado.
   Falló: invariante declarado demasiado débil (sin "exactamente" ni "en su orden original"), que
   es precisamente lo que su primera versión violaba.
-
+- 2026-09-12 (micro, 344 Reverse String): **Accepted, con pistas (máx 2)**,
+  `error-clase: indice-mal-copiado`. Se bloqueó al principio por creer que no podía escribir
+  sobre posiciones que todavía no había leído; el swap de tres líneas a la vista le bastó para
+  ver que se leen ambas antes de escribir ninguna, y de ahí dedujo solo que se recorre media
+  pasada. Colapsó los dos punteros en uno (`j = n - 1 - read`) por decisión propia y justificó
+  la equivalencia. Escribió `s[0] = s[j]` por `s[read] = s[j]` y **encontró el bug él, antes de
+  mandar**. Trazó `read = 1` sobre `['h','o','l','a']` sin errores.
+  Cubierto a pedido suyo: división entera trunca, `s.size()/2.0` para forzar `double`,
+  promoción `int`→`double`, y por qué los índices nunca salen de un flotante. De ahí,
+  `size_t` sin signo y por qué su `(int)` evitaba la resta desbordada.
+  Bien: el bug lo cazó solo; la traza a mano fue correcta y completa.
+  Falló: **el invariante sigue siendo el hueco**. Intentó forzar el esquema de write buffer de
+  26/27/283 sobre un problema que no descarta nada, y al no encajar se quedó sin nada que decir.
+  Preguntó para qué sirve y si se lo piden en entrevistas: no lo ve como herramienta, lo ve como
+  ceremonia. Vocabulario: dijo que una referencia cambia "la dirección de memoria" del original.
+  Pendiente: strings mutables (`s[i] = c` sobre `string`, no sobre `vector<char>`) y rangos
+  medio abiertos. **125 Valid Palindrome** los toca a los dos.

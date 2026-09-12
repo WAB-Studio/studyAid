@@ -10,12 +10,17 @@
       "creada": "2026-09-10",
       "sm2": {
         "ease": 2.5,
-        "reps": 0,
+        "reps": 1,
         "interval": 1,
         "lapses": 0,
-        "due": "2026-09-11"
+        "due": "2026-09-13"
       },
-      "historial": []
+      "historial": [
+        {
+          "fecha": "2026-09-12",
+          "calidad": 4
+        }
+      ]
     },
     {
       "id": "c0002",
@@ -138,12 +143,17 @@
       "creada": "2026-09-10",
       "sm2": {
         "ease": 2.5,
-        "reps": 0,
+        "reps": 1,
         "interval": 1,
         "lapses": 0,
-        "due": "2026-09-11"
+        "due": "2026-09-13"
       },
-      "historial": []
+      "historial": [
+        {
+          "fecha": "2026-09-12",
+          "calidad": 4
+        }
+      ]
     },
     {
       "id": "c0010",
