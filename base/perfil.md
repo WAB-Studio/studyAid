@@ -121,3 +121,18 @@ Sirve para que la próxima sesión no proponga cosas sin sentido.
 - 2026-09-12: **pregunta por los tipos del lenguaje en el momento en que le estorban, y ahí lo
   absorbe.** La duda de división entera y flotantes salió sola, con el código escrito. La rampa de
   C++ rinde más contestando estas preguntas cuando aparecen que dando un bloque de sintaxis aparte.
+- 2026-09-14 (micro 125): **la pregunta "qué hace este problema con cada elemento" funcionó.**
+  Se la pedí antes de codear, en vez de dejar que buscara el patrón, y salió el enfoque completo
+  —filtrar y comparar desde los extremos— con el invariante bien declarado y el caso borde
+  resuelto. Es la contramedida directa a la observación del 09-12 y conviene volver a usarla.
+- 2026-09-14: **elige los casos de prueba mirando su código, no el enunciado.** Ya prueba antes de
+  mandar, que es progreso real, pero los tres casos que eligió cubrían las ramas del segundo loop
+  y ninguno tocaba la decisión de qué carácter filtrar, que era donde estaba el bug. El pedido
+  útil no es "probá casos borde" sino **"un caso por cada decisión que toma el enunciado"**.
+- 2026-09-14: **re-preguntar una tarjeta fallada en la misma sesión no mide nada acá, y lo dijo.**
+  El dorso queda scrolleable dos mensajes arriba. La regla sirve para un canal donde la respuesta
+  no queda a la vista; en texto, la repetición conviene dejarla al calendario del SRS.
+- 2026-09-14: **un concepto marcado como cubierto puede estar invertido, no olvidado.** `m[k]` que
+  inserta al leer se vio el 09-10 y contestó "fuera de rango": no es falta de repaso, es un modelo
+  mental al revés. Vale distinguir la tarjeta que falla por olvido de la que falla por creencia
+  contraria: la segunda necesita una corrección explícita, no otro repaso.

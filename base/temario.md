@@ -19,7 +19,7 @@ resolvió al menos un ejercicio del tema. Leer no alcanza.
 ## 00 Fundamentos
 
 - `complejidad` — Big-O de tiempo y espacio sin mirar la tabla.
-- `arrays-strings` — recorridos, in-place, qué es inmutable en JS.
+- `arrays-strings` — recorridos, in-place, semántica de valor y contenedores de C++.
 - `hash-maps` — Map y Set, cuándo convierten O(n²) en O(n).
 
 ## 01 Patrones core
@@ -99,3 +99,7 @@ Dosis chicas y sostenidas, nunca un bloque al final.
   días en vez de caer todo junto al día siguiente, y cuál es la tasa real de lapsos (calidad
   menor a 3), que es lo que apila la cola. La cantidad generada por tema (6 a 8) no está en
   discusión: cubre señal, complejidad, error típico y caso borde.
+- 2026-09-14: el texto de `arrays-strings` decía "qué es inmutable en JS", herencia del lenguaje
+  anterior. Corregido a semántica de valor y contenedores de C++, que es lo que efectivamente se
+  trabajó. El orden de los bloques no cambia. `arrays-strings` queda a un ejercicio de cerrarse:
+  falta solo rangos medio abiertos, y 680 Valid Palindrome II lo cubre.

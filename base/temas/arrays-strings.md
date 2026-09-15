@@ -98,3 +98,23 @@ el espacio O(1).
   ceremonia. Vocabulario: dijo que una referencia cambia "la dirección de memoria" del original.
   Pendiente: strings mutables (`s[i] = c` sobre `string`, no sobre `vector<char>`) y rangos
   medio abiertos. **125 Valid Palindrome** los toca a los dos.
+- 2026-09-14 (micro, 125 Valid Palindrome): **Accepted, con pistas (máx 1), 0 ms**,
+  `error-clase: restriccion-del-enunciado-ignorada, api-cpp`. Predijo "con pistas": ok.
+  Describió el problema carácter por carácter sin buscar el nombre del patrón, y de ahí sacó
+  normalizar + dos índices desde los extremos. **El invariante lo declaró bien y sin que se lo
+  pidieran dos veces** ("todo lo ya comparado coincide"), y resolvió el borde del string vacío
+  tras filtrar leyendo el enunciado. Es el primer ejercicio del tema donde el invariante no fue
+  el cuello de botella.
+  WA en `"0P"` por `isalpha` en vez de `isalnum`; lo diagnosticó él con una sola observación.
+  Cubierto: `char` como entero y la tabla ASCII, `<cctype>` (`isalnum`, `tolower` devolviendo
+  `int`, `(unsigned char)`), `string` contra `vector<char>` (mismo layout contiguo más SSO, así
+  que `string` siempre), y el two-pointers sin buffer con `while` — O(1) auxiliar, mostrado sin
+  codear.
+  Bien: vio solo que `string s` por valor ya copia, y propuso `const string&`.
+  Falló: **la cobertura de los casos de prueba la elige por estructura del código, no por las
+  decisiones del enunciado.** Eligió tres casos a mano antes de mandar —progreso real respecto
+  de la línea base— pero los tres apuntaban al segundo loop y ninguno al filtro, que era donde
+  estaba el bug. `m[k]` que inserta al leer sigue invertido en su cabeza: contestó "fuera de
+  rango" (c0010, calidad 1), pese a estar marcado como cubierto desde el 09-10.
+  Pendiente: strings mutables (`s[i] = c` sobre `string`) y rangos medio abiertos. Es lo único
+  que queda para cerrar el tema; el two-pointers de 125 sin `norm` y 680 los tocan a los dos.

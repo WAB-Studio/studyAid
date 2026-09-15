@@ -29,13 +29,18 @@
       "dorso": "Cuando su magnitud no cambia cuánto trabaja el algoritmo. En Two Sum, target no entra.\nEn Coin Change sí: la complejidad es O(n · amount). La pregunta es '¿este valor hace que trabaje más?'.",
       "creada": "2026-09-10",
       "sm2": {
-        "ease": 2.5,
-        "reps": 0,
+        "ease": 2.6,
+        "reps": 1,
         "interval": 1,
         "lapses": 0,
-        "due": "2026-09-11"
+        "due": "2026-09-15"
       },
-      "historial": []
+      "historial": [
+        {
+          "fecha": "2026-09-14",
+          "calidad": 5
+        }
+      ]
     },
     {
       "id": "c0003",
@@ -162,13 +167,18 @@
       "dorso": "La crea con el valor por defecto (0 para int). Es la trampa número uno del contenedor.\nPara consultar sin insertar: .count(k) o .find(k).",
       "creada": "2026-09-10",
       "sm2": {
-        "ease": 2.5,
+        "ease": 1.96,
         "reps": 0,
         "interval": 1,
-        "lapses": 0,
-        "due": "2026-09-11"
+        "lapses": 1,
+        "due": "2026-09-15"
       },
-      "historial": []
+      "historial": [
+        {
+          "fecha": "2026-09-14",
+          "calidad": 1
+        }
+      ]
     },
     {
       "id": "c0011",
@@ -233,17 +243,22 @@
     {
       "id": "c0015",
       "tema": "arrays-strings",
-      "frente": "¿Por qué un unordered_set<int> con 10^5 enteros pesa mucho más que los 400 KB de los datos?",
+      "frente": "¿Por qué un unordered_set<int> con 10^5 enteros pesa mucho más que los 400 KB que ocupan esos enteros crudos (10^5 x 4 bytes)?",
       "dorso": "Cada elemento es un nodo aparte con un puntero al siguiente, más la cabecera del malloc, más el array de buckets.\nDel orden de 8 a 10 veces los datos crudos: es el precio del O(1).",
       "creada": "2026-09-10",
       "sm2": {
-        "ease": 2.5,
-        "reps": 0,
+        "ease": 2.36,
+        "reps": 1,
         "interval": 1,
         "lapses": 0,
-        "due": "2026-09-11"
+        "due": "2026-09-15"
       },
-      "historial": []
+      "historial": [
+        {
+          "fecha": "2026-09-14",
+          "calidad": 3
+        }
+      ]
     },
     {
       "id": "c0016",
