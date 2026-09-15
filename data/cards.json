@@ -50,12 +50,17 @@
       "creada": "2026-09-10",
       "sm2": {
         "ease": 2.5,
-        "reps": 0,
+        "reps": 1,
         "interval": 1,
         "lapses": 0,
-        "due": "2026-09-11"
+        "due": "2026-09-16"
       },
-      "historial": []
+      "historial": [
+        {
+          "fecha": "2026-09-15",
+          "calidad": 4
+        }
+      ]
     },
     {
       "id": "c0004",
@@ -187,13 +192,18 @@
       "dorso": "map es un árbol ordenado: O(log n). unordered_map es tabla hash: O(1) promedio.\nCasi siempre querés unordered_, salvo que necesites recorrer las claves en orden.",
       "creada": "2026-09-10",
       "sm2": {
-        "ease": 2.5,
+        "ease": 1.7,
         "reps": 0,
         "interval": 1,
-        "lapses": 0,
-        "due": "2026-09-11"
+        "lapses": 1,
+        "due": "2026-09-16"
       },
-      "historial": []
+      "historial": [
+        {
+          "fecha": "2026-09-15",
+          "calidad": 0
+        }
+      ]
     },
     {
       "id": "c0012",
@@ -202,13 +212,18 @@
       "dorso": "Un size_t, sin signo. Con el vector vacío, size()-1 no da -1: da un número gigante.\nMismo motivo por el que comparar un int con size() genera warning.",
       "creada": "2026-09-10",
       "sm2": {
-        "ease": 2.5,
-        "reps": 0,
+        "ease": 2.36,
+        "reps": 1,
         "interval": 1,
         "lapses": 0,
-        "due": "2026-09-11"
+        "due": "2026-09-16"
       },
-      "historial": []
+      "historial": [
+        {
+          "fecha": "2026-09-15",
+          "calidad": 3
+        }
+      ]
     },
     {
       "id": "c0013",
@@ -267,13 +282,18 @@
       "dorso": "Hash set: O(n) tiempo, O(n) espacio, no toca la entrada.\nOrdenar y comparar adyacentes: O(n log n) tiempo, O(1) espacio, pero muta la entrada.",
       "creada": "2026-09-10",
       "sm2": {
-        "ease": 2.5,
+        "ease": 1.7,
         "reps": 0,
         "interval": 1,
-        "lapses": 0,
-        "due": "2026-09-11"
+        "lapses": 1,
+        "due": "2026-09-16"
       },
-      "historial": []
+      "historial": [
+        {
+          "fecha": "2026-09-15",
+          "calidad": 0
+        }
+      ]
     },
     {
       "id": "c0017",

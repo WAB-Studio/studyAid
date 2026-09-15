@@ -136,3 +136,12 @@ Sirve para que la próxima sesión no proponga cosas sin sentido.
   inserta al leer se vio el 09-10 y contestó "fuera de rango": no es falta de repaso, es un modelo
   mental al revés. Vale distinguir la tarjeta que falla por olvido de la que falla por creencia
   contraria: la segunda necesita una corrección explícita, no otro repaso.
+- 2026-09-15 (micro 125 rehecho): **pedir "un caso por decisión" no alcanza; hay que pedir el
+  contrafáctico.** Nombró las decisiones del enunciado bien y aun así eligió para el filtrado un
+  caso que no lo probaba. La pregunta que lo destrabó en un solo turno fue **"si cambiaras esa
+  decisión por la contraria, ¿este caso da distinto?"**. Con eso llegó solo al input exacto que
+  lo había roto el día anterior. Es la forma operativa de la observación del 09-14.
+- 2026-09-15: **el tilde de un subtema no es evidencia de retención.** `map` contra
+  `unordered_map` estaba marcado como cubierto desde el 09-10 y salió en blanco. Se dio en una
+  sesión donde se cubrieron otras cuatro cosas alrededor de un ejercicio. Vale tildar el subtema
+  recién cuando haya una tarjeta suya aprobada, no cuando se explicó.

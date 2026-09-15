@@ -26,7 +26,7 @@ array de entrada" y "el orden de los elementos restantes puede cambiar".
 ## Subtemas
 - [x] Semántica de valor: `T` vs `T&` vs `const T&`, y por qué pasar por valor cuesta O(n)
 - [x] `unordered_set` / `unordered_map`: API, `count` vs `[]`, y por qué `[]` inserta al leer
-- [x] `map` vs `unordered_map`: árbol O(log n) contra tabla hash O(1)
+- [ ] `map` vs `unordered_map`: árbol O(log n) contra tabla hash O(1) — en blanco el 09-15
 - [x] Costo real en memoria de un contenedor basado en nodos (8–10x los datos crudos)
 - [x] Patrón de dos punteros lectura/escritura para in-place
 - [ ] Strings mutables: `s[i] = c`, y por qué eso no se podía en JS
@@ -118,3 +118,16 @@ el espacio O(1).
   rango" (c0010, calidad 1), pese a estar marcado como cubierto desde el 09-10.
   Pendiente: strings mutables (`s[i] = c` sobre `string`) y rangos medio abiertos. Es lo único
   que queda para cerrar el tema; el two-pointers de 125 sin `norm` y 680 los tocan a los dos.
+- 2026-09-15 (micro, 125 rehecho): **Accepted, solo, 0 pistas, 0 ms**, sin error-clase. Predijo
+  "solo": ok. Two-pointers sobre el string original, sin construir `norm`, saltando
+  no-alfanuméricos con `continue`. O(1) auxiliar. Es el mismo problema que ayer salió con pista
+  y con buffer.
+  Antes del submit se aplicó el pedido correcto —**un caso por cada decisión del enunciado**—.
+  Nombró las decisiones bien, pero el caso que propuso para el filtrado (`:` `,` `.`) no la
+  discriminaba. Con una repregunta llegó solo a `"0P"`, que es el input que lo rompió ayer.
+  Cubierto después del Accepted: `int j = s.size() - 1` sobrevive al vacío por el cast implícito
+  a `int`, no por el cálculo; con `size_t j` leería fuera del string. Castear antes de restar.
+  Bien: el caso discriminante lo encontró solo partiendo de las decisiones del enunciado.
+  Falló: `map` contra `unordered_map` (c0011) salió **en blanco**, pese al tilde de abajo desde
+  el 09-10. Se destildó: el subtema se dio en la misma sesión que otros cuatro y no quedó.
+  Pendiente: strings mutables (`s[i] = c`) y rangos medio abiertos. **680** los toca a los dos.
