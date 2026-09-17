@@ -119,8 +119,7 @@ Preguntá por lo que quedó flojo en esa explicación antes de pasar al ejercici
 Generá entre 4 y 8 tarjetas por tema nuevo, después del ejercicio.
 Escribí el JSON en el scratchpad y cargalo con `PY tarjetas agregar --archivo <ruta>`.
 Formato: lista de objetos `{"tema": "<tema>", "frente": "...", "dorso": "..."}`.
-Redactá el frente como pregunta de recuperación activa, nunca como título de concepto.
-Redactá el dorso en dos líneas como máximo.
+Redactá siguiendo la skill `tarjetas`, que es la que fija frente, dorso y registro.
 Cubrí: señal de reconocimiento del patrón, complejidad, error típico y caso borde.
 
 Retirá con `PY tarjetas retirar` la tarjeta que quedó mal escrita, falsa o fuera de temario,
@@ -188,7 +187,8 @@ kebab-case y pasala en `--error-clase`.
 ## Mapa del proyecto
 
 - `base/` — perfil, temario, un archivo por tema abierto, índice de fuentes. Lo mantenés vos.
-- `.claude/skills/` — `codigo`, `system-design`, `fuentes`, `metricas`, `teoria-del-aprendizaje`.
+- `.claude/skills/` — `codigo`, `system-design`, `fuentes`, `metricas`, `tarjetas`,
+  `teoria-del-aprendizaje`.
   Se cargan solas.
 - `AGENTS.md` y `.claude/skills/` son los originales; `CLAUDE.md` y `.agents/skills` apuntan
   ahí. No copies contenido entre ellos.
