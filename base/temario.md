@@ -103,3 +103,10 @@ Dosis chicas y sostenidas, nunca un bloque al final.
   anterior. Corregido a semántica de valor y contenedores de C++, que es lo que efectivamente se
   trabajó. El orden de los bloques no cambia. `arrays-strings` queda a un ejercicio de cerrarse:
   falta solo rangos medio abiertos, y 680 Valid Palindrome II lo cubre.
+- 2026-09-17: **`arrays-strings` cerrado** con 680. El orden no cambia: sigue `hash-maps`, y
+  arranca por 49 Group Anagrams como quedó decidido el 09-10. El subtema `strings mutables`
+  (`s[i] = c` sobre `string`) nunca se tocó y **no se le busca ejercicio propio**: es un hecho de
+  una línea y se cubre cuando aparezca, igual que se hizo con los restos de `complejidad`.
+  El bloque teórico de `hash-maps` tiene que atacar de frente `m[k]` que inserta al leer: falló
+  dos veces (`c0010`, calidad 1 el 09-14) y es una creencia invertida, no un olvido.
+

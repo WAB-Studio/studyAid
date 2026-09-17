@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "next_id": 25,
+  "next_id": 33,
   "cards": [
     {
       "id": "c0001",
@@ -192,16 +192,20 @@
       "dorso": "map es un árbol ordenado: O(log n). unordered_map es tabla hash: O(1) promedio.\nCasi siempre querés unordered_, salvo que necesites recorrer las claves en orden.",
       "creada": "2026-09-10",
       "sm2": {
-        "ease": 1.7,
+        "ease": 1.38,
         "reps": 0,
         "interval": 1,
-        "lapses": 1,
-        "due": "2026-09-16"
+        "lapses": 2,
+        "due": "2026-09-18"
       },
       "historial": [
         {
           "fecha": "2026-09-15",
           "calidad": 0
+        },
+        {
+          "fecha": "2026-09-17",
+          "calidad": 2
         }
       ]
     },
@@ -247,13 +251,22 @@
       "dorso": "end() apunta *después* del último elemento. Todos los rangos en C++ son medio abiertos: [begin, end).\nPor eso la cantidad de elementos es end - begin.",
       "creada": "2026-09-10",
       "sm2": {
-        "ease": 2.5,
+        "ease": 1.7,
         "reps": 0,
         "interval": 1,
-        "lapses": 0,
-        "due": "2026-09-11"
+        "lapses": 1,
+        "due": "2026-09-18"
       },
-      "historial": []
+      "historial": [
+        {
+          "fecha": "2026-09-17",
+          "calidad": 0
+        }
+      ],
+      "retirada": {
+        "fecha": "2026-09-17",
+        "motivo": "Frente mal redactado: pregunta 'por que sort no se pasa del final' y presupone que el lector ya sospecha de end(). Es un acertijo, no recuperacion activa. Pedido por el usuario el 2026-09-17. Reemplazada por una tarjeta que pregunta el hecho derecho."
+      }
     },
     {
       "id": "c0015",
@@ -412,6 +425,134 @@
         "interval": 1,
         "lapses": 0,
         "due": "2026-09-11"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0025",
+      "tema": "cpp",
+      "frente": "Tenes v = [10, 20, 30, 40]. A que elemento apunta v.end(), y cuantos elementos tiene el rango [v.begin(), v.end())?",
+      "dorso": "A ninguno: end() apunta una posicion DESPUES del 40. Es una barrera, no un valor, y leer *end() es salirse del vector.\nEl rango tiene end - begin = 4 elementos: la cantidad es una resta sola, sin +1 ni -1.",
+      "creada": "2026-09-17",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-18"
+      },
+      "historial": [],
+      "retirada": {
+        "fecha": "2026-09-17",
+        "motivo": "Redaccion: voseo y sin tildes, contra la regla de registro neutral de .claude/skills/tarjetas. Contenido correcto, reescrita igual."
+      }
+    },
+    {
+      "id": "c0026",
+      "tema": "cpp",
+      "frente": "Una función recibe dos índices, i y j, para trabajar sobre un pedazo de un string. ¿Qué cambia si ese rango se define cerrado [i, j] en vez de medio abierto [i, j)?",
+      "dorso": "Cerrado: j es una letra real y la cantidad es j - i + 1. Medio abierto: j es la barrera, no es una letra, y la cantidad es j - i.\nCon dos punteros desde los extremos conviene cerrado, porque j arranca en size() - 1.",
+      "creada": "2026-09-17",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-18"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0027",
+      "tema": "arrays-strings",
+      "frente": "En 680 Valid Palindrome II, ¿por qué no alcanza con contar cuántas veces difieren los extremos y devolver false si hay más de una diferencia?",
+      "dorso": "Porque borrar un carácter reacomoda todas las comparaciones siguientes: contar no simula el borrado.\n\"abc\" tiene una sola diferencia y la respuesta correcta es false.",
+      "creada": "2026-09-17",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-18"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0028",
+      "tema": "arrays-strings",
+      "frente": "Al primer choque entre los extremos en 680, ¿por qué no se puede elegir qué lado borrar mirando un solo carácter más adelante?",
+      "dorso": "Porque los dos chequeos locales pueden dar verdadero y solo uno de los dos borrados funcionar. Caso que lo rompe: \"abcbab\".\nLa salida es no elegir: probar los dos y preguntar si alguno de los dos restos es palíndromo.",
+      "creada": "2026-09-17",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-18"
+      },
+      "historial": [],
+      "retirada": {
+        "fecha": "2026-09-17",
+        "motivo": "Redaccion: dice 'en 680' sin el titulo del problema y da por sabido el planteo, contra la regla de que el frente no asume contexto que no provee. Reescrita autocontenida."
+      }
+    },
+    {
+      "id": "c0029",
+      "tema": "complejidad",
+      "frente": "Un bucle recorre el string y adentro llama a una función que también lo recorre, pero esa llamada ocurre como máximo una vez y devuelve ahí mismo. ¿Es cuadrático?",
+      "dorso": "No, es lineal. Lo que multiplica es que el recorrido interno se repita en cada vuelta, no que exista.\nUna bifurcación que ocurre a lo sumo una vez suma un recorrido, no lo multiplica.",
+      "creada": "2026-09-17",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-18"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0030",
+      "tema": "arrays-strings",
+      "frente": "En el two-pointers desde los extremos, la condición del while es i < j y no i <= j. ¿Qué caso justifica esa elección?",
+      "dorso": "Con i == j queda una sola letra en el medio, que siempre es palíndromo; con i > j no queda ninguna, también palíndromo.\nSeguir comparando ahí no aporta información.",
+      "creada": "2026-09-17",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-18"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0031",
+      "tema": "cpp",
+      "frente": "En C++, dado el vector v = [10, 20, 30, 40]: ¿a qué elemento apunta v.end(), y cuántos elementos tiene el rango [v.begin(), v.end())?",
+      "dorso": "A ninguno: end() apunta una posición después del 40. Es una barrera, no un valor, y leer *end() sale del vector.\nEl rango tiene end - begin = 4 elementos: la cantidad es una resta sola, sin +1 ni -1.",
+      "creada": "2026-09-17",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-18"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0032",
+      "tema": "arrays-strings",
+      "frente": "680 Valid Palindrome II pide decidir si un string es palíndromo o puede serlo borrando a lo sumo un carácter. Al primer par de extremos que no coincide, ¿por qué no sirve elegir qué lado borrar mirando un solo carácter más adentro?",
+      "dorso": "Porque los dos chequeos locales pueden dar verdadero a la vez y solo uno de los dos borrados funcionar. Caso que lo rompe: \"abcbab\".\nLa salida es no elegir: probar los dos y preguntar si alguno de los dos restos es palíndromo.",
+      "creada": "2026-09-17",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-18"
       },
       "historial": []
     }

@@ -26,12 +26,15 @@ array de entrada" y "el orden de los elementos restantes puede cambiar".
 ## Subtemas
 - [x] Semántica de valor: `T` vs `T&` vs `const T&`, y por qué pasar por valor cuesta O(n)
 - [x] `unordered_set` / `unordered_map`: API, `count` vs `[]`, y por qué `[]` inserta al leer
-- [ ] `map` vs `unordered_map`: árbol O(log n) contra tabla hash O(1) — en blanco el 09-15
+- [x] `map` vs `unordered_map`: árbol O(log n) contra tabla hash O(1) — rehecho y explicado con
+      sus palabras el 09-17; el tilde se confirma cuando `c0011` salga aprobada
 - [x] Costo real en memoria de un contenedor basado en nodos (8–10x los datos crudos)
 - [x] Patrón de dos punteros lectura/escritura para in-place
-- [ ] Strings mutables: `s[i] = c`, y por qué eso no se podía en JS
+- [~] Strings mutables: `s[i] = c`, y por qué eso no se podía en JS — nunca se tocó; 680 no
+      escribe sobre el string. Se cubre cuando aparezca, no justifica un ejercicio propio
 - [x] `size()` sin signo y las restas que se desbordan
-- [ ] Rangos medio abiertos: `[begin, end)` y por qué `end()` va después del último
+- [x] Rangos medio abiertos: `[begin, end)` y por qué `end()` va después del último — dado el
+      09-17, con el contraste contra el rango cerrado `[i, j]` de los dos punteros por índice
 
 ## Criterio de dominio
 
@@ -131,3 +134,19 @@ el espacio O(1).
   Falló: `map` contra `unordered_map` (c0011) salió **en blanco**, pese al tilde de abajo desde
   el 09-10. Se destildó: el subtema se dio en la misma sesión que otros cuatro y no quedó.
   Pendiente: strings mutables (`s[i] = c`) y rangos medio abiertos. **680** los toca a los dos.
+
+- 2026-09-17 (fondo, 680 Valid Palindrome II): **Accepted 477/477, 7 ms, con pistas (máx 3)**,
+  `error-clase: indice-en-vez-de-valor`. Predijo "con pistas": **calibración correcta**.
+  Antes del ejercicio, dos bloques teóricos con tarjeta en frío cada uno. `map` contra
+  `unordered_map` (`c0011`, calidad 2): tenía la elección práctica, no el mecanismo; después del
+  bloque lo explicó completo y en la dirección correcta. Rangos medio abiertos (`c0014`,
+  **calidad 0**, "ni entiendo la pregunta"): el concepto no existía, no era olvido. La tarjeta se
+  retiró a pedido suyo por mala redacción y se reemplazó por `c0025`.
+  El ejercicio salió por tres intervenciones, todas preguntas y ninguna contraejemplo: pasó de
+  contar desviaciones, a decidir el lado con un carácter de lookahead, a descartar la decisión
+  local él mismo ("no puedo elegir, el método está flawed") y probar los dos candidatos.
+  Bien: **refuta sus propios criterios cuando se le pide verificarlos, sin que haya que mostrarle
+  el input que los rompe.** Encontró además el bug de índices contra valores antes de correr nada.
+  Falló: los casos de prueba. Se le dio el marco antes de codear y mandó con `"aba"` y `"abca"`,
+  los mismos con los que ya había cazado el bug. Declaró cansancio como motivo.
+  **Tema cerrado.** Lo único sin tocar es `s[i] = c` sobre `string`, que no justifica un ejercicio.

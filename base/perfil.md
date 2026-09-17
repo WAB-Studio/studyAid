@@ -145,3 +145,22 @@ Sirve para que la próxima sesión no proponga cosas sin sentido.
   `unordered_map` estaba marcado como cubierto desde el 09-10 y salió en blanco. Se dio en una
   sesión donde se cubrieron otras cuatro cosas alrededor de un ejercicio. Vale tildar el subtema
   recién cuando haya una tarjeta suya aprobada, no cuando se explicó.
+
+- 2026-09-17: **refuta sus propios criterios si se le pide verificarlos, sin ver el contraejemplo.**
+  Las tres intervenciones de 680 fueron preguntas —"construí un caso de tres letras que dé false",
+  "¿qué hacés si los dos chequeos dan verdadero?"— y en las tres se corrigió solo. Guardar el
+  contraejemplo mínimo para cuando la pregunta no alcance: con él suele alcanzar.
+- 2026-09-17: **primera predicción acertada** en cinco ejercicios registrados. Las anteriores
+  fallaban hacia abajo. Todavía no es tendencia, pero la brecha dejó de ser sistemática.
+- 2026-09-17: **encontró su propio bug antes de correr el código, por segunda sesión seguida.**
+  Y lo nombró bien: "error de C++, estaba comparando índices y no valores". La distinción entre
+  error de lenguaje y error de algoritmo ya la hace él.
+- 2026-09-17: **cansado, saltea el protocolo y manda.** Se le dio el marco de casos de prueba
+  antes de codear y aun así mandó con dos casos que ya tenía usados, declarando cansancio. Dar el
+  marco no alcanza: hay que **pedirle los casos y esperar la respuesta** antes del submit. Y si
+  dice que está cansado, cerrar en vez de estirar.
+- 2026-09-17: **critica el material que se le da, y conviene verificarlo contra los datos antes
+  de aceptarlo o rechazarlo.** Pidió retirar `c0014` por mal escrita: tenía razón (el frente era
+  un acertijo). El diagnóstico que dio —"las otras están sin voseo"— no se sostiene; el voseo es
+  mayoría y lo que está partido son las tildes. Ambas cosas se le dijeron, y quedó conforme.
+
