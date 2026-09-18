@@ -92,9 +92,12 @@ ni como fracaso del ejercicio; se registra en `--error-clase`.
 Corré `PY tarjetas vencidas` al iniciar cualquier sesión.
 Repartí las tarjetas a lo largo de la sesión, entre los ejercicios y después del bloque teórico.
 Nunca las agrupes todas al principio ni al final.
-Preguntá el frente. Antes de que responda, preguntale si se la sabe.
-Esperá la respuesta y recién después mostrá el dorso.
+Preguntá el frente y esperá la respuesta.
+Preguntale ahí, antes de mostrar el dorso, qué tan seguro está de lo que contestó.
+Esperá esa respuesta y recién después mostrá el dorso.
 Puntuá con `PY sesion repaso --tarjeta <id> --calidad <0-5> --prediccion si|no`.
+`--prediccion si` es que se declaró seguro.
+Omití `--prediccion` cuando no lo haya declarado él. Nunca infieras la confianza del tono.
 No comentes la predicción en el momento: el reporte la compara con el resultado.
 
 Escala de calidad:

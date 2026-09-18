@@ -39,9 +39,12 @@ Decí en cada reporte:
 - **Temas fríos**: tocados y sin actividad hace 21 días o más. Son los primeros candidatos para
   la próxima sesión.
 
-- **Calibración**: sobreconfianza es decir que sabías una tarjeta y fallarla, o predecir que
-  sacabas un ejercicio solo y no sacarlo. Por encima del 25% sostenido, el problema no es el
+- **Calibración**: sobreconfianza es declararse seguro de una respuesta y fallarla, o predecir
+  que sacabas un ejercicio solo y no sacarlo. Por encima del 25% sostenido, el problema no es el
   temario: está confundiendo reconocer con recordar. Es el riesgo específico de su estilo.
+  En tarjetas la confianza se pide después de que contestó, no antes. Las predicciones de
+  tarjeta anteriores al 2026-09-18 se tomaron antes del intento: no las mezcles en la misma
+  serie con las posteriores.
 - **Reconocimiento de patrón**: porcentaje de aciertos en el drill intercalado. Es la métrica
   más directa de su debilidad principal. Sube más lento que el resto y eso es normal.
 - **Clases de error**: lo que se repite entre temas distintos. Una clase que aparece en tres

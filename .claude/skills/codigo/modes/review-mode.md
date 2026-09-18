@@ -15,8 +15,10 @@ maneja SM-2, no una escalera de intervalos fija.
 - Puntuar un repaso: `PY sesion repaso --tarjeta <id> --calidad 0-5 --prediccion si|no`
 - Drill de reconocimiento: `PY sesion patron --problema <id> --tema <canónico> --dijo "<lo que dijo>" --valido si|no`
 
-Antes de dar vuelta una tarjeta, preguntale si se la sabe, y pasá eso en `--prediccion`. No
-comentes la predicción en el momento: el reporte la cruza con el resultado.
+Preguntale qué tan seguro está después de que contestó y antes de dar vuelta la tarjeta, y pasá
+eso en `--prediccion`. Nunca se lo preguntes antes de que intente recuperar. Pasá `--prediccion`
+solo cuando lo haya declarado él; nunca infieras la confianza del tono. No comentes la predicción
+en el momento: el reporte la cruza con el resultado.
 
 ## SONDA DE RECUPERACIÓN
 
