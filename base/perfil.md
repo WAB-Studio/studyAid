@@ -164,3 +164,18 @@ Sirve para que la próxima sesión no proponga cosas sin sentido.
   un acertijo). El diagnóstico que dio —"las otras están sin voseo"— no se sostiene; el voseo es
   mayoría y lo que está partido son las tildes. Ambas cosas se le dijeron, y quedó conforme.
 
+- 2026-09-18 (micro de tarjetas): **primera sobreconfianza registrada, y en tarjeta, no en
+  ejercicio.** Dijo que se sabía `c0004` y contestó `O(1)`. La brecha de calibración venía siendo
+  siempre hacia abajo en ejercicios; en tarjetas apunta al otro lado. Son dos instrumentos
+  distintos: predecir si vas a resolver un problema no es lo mismo que predecir si tenés un hecho
+  en la cabeza, y en el segundo confunde "me suena el tema" con "sé la respuesta".
+- 2026-09-18: **no contesta la pregunta de predicción, contesta la tarjeta.** Las tres veces que
+  se le preguntó "¿te la sabés?" pasó derecho al contenido, y después objetó la pregunta entera:
+  "me parece inútil, es una molestia". **Resuelto el mismo día**: la confianza se pide después de
+  su respuesta y antes del dorso, y se omite si no la declara. Justificación y corte de serie en
+  `bitacora/2026-09-18.md`.
+- 2026-09-18: **el input que no se imagina es el que tiene signo.** En 977 dio por hecho que
+  ordenado implica cuadrados ordenados: leyó "enteros" sin instanciar un negativo. Es la misma
+  raíz del 09-09 (no usar el enunciado como señal) pero más barata de atacar: pedirle que escriba
+  un input concreto de tres elementos antes de declarar el enfoque, no después.
+

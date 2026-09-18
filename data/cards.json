@@ -69,13 +69,18 @@
       "dorso": "O(profundidad de la recursión): la pila de llamadas cuenta como espacio auxiliar.\nEs el error de espacio más frecuente en entrevista.",
       "creada": "2026-09-10",
       "sm2": {
-        "ease": 2.5,
+        "ease": 1.96,
         "reps": 0,
         "interval": 1,
-        "lapses": 0,
-        "due": "2026-09-11"
+        "lapses": 1,
+        "due": "2026-09-19"
       },
-      "historial": []
+      "historial": [
+        {
+          "fecha": "2026-09-18",
+          "calidad": 1
+        }
+      ]
     },
     {
       "id": "c0005",
@@ -153,14 +158,18 @@
       "creada": "2026-09-10",
       "sm2": {
         "ease": 2.5,
-        "reps": 1,
-        "interval": 1,
+        "reps": 2,
+        "interval": 6,
         "lapses": 0,
-        "due": "2026-09-13"
+        "due": "2026-09-24"
       },
       "historial": [
         {
           "fecha": "2026-09-12",
+          "calidad": 4
+        },
+        {
+          "fecha": "2026-09-18",
           "calidad": 4
         }
       ]
@@ -236,13 +245,18 @@
       "dorso": "La referencia es un alias: nunca nula, se ata una vez, se usa como la variable.\nEl puntero puede ser nullptr, se puede reapuntar, y se desreferencia con -> o *.",
       "creada": "2026-09-10",
       "sm2": {
-        "ease": 2.5,
-        "reps": 0,
+        "ease": 2.36,
+        "reps": 1,
         "interval": 1,
         "lapses": 0,
-        "due": "2026-09-11"
+        "due": "2026-09-19"
       },
-      "historial": []
+      "historial": [
+        {
+          "fecha": "2026-09-18",
+          "calidad": 3
+        }
+      ]
     },
     {
       "id": "c0014",

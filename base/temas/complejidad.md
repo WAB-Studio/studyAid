@@ -22,7 +22,9 @@ contenedores basados en nodos pesan del orden de 8 a 10 veces sus datos crudos.
 ## Subtemas
 - [x] Leer la complejidad de un bloque de código (secuencia, anidado, mitades)
 - [ ] Complejidad de recursión: nodos × trabajo por nodo
-- [x] Espacio auxiliar vs entrada vs salida; el stack de recursión cuenta
+- [ ] Espacio auxiliar vs entrada vs salida; el stack de recursión cuenta — la separación
+      sí está; **el stack de recursión no**: `c0004` falló el 09-18 y al ver el dorso dijo
+      que no lo entendía. Reabierto.
 - [x] Costos reales de las operaciones (visto en JS el 2026-09-10; rehecho en C++: copia de
       contenedores, `unordered_map` vs `map`, `insert` al frente de un `vector`)
 - [ ] Amortizado: por qué `push` es O(1)
@@ -48,3 +50,12 @@ descarta al menos un enfoque por ser demasiado lento, sin escribir código.
   a `O(n)`. Pendiente: recursión (nodos × trabajo por nodo) y amortizado, ninguno de los dos se
   tocó. La lectura restricción → orden tiene una sola repetición: hay que ejercitarla dentro de
   los problemas de los temas que siguen, no como tema aparte.
+
+- 2026-09-18 (micro): `c0004` (espacio auxiliar de una recursiva que no aloca) salió **calidad 1**,
+  respondió `O(1)` y dijo que se la sabía. Al ver el dorso: "no entiendo". No es olvido, es un
+  concepto que nunca estuvo: no cuenta los marcos de llamada como memoria porque no los declaró
+  él. Se le dio una sola línea en el momento (cada llamada pendiente ocupa un marco; `n` niveles
+  = `n` marcos vivos = `O(n)`) y la re-pregunta al final de la sesión salió correcta, pero eso
+  mide repetición a diez minutos. **Pendiente para la próxima de fondo**: entra por el bloque
+  teórico, con un árbol de llamadas dibujado, no como repaso de tarjeta. Encadena natural con el
+  subtema de recursión (nodos × trabajo por nodo), que también sigue abierto desde el 09-10.
