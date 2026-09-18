@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "next_id": 33,
+  "next_id": 34,
   "cards": [
     {
       "id": "c0001",
@@ -9,16 +9,20 @@
       "dorso": "O(n). 26 no depende del input, así que es constante y se tira: O(26n) = O(n).\nContar bucles no alcanza: hay que mirar sobre qué itera cada uno.",
       "creada": "2026-09-10",
       "sm2": {
-        "ease": 2.5,
-        "reps": 1,
-        "interval": 1,
+        "ease": 2.6,
+        "reps": 2,
+        "interval": 6,
         "lapses": 0,
-        "due": "2026-09-13"
+        "due": "2026-09-24"
       },
       "historial": [
         {
           "fecha": "2026-09-12",
           "calidad": 4
+        },
+        {
+          "fecha": "2026-09-18",
+          "calidad": 5
         }
       ]
     },
@@ -50,14 +54,18 @@
       "creada": "2026-09-10",
       "sm2": {
         "ease": 2.5,
-        "reps": 1,
-        "interval": 1,
+        "reps": 2,
+        "interval": 6,
         "lapses": 0,
-        "due": "2026-09-16"
+        "due": "2026-09-24"
       },
       "historial": [
         {
           "fecha": "2026-09-15",
+          "calidad": 4
+        },
+        {
+          "fecha": "2026-09-18",
           "calidad": 4
         }
       ]
@@ -201,11 +209,11 @@
       "dorso": "map es un árbol ordenado: O(log n). unordered_map es tabla hash: O(1) promedio.\nCasi siempre querés unordered_, salvo que necesites recorrer las claves en orden.",
       "creada": "2026-09-10",
       "sm2": {
-        "ease": 1.38,
-        "reps": 0,
+        "ease": 1.48,
+        "reps": 1,
         "interval": 1,
         "lapses": 2,
-        "due": "2026-09-18"
+        "due": "2026-09-19"
       },
       "historial": [
         {
@@ -215,6 +223,10 @@
         {
           "fecha": "2026-09-17",
           "calidad": 2
+        },
+        {
+          "fecha": "2026-09-18",
+          "calidad": 5
         }
       ]
     },
@@ -226,15 +238,19 @@
       "creada": "2026-09-10",
       "sm2": {
         "ease": 2.36,
-        "reps": 1,
-        "interval": 1,
+        "reps": 2,
+        "interval": 6,
         "lapses": 0,
-        "due": "2026-09-16"
+        "due": "2026-09-24"
       },
       "historial": [
         {
           "fecha": "2026-09-15",
           "calidad": 3
+        },
+        {
+          "fecha": "2026-09-18",
+          "calidad": 4
         }
       ]
     },
@@ -329,13 +345,18 @@
       "dorso": "\"in-place\", \"O(1) extra memory\", \"modify the input array\", \"el orden de los restantes puede cambiar\", y devolver un int k en vez del array.",
       "creada": "2026-09-10",
       "sm2": {
-        "ease": 2.5,
-        "reps": 0,
+        "ease": 2.36,
+        "reps": 1,
         "interval": 1,
         "lapses": 0,
-        "due": "2026-09-11"
+        "due": "2026-09-19"
       },
-      "historial": []
+      "historial": [
+        {
+          "fecha": "2026-09-18",
+          "calidad": 3
+        }
+      ]
     },
     {
       "id": "c0018",
@@ -359,13 +380,22 @@
       "dorso": "write y read arrancan juntos y write avanza igual o menos veces, asi que siempre write <= read. Nunca pisas algo que no leiste.",
       "creada": "2026-09-10",
       "sm2": {
-        "ease": 2.5,
-        "reps": 0,
+        "ease": 2.6,
+        "reps": 1,
         "interval": 1,
         "lapses": 0,
-        "due": "2026-09-11"
+        "due": "2026-09-19"
       },
-      "historial": []
+      "historial": [
+        {
+          "fecha": "2026-09-18",
+          "calidad": 5
+        }
+      ],
+      "retirada": {
+        "fecha": "2026-09-18",
+        "motivo": "Frente mal escrito: asumia que se sabe que son read y write sin definirlos, usaba voseo y le faltaban tildes. Reescrita segun la skill tarjetas."
+      }
     },
     {
       "id": "c0020",
@@ -567,6 +597,21 @@
         "interval": 1,
         "lapses": 0,
         "due": "2026-09-18"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0033",
+      "tema": "arrays-strings",
+      "frente": "En el patrón de lectura/escritura sobre un array —un índice `read` que recorre todos los elementos y un índice `write` que solo avanza cuando el elemento leído se conserva, ambos empezando en 0—, ¿por qué escribir en `a[write]` nunca destruye un elemento que todavía no se leyó?",
+      "dorso": "Porque `write` avanza a lo sumo tantas veces como `read`, así que siempre se cumple `write <= read`. Escribir en `a[write]` pisa, como mucho, la posición que se acaba de leer.",
+      "creada": "2026-09-18",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-19"
       },
       "historial": []
     }

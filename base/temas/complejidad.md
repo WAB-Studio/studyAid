@@ -59,3 +59,10 @@ descarta al menos un enfoque por ser demasiado lento, sin escribir código.
   mide repetición a diez minutos. **Pendiente para la próxima de fondo**: entra por el bloque
   teórico, con un árbol de llamadas dibujado, no como repaso de tarjeta. Encadena natural con el
   subtema de recursión (nodos × trabajo por nodo), que también sigue abierto desde el 09-10.
+
+- 2026-09-18 (micro de mediodía, solo tarjetas): `c0001` (bucle anidado sobre las 26 letras)
+  calidad 5 e instantáneo; `c0003` (`n <= 10^5` → la complejidad más lenta que entra) calidad 4,
+  dio los 10^8 del juez y `n log n` sin hacer explícita la cuenta que descarta `n²`.
+  La lectura restricción → orden ya tiene tres repeticiones y sale sola. Lo que sigue pendiente
+  es lo de siempre desde el 09-10: recursión (nodos × trabajo por nodo, más la pila como espacio
+  auxiliar) y amortizado.

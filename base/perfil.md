@@ -179,3 +179,24 @@ Sirve para que la próxima sesión no proponga cosas sin sentido.
   raíz del 09-09 (no usar el enunciado como señal) pero más barata de atacar: pedirle que escriba
   un input concreto de tres elementos antes de declarar el enfoque, no después.
 
+- 2026-09-18 (micro de mediodía): **la calibración se dio vuelta en una sesión.** 6 de 6
+  predicciones sin una sola sobreconfianza fallada, y **dos subestimaciones**: dijo "poco" y
+  "medio" y acertó las dos. Contra el patrón de la mañana. Si se sostiene, el riesgo cambia de
+  lado: deja de ser estudiar de menos lo que cree sabido y pasa a ser no confiar en una respuesta
+  correcta, que en una entrevista se lee como titubeo. Dos sesiones no son tendencia; mirar la
+  serie en `metricas` dentro de una semana antes de tocar nada.
+- 2026-09-18: **el protocolo nuevo de confianza funcionó a la primera.** Preguntada después de
+  su respuesta y antes del dorso, la declaró las seis veces, en una palabra y sin resistencia.
+  No hubo que inferir nada del tono. La objeción del 09-18 a la mañana era al instrumento, no a
+  la métrica.
+- 2026-09-18: **el patrón no se activa cuando el enunciado no se parece al ejercicio donde se
+  aprendió.** Tercera repetición (línea base 09-09, 977 a la mañana, 88 al mediodía). En 88 llegó
+  solo al obstáculo correcto y se detuvo; antes de eso lo había clasificado como problema de
+  ordenamiento, un tema que no está abierto. **El diagnóstico no es que le falte el patrón: es
+  que la etiqueta del problema la busca en el dominio del enunciado, no en la forma de los datos.**
+  Los drills intercalados son el instrumento correcto y hay que sostenerlos; lo que conviene
+  agregar es pedirle, cuando diga que no sabe, qué operación necesita en vez de qué tema es.
+- 2026-09-18: **audita los efectos secundarios de lo que la tool hace con sus datos.** Pidió
+  reescribir una tarjeta y acto seguido preguntó si los números se habían mantenido; se habían
+  movido (`ease` 2.6 → 2.5, `reps` a 0). Corresponde **decir el costo antes de ejecutar**, no
+  después, cada vez que una operación sobre `data/` no sea reversible o pierda historial.

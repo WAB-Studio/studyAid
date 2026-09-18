@@ -150,3 +150,17 @@ el espacio O(1).
   Falló: los casos de prueba. Se le dio el marco antes de codear y mandó con `"aba"` y `"abca"`,
   los mismos con los que ya había cazado el bug. Declaró cansancio como motivo.
   **Tema cerrado.** Lo único sin tocar es `s[i] = c` sobre `string`, que no justifica un ejercicio.
+
+- 2026-09-18 (micro de mediodía, solo tarjetas + drill): cuatro tarjetas del tema, ninguna por
+  debajo de 3. `c0017` (señales de in-place en el enunciado, calidad 3) dio las dos señales de
+  entrada y ninguna de las dos de salida: que el enunciado autorice a desordenar el resto, y que
+  la firma devuelva un `int k`. `c0019` (invariante `write <= read`, calidad 5) la contestó y
+  objetó el frente: asumía qué son `read` y `write` sin definirlos. Retirada, reescrita como
+  `c0033` según la skill `tarjetas`. La reescritura costó el estado de SRS —`ease` 2.6 → 2.5,
+  `reps` a 0— porque `study.py` no sabe editar una tarjeta en su lugar.
+  **Drill 88 Merge Sorted Array: no válido.** Llegó solo al obstáculo real —escribir desde el
+  frente pisa lo que falta leer— y no invirtió la dirección del recorrido. Lo leyó como problema
+  de ordenamiento ("no me has enseñado patrones de organización"), no como `two-pointers`.
+  Es la tercera vez que aparece lo mismo (línea base 09-09, 977 el 09-18 a la mañana): el patrón
+  está, pero no se activa cuando el enunciado no se parece al ejercicio donde se aprendió.
+  **88 queda reservado** como ejemplo de two-pointers recorriendo de atrás hacia adelante.
