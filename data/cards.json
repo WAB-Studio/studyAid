@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "next_id": 34,
+  "next_id": 41,
   "cards": [
     {
       "id": "c0001",
@@ -189,16 +189,20 @@
       "dorso": "La crea con el valor por defecto (0 para int). Es la trampa número uno del contenedor.\nPara consultar sin insertar: .count(k) o .find(k).",
       "creada": "2026-09-10",
       "sm2": {
-        "ease": 1.96,
-        "reps": 0,
+        "ease": 2.06,
+        "reps": 1,
         "interval": 1,
         "lapses": 1,
-        "due": "2026-09-15"
+        "due": "2026-09-21"
       },
       "historial": [
         {
           "fecha": "2026-09-14",
           "calidad": 1
+        },
+        {
+          "fecha": "2026-09-20",
+          "calidad": 5
         }
       ]
     },
@@ -209,11 +213,11 @@
       "dorso": "map es un árbol ordenado: O(log n). unordered_map es tabla hash: O(1) promedio.\nCasi siempre querés unordered_, salvo que necesites recorrer las claves en orden.",
       "creada": "2026-09-10",
       "sm2": {
-        "ease": 1.48,
-        "reps": 1,
-        "interval": 1,
+        "ease": 1.58,
+        "reps": 2,
+        "interval": 6,
         "lapses": 2,
-        "due": "2026-09-19"
+        "due": "2026-09-26"
       },
       "historial": [
         {
@@ -226,6 +230,10 @@
         },
         {
           "fecha": "2026-09-18",
+          "calidad": 5
+        },
+        {
+          "fecha": "2026-09-20",
           "calidad": 5
         }
       ]
@@ -305,15 +313,19 @@
       "dorso": "Cada elemento es un nodo aparte con un puntero al siguiente, más la cabecera del malloc, más el array de buckets.\nDel orden de 8 a 10 veces los datos crudos: es el precio del O(1).",
       "creada": "2026-09-10",
       "sm2": {
-        "ease": 2.36,
-        "reps": 1,
-        "interval": 1,
+        "ease": 2.22,
+        "reps": 2,
+        "interval": 6,
         "lapses": 0,
-        "due": "2026-09-15"
+        "due": "2026-09-26"
       },
       "historial": [
         {
           "fecha": "2026-09-14",
+          "calidad": 3
+        },
+        {
+          "fecha": "2026-09-20",
           "calidad": 3
         }
       ]
@@ -612,6 +624,111 @@
         "interval": 1,
         "lapses": 0,
         "due": "2026-09-19"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0034",
+      "tema": "hash-maps",
+      "frente": "Al leer el enunciado de un problema, ¿qué tres preguntas sobre los datos indican que conviene un hash map?",
+      "dorso": "«¿Ya apareció este valor?», «¿cuántas veces aparece?» y «¿qué elementos comparten esta propiedad?».\nLas tres reemplazan un recorrido de todos contra todos por una sola pasada.",
+      "creada": "2026-09-20",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-21"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0035",
+      "tema": "hash-maps",
+      "frente": "En una tabla hash, ¿qué es una colisión y por qué no se puede evitar?",
+      "dorso": "Dos claves distintas que caen en el mismo bucket, porque hay infinitas claves posibles y una cantidad finita de buckets.\nToda tabla hash es una estrategia para convivir con colisiones, no para evitarlas.",
+      "creada": "2026-09-20",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-21"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0036",
+      "tema": "hash-maps",
+      "frente": "¿Cuál es la diferencia entre resolver colisiones por chaining y por open addressing, y cuál de las dos usa unordered_map en C++?",
+      "dorso": "Chaining cuelga los elementos en una lista por bucket; open addressing los guarda en el siguiente casillero libre del mismo array.\nunordered_map usa chaining, porque el estándar exige que las referencias a los elementos sigan válidas después de un rehash.",
+      "creada": "2026-09-20",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-21"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0037",
+      "tema": "hash-maps",
+      "frente": "En un unordered_map de C++, ¿qué es el load factor y qué ocurre al superar su valor máximo?",
+      "dorso": "Es la cantidad de elementos dividida por la cantidad de buckets; el máximo por defecto es 1.0.\nAl superarlo el contenedor rehashea: pide más buckets y recoloca los n elementos, con costo O(n) que amortiza a O(1) por inserción.",
+      "creada": "2026-09-20",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-21"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0038",
+      "tema": "hash-maps",
+      "frente": "¿Por qué unordered_map<vector<int>, T> no compila en C++ y unordered_map<string, T> sí?",
+      "dorso": "La biblioteca estándar solo provee std::hash para tipos primitivos, punteros y string.\nNo existe especialización para vector<int>, y el compilador no la genera solo: hay que escribirla o cambiar de clave.",
+      "creada": "2026-09-20",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-21"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0039",
+      "tema": "hash-maps",
+      "frente": "En 49 Group Anagrams la clave de cada palabra es un string de 26 posiciones donde cada posición guarda el conteo de una letra. ¿Por qué esa clave nunca es ambigua?",
+      "dorso": "Porque cada conteo ocupa exactamente un byte y su posición es fija.\nConcatenar los conteos como texto sí sería ambiguo: «1» seguido de «11» no se distingue de «11» seguido de «1».",
+      "creada": "2026-09-20",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-21"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0040",
+      "tema": "hash-maps",
+      "frente": "La búsqueda en un hash map se describe como O(1) promedio. ¿Cuál es el peor caso y qué situación lo produce?",
+      "dorso": "O(n), cuando todas las claves caen en el mismo bucket y la tabla degenera en una lista enlazada.\nCon std::hash<int>, que en libstdc++ es la identidad, alcanza con que las claves sean múltiplos de la cantidad de buckets.",
+      "creada": "2026-09-20",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-21"
       },
       "historial": []
     }

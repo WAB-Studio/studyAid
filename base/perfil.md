@@ -200,3 +200,32 @@ Sirve para que la próxima sesión no proponga cosas sin sentido.
   reescribir una tarjeta y acto seguido preguntó si los números se habían mantenido; se habían
   movido (`ease` 2.6 → 2.5, `reps` a 0). Corresponde **decir el costo antes de ejecutar**, no
   después, cada vez que una operación sobre `data/` no sea reversible o pierda historial.
+
+- 2026-09-20 (fondo hash-maps): **el bloque teórico corto no le sirve, y el pedido es legítimo.**
+  Objetó la primera versión del modelo mental —"cero profundidad, una cosa muy por encima"—
+  nombrando exactamente lo que faltaba: función hash, colisiones, memoria. Con el bloque rehecho
+  al nivel del mecanismo contestó el control sin ayuda y encadenó tres causas. No es un pedido de
+  más texto: es que **sin el mecanismo no puede defender la complejidad**, y el perfil ya decía
+  que aprende con teoría primero. Al abrir un tema, el modelo mental va al nivel de cómo funciona
+  la estructura por dentro, no al de cómo se usa.
+- 2026-09-20: **los errores ya son todos de lenguaje.** Cuatro en 49 —clave `int` por `string`,
+  `find` como bool, `push_back` asignado, funciones sin `return`— y cero de algoritmo. Es un
+  cambio respecto de la línea base, donde el enfoque mismo fallaba. Lo que queda por bajar es la
+  rampa de C++, no el razonamiento.
+- 2026-09-20: **la creencia invertida se corrige enseñándola de frente, y el efecto se ve el
+  mismo día.** `c0010` (`m[k]` inserta al leer) venía de calidad 1 con la respuesta contraria;
+  se atacó explícitamente en el bloque teórico y esa tarde la contestó completa, con los tres
+  tipos de ejemplo y confianza alta. Confirma la distinción del 09-14: olvido pide repaso,
+  creencia contraria pide corrección explícita.
+- 2026-09-20: **un concepto recién enseñado no se transfiere solo a su propio código.** Sabía que
+  `m[k]` inserta al leer y aun así escribió el `if/else` que eso vuelve innecesario; con la
+  pregunta dijo "no entiendo de qué me estás hablando", y lo vio recién con el trace frame por
+  frame. La pieza que faltaba era que `m[k]` devuelve una **referencia**. Refuerza el 09-10: el
+  trace le rinde más que la explicación, y conviene ir al trace antes y no después de la pregunta.
+- 2026-09-20: **pide el input concreto y aun así contesta en abstracto.** Pedido explícitamente,
+  dijo "tres palabras en minúscula cualquiera". Hay que pedirle **las letras**, no el input: la
+  formulación general le sale sola y es justamente la que le deja el caso sin instanciar.
+- 2026-09-20: **por primera vez buscó una segunda idea sin que se la pidieran.** Propuso modificar
+  `strs` in-place para ahorrar memoria, con un argumento de costo, y se dio cuenta solo de por qué
+  no servía al preguntarle qué aparecía en el output. Contra la observación del 09-09. Si se
+  sostiene, dejar de pedirle "dame una segunda opción" como paso fijo.

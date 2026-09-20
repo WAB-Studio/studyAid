@@ -110,3 +110,12 @@ Dosis chicas y sostenidas, nunca un bloque al final.
   El bloque teórico de `hash-maps` tiene que atacar de frente `m[k]` que inserta al leer: falló
   dos veces (`c0010`, calidad 1 el 09-14) y es una creencia invertida, no un olvido.
 
+- 2026-09-20: **`hash-maps` abierto** con 49 Group Anagrams, Accepted. El tema no se cierra
+  todavía: falta un problema donde la clave **no** sea una transformación de la entrada. 49 se
+  resuelve codificando cada palabra, que es el caso fácil de elegir clave; 128 Longest
+  Consecutive Sequence obliga a usar el conjunto para preguntar por vecinos, que es donde el
+  patrón se rompe si la clave se eligió por costumbre. Ese es el ejercicio de cierre.
+- 2026-09-20: el modelo mental de un tema se escribe **al nivel del mecanismo**, no del uso.
+  Lo pidió él con argumento y funcionó: con la tabla hash explicada por dentro contestó sin ayuda
+  un control que no era repetición. Vale para los temas que vienen, empezando por `heaps`, donde
+  la tentación de enseñar solo la API de `priority_queue` es la misma.
