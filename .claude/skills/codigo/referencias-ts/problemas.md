@@ -36,7 +36,7 @@ en cualquier otro tema.
 - 125 Valid Palindrome `F` * — `valid-palindrome`
 - 167 Two Sum II `M` — `two-sum-ii-input-array-is-sorted`
 - 15 3Sum `M` — `3sum` **[RESERVADO: línea base B]**
-- 11 Container With Most Water `M` — `container-with-most-water`
+- 11 Container With Most Water `M` — `container-with-most-water` **[GASTADO: A2 de la línea base, 2026-09-15]** — no sirve como ejemplo resuelto al abrir el tema; sí como reintento después
 - 42 Trapping Rain Water `D` — `trapping-rain-water`
 
 ## sliding-window

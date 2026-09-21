@@ -21,12 +21,50 @@ DATA = ROOT / "data"
 CARDS_FILE = DATA / "cards.json"
 SESSIONS_FILE = DATA / "sessions.jsonl"
 CURRENT_FILE = DATA / "current_session.json"
+EXTERNOS_FILE = DATA / "externos.jsonl"
 
 STALE_HOURS = 4
 # Tope por defecto de tarjetas vencidas por sesion, para que una pausa no genere un muro.
 TOPE_VENCIDAS = 20
 RESULTS = ("solo", "con_pistas", "abandonado")
-MODES = ("micro", "fondo")
+MODES = ("micro", "media", "fondo")
+PREDICCIONES_EJ = ("solo", "con_pistas", "no_lo_saco", "no-preguntada")
+PREDICCIONES_SN = ("si", "no", "no-preguntada")
+CORREGIBLES = ("ejercicio", "patron", "repaso")
+TIPOS_EXTERNO = ("video", "lectura", "curso", "podcast", "practica", "otro")
+# "practica" es la excepcion: recuperacion activa que paso fuera de una sesion abierta
+# (una explicacion en el chat, un recall suelto). Esos minutos SI son practica y suman
+# con los de sesion; el resto de los tipos es exposicion y va aparte. El eje que importa
+# no es dentro/fuera de sesion, es exposicion contra recuperacion.
+TIPOS_ACTIVOS = ("practica",)
+# Tope de un registro externo suelto. Mas que esto casi siempre es un error de tipeo,
+# y si de verdad fueron seis horas conviene partirlas por fuente.
+MAX_MIN_EXTERNO = 360
+
+# Campos de la sesion misma, corregibles sin --evento. "sigue" es lo que abre la proxima
+# conversacion, asi que uno desactualizado desorienta igual que un evento mal registrado.
+# "afk_declarado" esta porque el AFK casi siempre se sabe tarde: el que se fue es el usuario y
+# solo lo puede contar al volver, a veces despues de cerrar. Es la misma excepcion que
+# externos() -- ningun reloj cubrio ese hueco, asi que el numero lo pone el -- y no colisiona
+# con la prohibicion sobre "calidad": minutos_efectivos es un recalculo puro, sin nada aguas
+# abajo que ya se haya consumido. Preferi igual pausar/reanudar mientras pasa: la medicion
+# concurrente es mas exacta que la retrospectiva, y esto es la red, no el camino.
+CAMPOS_SESION = ("sigue", "afk_declarado")
+
+# Que campos se pueden corregir por tipo de evento, y como se valida cada uno.
+# "calidad" no esta y no es un olvido: ver cmd_corregir.
+CAMPOS = {
+    "ejercicio": {
+        "ejercicio": "texto", "tema": "texto", "resultado": RESULTS,
+        "pista_max": "entero", "prediccion": PREDICCIONES_EJ, "errores": "lista",
+    },
+    "patron": {
+        "problema": "texto", "tema": "texto", "dijo": "texto", "acerto": "bool",
+    },
+    "repaso": {
+        "tema": "texto", "prediccion": PREDICCIONES_SN,
+    },
+}
 
 
 def now() -> datetime:
@@ -104,7 +142,7 @@ def current_session():
 def require_current() -> dict:
     cur = current_session()
     if not cur:
-        die("no hay sesion abierta. Corre: study.py sesion iniciar --modo micro|fondo")
+        die("no hay sesion abierta. Corre: study.py sesion iniciar --modo micro|media|fondo")
     return cur
 
 
@@ -249,6 +287,181 @@ def cmd_repaso(args) -> None:
     if args.calidad < 3:
         print("FALLADA: volve a preguntarla mas tarde en esta misma sesion, sin volver a puntuarla.")
         print("No expliques ahora. Mostra el dorso, nombra en una linea donde divergio, y segui.")
+
+
+def eventos_numerados(src: dict) -> list:
+    """Eventos corregibles de una sesion, en orden cronologico y con el mismo numero
+    este la sesion abierta o cerrada. Una cerrada los guarda repartidos en tres listas."""
+    if "eventos" in src:
+        ev = [e for e in src["eventos"] if e.get("tipo") in CORREGIBLES]
+    else:
+        ev = src.get("ejercicios", []) + src.get("patrones", []) + src.get("repasos", [])
+    return sorted(ev, key=lambda e: e.get("ts", ""))
+
+
+def describir_evento(e: dict) -> str:
+    if e["tipo"] == "ejercicio":
+        extra = f", errores: {', '.join(e['errores'])}" if e.get("errores") else ""
+        return (f"ejercicio {e['ejercicio']} ({e['tema']}) -> {e['resultado']}, "
+                f"pista_max {e.get('pista_max', 0)}, predijo {e.get('prediccion')}{extra}")
+    if e["tipo"] == "patron":
+        return (f"patron {e['problema']} (canonico: {e['tema']}) -> "
+                f"{'valido' if e.get('acerto') else 'no valido'}, dijo: {e.get('dijo')}")
+    return (f"repaso {e['tarjeta']} ({e['tema']}) -> calidad {e['calidad']}, "
+            f"predijo {e.get('prediccion')}")
+
+
+def buscar_sesion(sid: str):
+    """Devuelve (registro, indice_en_jsonl) de una sesion cerrada."""
+    ss = sessions()
+    for i, s_ in enumerate(ss):
+        if s_["id"] == sid:
+            return s_, i, ss
+    die(f"no existe la sesion cerrada {sid}. Corre 'estado' o mira data/sessions.jsonl.")
+
+
+def cmd_eventos(args) -> None:
+    if args.sesion:
+        src, _, _ = buscar_sesion(args.sesion)
+        cab = f"Sesion {src['id']} (cerrada, {src['minutos']} min)"
+    else:
+        src = require_current()
+        cab = f"Sesion {src['id']} (abierta)"
+    ev = eventos_numerados(src)
+    print(f"{cab}: {len(ev)} evento(s) corregible(s).\n")
+    if not ev:
+        print("Nada registrado todavia.")
+        return
+    for i, e in enumerate(ev, 1):
+        hora = e.get("ts", "")[11:16]
+        print(f"  {i}. [{hora}] {describir_evento(e)}")
+        for c in e.get("correcciones", []):
+            print(f"       corregido {c['fecha']}: {c['campo']} {c['de']!r} -> {c['a']!r} "
+                  f"({c['motivo']})")
+    print("\nCorregir uno: study.py sesion corregir --evento N --campo CAMPO "
+          "--valor VALOR --motivo \"...\"")
+
+
+def cmd_corregir(args) -> None:
+    if args.sesion:
+        src, idx, todas = buscar_sesion(args.sesion)
+        abierta = False
+    else:
+        src, idx, todas = require_current(), None, None
+        abierta = True
+
+    if args.evento is None:
+        if args.campo not in CAMPOS_SESION:
+            die(f"sin --evento solo se corrigen campos de la sesion: "
+                f"{', '.join(CAMPOS_SESION)}. Para un evento, pasa --evento N.")
+        if args.campo == "afk_declarado":
+            if abierta:
+                die("el AFK de una sesion abierta no se corrige aca: usa 'sesion pausar' y "
+                    "'sesion reanudar' mientras pasa, o pasa --afk al cerrar. Medir el hueco "
+                    "mientras ocurre es mas exacto que reconstruirlo despues.")
+            try:
+                valor_s = int(args.valor)
+            except ValueError:
+                die(f"--valor tiene que ser un entero de minutos, llego {args.valor!r}.")
+            if valor_s < 0:
+                die("el AFK no puede ser negativo.")
+            afk_medido = src.get("afk_medido", 0)
+            if afk_medido + valor_s >= src["minutos"]:
+                die(f"el AFK ({afk_medido + valor_s} min) se come toda la sesion "
+                    f"({src['minutos']} min de reloj). Revisa el numero.")
+        else:
+            valor_s = args.valor
+        anterior_s = src.get(args.campo)
+        if anterior_s == valor_s:
+            die(f"{args.campo} ya vale {valor_s!r}. Nada que corregir.")
+        src[args.campo] = valor_s
+        if args.campo == "afk_declarado":
+            src["minutos_efectivos"] = src["minutos"] - src.get("afk_medido", 0) - valor_s
+        src.setdefault("correcciones", []).append({
+            "fecha": today().isoformat(), "campo": args.campo,
+            "de": anterior_s, "a": valor_s, "motivo": args.motivo,
+        })
+        if abierta:
+            save(CURRENT_FILE, src)
+        else:
+            todas[idx] = src
+            tmp = SESSIONS_FILE.with_name(SESSIONS_FILE.name + ".tmp")
+            tmp.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in todas),
+                           encoding="utf-8")
+            os.replace(tmp, SESSIONS_FILE)
+        print(f"Sesion {src['id']} corregida: {args.campo} {anterior_s!r} -> {valor_s!r}.")
+        print(f"  Motivo: {args.motivo}")
+        if args.campo == "afk_declarado":
+            print(f"  Recalculado: {src['minutos']} min de reloj - "
+                  f"{src.get('afk_medido', 0)} medidos - {valor_s} declarados = "
+                  f"{src['minutos_efectivos']} min efectivos.")
+        print("El valor anterior no se borra: queda en 'correcciones' dentro de la sesion.")
+        return
+
+    ev = eventos_numerados(src)
+    if not 1 <= args.evento <= len(ev):
+        die(f"evento {args.evento} fuera de rango: hay {len(ev)}. "
+            "Corre 'sesion eventos' para verlos numerados.")
+    e = ev[args.evento - 1]
+
+    if e["tipo"] == "repaso" and args.campo == "calidad":
+        die("la calidad de un repaso no se corrige: el scheduler SM-2 ya avanzo el intervalo, "
+            "el ease y los lapsos a partir de ella, y eso no se deshace de forma confiable. "
+            "Anota la correccion en la bitacora y, si la tarjeta quedo mal calibrada, "
+            "volve a puntuarla en la proxima sesion.")
+
+    campos = CAMPOS[e["tipo"]]
+    if args.campo not in campos:
+        die(f"'{args.campo}' no es corregible en un evento de tipo {e['tipo']}. "
+            f"Campos: {', '.join(campos)}.")
+
+    regla = campos[args.campo]
+    if regla == "entero":
+        try:
+            valor = int(args.valor)
+        except ValueError:
+            die(f"--valor tiene que ser un entero, llego {args.valor!r}.")
+    elif regla == "lista":
+        valor = [x.strip().lower().replace(" ", "-")
+                 for x in args.valor.split(",") if x.strip()]
+    elif regla == "bool":
+        if args.valor not in ("si", "no"):
+            die("--valor para un campo si/no tiene que ser 'si' o 'no'.")
+        valor = args.valor == "si"
+    elif isinstance(regla, tuple):
+        if args.valor not in regla:
+            die(f"--valor para {args.campo} tiene que ser uno de: {', '.join(regla)}.")
+        valor = args.valor
+    else:
+        valor = args.valor.strip()
+
+    anterior = e.get(args.campo)
+    if anterior == valor:
+        die(f"{args.campo} ya vale {valor!r}. Nada que corregir.")
+
+    e[args.campo] = valor
+    e.setdefault("correcciones", []).append({
+        "fecha": today().isoformat(),
+        "campo": args.campo,
+        "de": anterior,
+        "a": valor,
+        "motivo": args.motivo,
+    })
+
+    if abierta:
+        save(CURRENT_FILE, src)
+    else:
+        src["temas"] = sorted({x["tema"] for x in eventos_numerados(src) if x.get("tema")})
+        todas[idx] = src
+        tmp = SESSIONS_FILE.with_name(SESSIONS_FILE.name + ".tmp")
+        tmp.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in todas),
+                       encoding="utf-8")
+        os.replace(tmp, SESSIONS_FILE)
+
+    print(f"Evento {args.evento} corregido: {args.campo} {anterior!r} -> {valor!r}.")
+    print(f"  Motivo: {args.motivo}")
+    print(f"  Queda: {describir_evento(e)}")
+    print("El valor anterior no se borra: queda en 'correcciones' dentro del evento.")
 
 
 def cmd_cerrar(args) -> None:
@@ -409,6 +622,74 @@ def cmd_retirar(args) -> None:
     print(f"  Se conservan sus {repasos} repaso(s). Deja de aparecer en vencidas.")
 
 
+def cmd_editar(args) -> None:
+    """Corrige la redaccion de una tarjeta conservando su historial SM-2.
+
+    La linea que decide entre esto y 'retirar' es una sola: **cambia lo que hay que
+    recuperar?** El ease y el intervalo son especificos del item -- miden lo dificil que le
+    resulta recuperar *eso*. Si la tarjeta sigue pidiendo lo mismo y solo se arregla como esta
+    escrita, esos numeros siguen siendo validos y tirarlos pierde datos caros por nada.
+
+    Si el frente pasa a exigir otra recuperacion, es OTRO item: heredar el ease le atribuiria a
+    la pregunta nueva una dificultad medida sobre la vieja, que es precision falsa. Eso se
+    resuelve con 'retirar' y una tarjeta nueva, no con esto. Caso real, el 2026-09-20: c0016
+    ("caso borde de largo" -> "que largo de entrada") habria sido edicion; c0007 ("cuanta
+    memoria usa" -> "que ocupa esa memoria") fue retiro, y perder su ease de 1.68 fue correcto.
+
+    La tool no puede juzgar semantica, asi que no intenta: exige --motivo, guarda el texto
+    anterior en 'ediciones' y imprime la advertencia cada vez. La decision queda visible y
+    auditable, que es lo unico que la protege de disfrazar un cambio de item de arreglo de tipeo.
+    """
+    db = cards_db()
+    card = next((c for c in db["cards"] if c["id"] == args.tarjeta), None)
+    if card is None:
+        die(f"no existe la tarjeta {args.tarjeta}")
+    if card.get("retirada"):
+        die(f"la tarjeta {args.tarjeta} esta retirada desde el {card['retirada']['fecha']} "
+            f"({card['retirada']['motivo']}). Una tarjeta fuera de circulacion no se edita: "
+            "si la queres de vuelta, creala nueva.")
+    if not args.motivo.strip():
+        die("--motivo no puede estar vacio: el registro tiene que decir que se cambio y por que.")
+
+    cambios = []
+    for campo in ("frente", "dorso", "tema"):
+        valor = getattr(args, campo, None)
+        if valor is None:
+            continue
+        valor = valor.strip()
+        if not valor:
+            die(f"--{campo} no puede quedar vacio.")
+        if valor == card[campo]:
+            die(f"{campo} ya dice exactamente eso. Nada que editar.")
+        cambios.append((campo, card[campo], valor))
+
+    if not cambios:
+        die("pasa al menos uno de --frente, --dorso o --tema.")
+
+    for campo, antes, despues in cambios:
+        card[campo] = despues
+        card.setdefault("ediciones", []).append({
+            "fecha": today().isoformat(), "campo": campo,
+            "de": antes, "a": despues, "motivo": args.motivo.strip(),
+        })
+
+    save(CARDS_FILE, db)
+    repasos = len(card.get("historial", []))
+    sm2_actual = card["sm2"]
+    print(f"Tarjeta {card['id']} ({card['tema']}) editada: "
+          f"{', '.join(c[0] for c in cambios)}.")
+    print(f"  Motivo: {args.motivo.strip()}")
+    for campo, antes, despues in cambios:
+        print(f"  {campo}: {antes!r}")
+        print(f"       -> {despues!r}")
+    print(f"  Historial INTACTO: {repasos} repaso(s), ease {sm2_actual['ease']}, "
+          f"vence {sm2_actual['due']}.")
+    print("  El texto anterior no se borra: queda en 'ediciones' dentro de la tarjeta.")
+    print("OJO: esto es para la REDACCION. Si el frente pasa a pedir otra recuperacion, es otro")
+    print("     item y corresponde 'tarjetas retirar' mas una nueva: el ease viejo mide la")
+    print("     dificultad de la pregunta vieja y heredarlo seria precision falsa.")
+
+
 def cmd_retiradas(args) -> None:
     fuera = [c for c in cards_db()["cards"] if c.get("retirada")]
     if not fuera:
@@ -421,6 +702,132 @@ def cmd_retiradas(args) -> None:
         print(f"    {c['frente']}")
         print(f"    motivo: {c['retirada']['motivo']}")
         print(f"    repasos conservados: {len(c.get('historial', []))}\n")
+
+
+# ----------------------------------------------------------------- estudio externo
+
+def externos() -> list:
+    """Estudio autonomo registrado fuera de una sesion: video, lectura, un curso.
+
+    Vive en su propio log y en su propio contador a proposito. Reexponerse a una
+    explicacion produce sensacion de dominio sin retencion -- la ilusion de fluidez --,
+    y recuperar produce retencion. Si los dos cayeran en el mismo numero de minutos,
+    ese numero dejaria de medir practica y el camino mas barato para subirlo seria
+    el que menos ensena. Cuenta para racha (es contacto real con el material) y no
+    cuenta como minutos de practica.
+    """
+    if not EXTERNOS_FILE.exists():
+        return []
+    out = []
+    for line in EXTERNOS_FILE.read_text(encoding="utf-8").splitlines():
+        if line.strip():
+            r = json.loads(line)
+            if not r.get("anulado"):
+                out.append(r)
+    return out
+
+
+def externos_todos() -> list:
+    if not EXTERNOS_FILE.exists():
+        return []
+    return [json.loads(l) for l in EXTERNOS_FILE.read_text(encoding="utf-8").splitlines()
+            if l.strip()]
+
+
+def minutos_externos_por_dia() -> dict:
+    """Solo exposicion. Lo registrado como 'practica' suma en minutos_por_dia."""
+    acc = defaultdict(int)
+    for r in externos():
+        if r["tipo"] not in TIPOS_ACTIVOS:
+            acc[date.fromisoformat(r["fecha"])] += r["minutos"]
+    return acc
+
+
+def minutos_activos_sueltos() -> dict:
+    acc = defaultdict(int)
+    for r in externos():
+        if r["tipo"] in TIPOS_ACTIVOS:
+            acc[date.fromisoformat(r["fecha"])] += r["minutos"]
+    return acc
+
+
+def cmd_externo_agregar(args) -> None:
+    if args.minutos < 1 or args.minutos > MAX_MIN_EXTERNO:
+        die(f"minutos fuera de rango (1-{MAX_MIN_EXTERNO}). Recibido: {args.minutos}.")
+    fecha = today() if not args.fecha else date.fromisoformat(args.fecha)
+    if fecha > today():
+        die(f"la fecha {fecha.isoformat()} es futura. No se registra lo que todavia no paso.")
+
+    # Correlativo por dia de registro, no reloj: dos registros cargados en el mismo
+    # segundo salian con el mismo id y 'anular' se volvia ambiguo.
+    prefijo = f"x{now().strftime('%Y%m%d')}-"
+    usados = [r["id"] for r in externos_todos() if r["id"].startswith(prefijo)]
+    record = {
+        "id": f"{prefijo}{len(usados) + 1:02d}",
+        "fecha": fecha.isoformat(),
+        "minutos": args.minutos,
+        "tipo": args.tipo,
+        "fuente": args.fuente,
+        "tema": args.tema,
+        "nota": args.nota,
+        "registrado_en": now().isoformat(timespec="seconds"),
+    }
+    EXTERNOS_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with EXTERNOS_FILE.open("a", encoding="utf-8") as fh:
+        fh.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+    print(f"Externo {record['id']} registrado: {args.minutos} min de {args.tipo} "
+          f"el {fecha.isoformat()}" + (f", tema {args.tema}" if args.tema else "") + ".")
+    print(f"  Fuente: {args.fuente}")
+    if args.tipo in TIPOS_ACTIVOS:
+        print("Cuenta para la racha Y como minutos de practica: hubo recuperacion activa, "
+              "aunque haya pasado fuera de una sesion abierta.")
+    else:
+        print("Cuenta para la racha. NO cuenta como minutos de practica: se reporta aparte, "
+              "porque exponerse a una explicacion y recuperarla no son lo mismo.")
+    if args.tema and args.tipo not in TIPOS_ACTIVOS:
+        print(f"  No mueve el ultimo contacto de {args.tema}: haber visto material sobre un "
+              "tema no es haberlo trabajado. Eso lo mueve una sesion o una practica.")
+
+
+def cmd_externo_listar(args) -> None:
+    rs = externos_todos()
+    if not rs:
+        print("No hay estudio externo registrado todavia.")
+        return
+    rs.sort(key=lambda r: (r["fecha"], r["registrado_en"]))
+    for r in rs[-(args.limite or 30):]:
+        marca = "  [ANULADO]" if r.get("anulado") else ""
+        tema = f" ({r['tema']})" if r.get("tema") else ""
+        print(f"[{r['id']}] {r['fecha']}  {r['minutos']:>3} min  {r['tipo']}{tema}{marca}")
+        print(f"    {r['fuente']}")
+        if r.get("nota"):
+            print(f"    nota: {r['nota']}")
+        if r.get("anulado"):
+            print(f"    anulado: {r['anulado']}")
+    vivos = [r for r in rs if not r.get("anulado")]
+    print(f"\nTotal vivo: {sum(r['minutos'] for r in vivos)} min en {len(vivos)} registro(s).")
+
+
+def cmd_externo_anular(args) -> None:
+    rs = externos_todos()
+    hits = [r for r in rs if r["id"] == args.id]
+    if not hits:
+        die(f"no existe el registro externo {args.id}. Mira 'externo listar'.")
+    if len(hits) > 1:
+        die(f"{args.id} esta repetido {len(hits)} veces en el log. Arreglalo antes de anular: "
+            "no se puede saber a cual te referis.")
+    hit = hits[0]
+    if hit.get("anulado"):
+        die(f"{args.id} ya estaba anulado: {hit['anulado']}")
+    hit["anulado"] = args.motivo
+    hit["anulado_en"] = now().isoformat(timespec="seconds")
+    tmp = EXTERNOS_FILE.with_suffix(".tmp")
+    tmp.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rs),
+                   encoding="utf-8")
+    os.replace(tmp, EXTERNOS_FILE)
+    print(f"{args.id} anulado: {args.motivo}")
+    print("No se borra la linea: queda con su motivo, igual que una tarjeta retirada.")
 
 
 # ----------------------------------------------------------------- agregado
@@ -440,7 +847,14 @@ def incompletas() -> list:
 
 
 def racha() -> int:
+    """Dias seguidos con contacto: una sesion, o estudio externo registrado.
+
+    Decision del usuario el 2026-09-17. La racha mide el habito, y un dia de semana
+    en que solo alcanza para un video en el bus es habito. Los minutos siguen
+    separados: ver 'minutos_externos_por_dia'.
+    """
     dias = {parse_dt(s["iniciada"]).date() for s in cerradas()}
+    dias |= set(minutos_externos_por_dia())
     if not dias:
         return 0
     cursor = today()
@@ -456,9 +870,12 @@ def racha() -> int:
 
 
 def minutos_por_dia() -> dict:
+    """Minutos de practica: sesiones mas los registros sueltos de tipo 'practica'."""
     acc = defaultdict(int)
     for s in cerradas():
         acc[parse_dt(s["iniciada"]).date()] += efectivos(s)
+    for d, m in minutos_activos_sueltos().items():
+        acc[d] += m
     return acc
 
 
@@ -470,6 +887,12 @@ def ultimo_contacto() -> dict:
         for tema in s.get("temas", []):
             if tema not in acc or d > acc[tema]:
                 acc[tema] = d
+    # La practica suelta tambien es trabajo sobre el tema. La exposicion no: ver un video
+    # sobre algo no lo deja trabajado, y contarlo como contacto esconderia un tema frio.
+    for r in externos():
+        if r["tipo"] in TIPOS_ACTIVOS and r.get("tema"):
+            if r["tema"] not in acc or r["fecha"] > acc[r["tema"]]:
+                acc[r["tema"]] = r["fecha"]
     return acc
 
 
@@ -555,8 +978,22 @@ def cmd_estado(args) -> None:
     mpd = minutos_por_dia()
     y, w, _ = today().isocalendar()
     sem = [s for s in cerradas() if parse_dt(s["iniciada"]).date().isocalendar()[:2] == (y, w)]
+    act_sem = sum(m for d, m in minutos_activos_sueltos().items()
+                  if d.isocalendar()[:2] == (y, w))
+    sueltos = f" + {act_sem} sueltos" if act_sem else ""
     print(f"\nRacha: {racha()} dia(s). Hoy: {mpd.get(today(), 0)} min. "
-          f"Esta semana: {sum(efectivos(s) for s in sem)} min en {len(sem)} sesiones.")
+          f"Esta semana: {sum(efectivos(s) for s in sem) + act_sem} min "
+          f"({len(sem)} sesiones{sueltos}).")
+
+    mxd = minutos_externos_por_dia()
+    ext_sem = [r for r in externos()
+               if r["tipo"] not in TIPOS_ACTIVOS
+               and date.fromisoformat(r["fecha"]).isocalendar()[:2] == (y, w)]
+    if mxd:
+        print(f"Estudio autonomo (aparte, no es practica): hoy {mxd.get(today(), 0)} min, "
+              f"esta semana {sum(r['minutos'] for r in ext_sem)} min.")
+        if mxd.get(today()) and not mpd.get(today()):
+            print("  Hoy hubo contacto pero todavia ninguna recuperacion activa.")
 
     ss = cerradas()
     if ss:
@@ -568,8 +1005,34 @@ def cmd_estado(args) -> None:
     else:
         print("\nNo hay sesiones completas todavia. Esta seria la primera.")
 
-    print(f"\nModo sugerido por hora: {'micro' if ahora.hour < 18 else 'fondo'}. "
-          "Preguntaselo antes de arrancar.")
+    print(f"\nModo sugerido: {sugerir_modo(ahora)}. Preguntaselo antes de arrancar.")
+
+
+def sugerir_modo(ahora) -> str:
+    """Sugiere un presupuesto de tiempo a partir del reloj y del dia.
+
+    La hora sola no alcanza: hasta el 2026-09-19 la regla era "micro antes de las 18:00",
+    y esa manana era un sabado. El proxy que se queria medir no es la hora, es cuanta ventana
+    sin interrupciones tiene, y la hora solo lo aproxima bien de lunes a viernes, porque
+    trabaja full time. El fin de semana la manana es la ventana mas ancha de la semana y la
+    regla vieja la gastaba en una micro.
+
+    Entre semana de noche existe `media` porque viene de un dia entero de trabajo: proponer
+    45-90 min ahi hace que la sesion no ocurra, y una sesion que no ocurre pierde contra una
+    mas corta que si ocurre (Cepeda et al. 2006: lo que sostiene la retencion es la
+    distribucion en el tiempo, no la duracion de cada bloque).
+
+    Es una sugerencia, no una decision: las reglas de contenido de AGENTS.md la pisan, y el
+    tiene la ultima palabra.
+    """
+    finde = ahora.weekday() >= 5
+    if ahora.hour >= 22:
+        return "micro (es tarde)"
+    if finde:
+        return "fondo (finde, ventana ancha)" if ahora.hour < 20 else "media"
+    if ahora.hour < 18:
+        return "micro (dia laboral)"
+    return "media (post-jornada; fondo si dice que tiene la ventana)"
 
 
 def cmd_metricas(args) -> None:
@@ -586,13 +1049,19 @@ def cmd_metricas(args) -> None:
     mpd = minutos_por_dia()
     total = sum(mpd.values())
     print(f"\nRacha actual: {racha()} dia(s) seguidos")
-    print(f"Total: {total} min en {len(ss)} sesiones ({round(total / len(ss))} min promedio)")
+    sueltos = sum(minutos_activos_sueltos().values())
+    detalle = f" ({sueltos} de ellos sueltos, fuera de sesion)" if sueltos else ""
+    print(f"Practica: {total} min, {len(ss)} sesiones "
+          f"({round((total - sueltos) / len(ss))} min promedio por sesion){detalle}")
 
-    print("\nUltimos 14 dias:")
+    mxd = minutos_externos_por_dia()
+    print("\nUltimos 14 dias  (# practica, . estudio autonomo):")
     for i in range(13, -1, -1):
         d = today() - timedelta(days=i)
-        m = mpd.get(d, 0)
-        print(f"  {d.isoformat()} {m:>4} min {'#' * min(30, m // 5)}"
+        m, x = mpd.get(d, 0), mxd.get(d, 0)
+        barra = "#" * min(30, m // 5) + "." * min(30, x // 5)
+        extra = f"  +{x} ext" if x else ""
+        print(f"  {d.isoformat()} {m:>4} min {barra}{extra}"
               f"{'  <- hoy' if i == 0 else ''}")
 
     semanas, sesiones_semana = defaultdict(int), defaultdict(int)
@@ -611,6 +1080,24 @@ def cmd_metricas(args) -> None:
     print("\nPor modo:")
     for modo, (n, m) in sorted(por_modo.items()):
         print(f"  {modo:<7} {n} sesiones, {m} min")
+
+    ext = [r for r in externos() if r["tipo"] not in TIPOS_ACTIVOS]
+    if ext:
+        tot_x = sum(r["minutos"] for r in ext)
+        print(f"\nEstudio autonomo: {tot_x} min en {len(ext)} registro(s). "
+              f"No esta sumado arriba.")
+        por_tipo = defaultdict(lambda: [0, 0])
+        for r in ext:
+            por_tipo[r["tipo"]][0] += 1
+            por_tipo[r["tipo"]][1] += r["minutos"]
+        for tipo, (n, m) in sorted(por_tipo.items(), key=lambda kv: -kv[1][1]):
+            print(f"  {tipo:<9} {n} registro(s), {m} min")
+        solo_pasivos = sorted(set(mxd) - set(mpd))
+        if solo_pasivos:
+            print(f"  Dias de contacto sin practica: {len(solo_pasivos)} "
+                  f"(ultimo: {solo_pasivos[-1].isoformat()})")
+        print(f"  Proporcion: {round(100 * tot_x / (tot_x + total))}% del tiempo total "
+              "fue exposicion, no recuperacion.")
 
     ejercicios = [e for s in ss for e in s.get("ejercicios", [])]
     if ejercicios:
@@ -762,6 +1249,23 @@ def build_parser() -> argparse.ArgumentParser:
     c.add_argument("--prediccion", required=True, choices=["si", "no", "no-preguntada"])
     c.set_defaults(func=cmd_repaso)
 
+    ce = ss_.add_parser("eventos", help="lista numerada de lo registrado, para corregir")
+    ce.add_argument("--sesion", default=None,
+                    help="id de una sesion cerrada; por defecto, la abierta")
+    ce.set_defaults(func=cmd_eventos)
+
+    cc = ss_.add_parser("corregir", help="corrige un campo de un evento ya registrado")
+    cc.add_argument("--evento", type=int, default=None,
+                    help="numero que muestra 'sesion eventos'; sin esto se corrige "
+                         f"un campo de la sesion ({', '.join(CAMPOS_SESION)})")
+    cc.add_argument("--campo", required=True)
+    cc.add_argument("--valor", required=True)
+    cc.add_argument("--motivo", required=True,
+                    help="por que se corrige; queda guardado junto al valor anterior")
+    cc.add_argument("--sesion", default=None,
+                    help="id de una sesion cerrada; por defecto, la abierta")
+    cc.set_defaults(func=cmd_corregir)
+
     ss_.add_parser("pausar").set_defaults(func=cmd_pausar)
     ss_.add_parser("reanudar").set_defaults(func=cmd_reanudar)
 
@@ -786,12 +1290,43 @@ def build_parser() -> argparse.ArgumentParser:
                    help="por que sale de circulacion; queda guardado con la tarjeta")
     g.set_defaults(func=cmd_retirar)
 
+    ed = ts.add_parser("editar", help="corregir la REDACCION de una tarjeta, sin perder su historial")
+    ed.add_argument("--tarjeta", required=True)
+    ed.add_argument("--frente")
+    ed.add_argument("--dorso")
+    ed.add_argument("--tema")
+    ed.add_argument("--motivo", required=True,
+                    help="que se cambio y por que; queda guardado en 'ediciones'")
+    ed.set_defaults(func=cmd_editar)
+
     ts.add_parser("retiradas").set_defaults(func=cmd_retiradas)
 
     f = ts.add_parser("vencidas")
     f.add_argument("--limite", type=int, default=None)
     f.add_argument("--todas", action="store_true")
     f.set_defaults(func=cmd_vencidas)
+
+    x = sub.add_parser("externo", help="estudio autonomo fuera de sesion: video, lectura, curso")
+    xs = x.add_subparsers(dest="sub", required=True)
+
+    xa = xs.add_parser("agregar")
+    xa.add_argument("--minutos", type=int, required=True)
+    xa.add_argument("--fuente", required=True,
+                    help="URL o titulo. Indexala tambien en base/fuentes.md")
+    xa.add_argument("--tipo", choices=TIPOS_EXTERNO, default="video")
+    xa.add_argument("--tema", default=None, help="tema canonico, si aplica a uno solo")
+    xa.add_argument("--fecha", default=None, help="AAAA-MM-DD; por defecto hoy")
+    xa.add_argument("--nota", default=None, help="que se llevo de ahi, en una linea")
+    xa.set_defaults(func=cmd_externo_agregar)
+
+    xl = xs.add_parser("listar")
+    xl.add_argument("--limite", type=int, default=None)
+    xl.set_defaults(func=cmd_externo_listar)
+
+    xn = xs.add_parser("anular")
+    xn.add_argument("--id", required=True)
+    xn.add_argument("--motivo", required=True)
+    xn.set_defaults(func=cmd_externo_anular)
 
     return p
 

@@ -82,7 +82,7 @@ THE BUG — exact line
 
 PITFALLS
 
-When a loop bound "feels safe" with a `-1`, name the last index that MUST be processed and check membership by hand. Same trap in other languages: `for (int i = k; i < n; i++)` is correct in Java/C++/JS — writing `i < n - 1` there reproduces this bug.
+When a loop bound "feels safe" with a `-1`, name the last index that MUST be processed and check membership by hand. Same trap in other languages: `for (let i = k; i < n; i++)` is correct in TS/Java/C++ — writing `i < n - 1` there reproduces this bug.
 
 ## LANGUAGE-SPECIFIC BUG CHECKLIST (scan before tracing)
 
@@ -90,8 +90,8 @@ When a loop bound "feels safe" with a `-1`, name the last index that MUST be pro
 |---|---|
 | Python | `range` bounds, mutable default args, `//` vs `/`, deep vs shallow copy, recursion limit |
 | Java | `int` overflow in `(lo+hi)/2` and products, `==` on Integer/String, integer division |
-| C++ | unsigned underflow (`v.size() - 1` when empty), iterator invalidation, uninitialized vars, `INT_MAX` overflow |
-| C++ | pasar contenedores por valor sin `&`, `m[k]` que inserta al leer, `size()` sin signo en restas, iteradores invalidados por `push_back`, `int` desbordado |
+| TypeScript | `sort()` without a numeric comparator, `shift()` as a queue (O(n)), `new Array(n).fill([])` sharing one row, `||` swallowing `0` |
+| TypeScript | `sort()` sin comparador numérico, `shift()` como cola, guardar una referencia que se sigue mutando (`res.push(path)`), división que no trunca, strings inmutables |
 
 ## GUARDRAILS
 

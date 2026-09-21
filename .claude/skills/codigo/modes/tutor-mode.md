@@ -31,8 +31,8 @@ When the question is "X vs Y" (BFS vs DFS, array vs linked list, memoization vs 
 
 ## MULTI-LANGUAGE
 
-Snippets idiomáticos de 8 líneas o menos, en C++. Concepto antes que código: primero el
-trace, después el snippet. Las trampas de C++ están en `referencias-cpp/patrones.md`, al final:
+Snippets idiomáticos de 8 líneas o menos, en TypeScript. Concepto antes que código: primero el
+trace, después el snippet. Las trampas de JS/TS están en `referencias-ts/patrones.md`, al final:
 copia silenciosa al pasar por valor, `m[k]` que inserta al leer, `size()` sin signo,
 invalidación de iteradores, `int` que se desborda.
 

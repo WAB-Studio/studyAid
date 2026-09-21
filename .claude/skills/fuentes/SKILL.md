@@ -15,7 +15,7 @@ Buscá material externo solo en estos casos:
 - Una explicación propia saldría vaga o insegura sobre un dato factual.
 - Hay que verificar un número, una API o un comportamiento del lenguaje.
 
-No busques afuera para explicar un patrón que ya está en `.claude/skills/codigo/referencias-cpp/`.
+No busques afuera para explicar un patrón que ya está en `.claude/skills/codigo/referencias-ts/`.
 No busques afuera en una micro-sesión.
 No interrumpas un ejercicio en curso para buscar una fuente: anotalo y buscá al cerrar.
 
@@ -36,6 +36,9 @@ Guardá los archivos en `fuentes/` con nombre descriptivo en kebab-case.
 Anotá toda fuente en la tabla de `base/fuentes.md`, incluidas las que solo consultaste sin descargar.
 Enlazá la fuente desde `base/temas/<tema>.md` en su sección de fuentes.
 Pasá al usuario el extracto relevante, no el archivo entero.
+Si dice que ya consumió el material por su cuenta, preguntale cuántos minutos le dedicó y
+registralo con `PY externo agregar`. Indexarlo en `base/fuentes.md` no es registrarlo como tiempo:
+son dos cosas distintas y hacen falta las dos.
 Citá siempre la fuente y la fecha cuando uses un dato que salió de ahí.
 
 ## Fuentes libres ya conocidas
@@ -43,9 +46,9 @@ Citá siempre la fuente y la fecha cuando uses un dato que salió de ahí.
 No hace falta buscarlas: usalas directo.
 
 **Lenguaje**
-- cppreference.com — la referencia de C++ y su librería estándar. La canónica.
-- learncpp.com — tutorial largo y gratuito, bueno para el modelo de memoria.
-- C++ Core Guidelines, de Stroustrup y Sutter — qué es idiomático y por qué.
+- MDN Web Docs — la referencia de JavaScript y su librería estándar. La canónica.
+- El handbook de TypeScript (typescriptlang.org/docs/handbook) — tipos, `strictNullChecks`.
+- "You Don't Know JS Yet", de Kyle Simpson (gratis en GitHub) — coerción, tipos, `this`.
 
 **Algoritmos y estructuras**
 - "Algorithms", de Jeff Erickson — libro completo y gratuito del autor, en jeffe.cs.illinois.edu.

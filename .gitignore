@@ -19,6 +19,7 @@ bitacora/*.md
 !bitacora/PLANTILLA.md
 data/cards.json
 data/sessions.jsonl
+data/externos.jsonl
 
 # Material descargado: puede ser pesado y no es nuestro.
 # El índice de qué se consultó vive en base/fuentes.md, que sí se versiona.

@@ -14,7 +14,7 @@ Ask three things, then start immediately:
 |---|---|
 | Difficulty | easy / **medium** / hard, or a topic ("graphs") |
 | Format | **45-min interview** / 70-min OA (2 problems, less talking) |
-| Lenguaje | C++ |
+| Lenguaje | TypeScript |
 
 Pick a problem matching the settings. State the problem the way interviewers do: brief, with an example, WITHOUT naming the pattern or the LeetCode title.
 

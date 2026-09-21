@@ -1,6 +1,6 @@
 # Sistema de estudio para entrevistas
 
-Preparación para entrevistas de big tech. Ejercicios en C++, resueltos en leetcode.com.
+Preparación para entrevistas de big tech. Ejercicios en TypeScript, resueltos en leetcode.com.
 
 ## Cómo se usa
 
@@ -54,6 +54,11 @@ referencia/        repos ajenos de los que salió parte del método
 ```bash
 .venv/bin/python tools/study.py estado      # vencidas, racha, en qué quedamos
 .venv/bin/python tools/study.py metricas    # minutos, racha, ejercicios, calibración, por tema
+.venv/bin/python tools/study.py externo listar   # lo que estudiaste por tu cuenta, fuera de sesión
 ```
+
+Los minutos de estudio por tu cuenta —un video, un capítulo— se registran aparte con
+`externo agregar`. Cuentan para la racha y no se suman a los minutos de práctica: exponerse a una
+explicación y recuperarla de memoria no producen lo mismo, y un solo número no puede medir las dos.
 
 El venv no tiene dependencias: es stdlib. Si se rompe, `python3 -m venv .venv` y listo.

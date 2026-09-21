@@ -7,16 +7,16 @@ LeetCode 3, con el bug clásico de la ventana que retrocede.
 
 **Usuario:** mi sliding window falla en "abba", da 3 y tendría que dar 2
 
-```cpp
-int largoSinRepetidos(string s) {
-    unordered_map<char, int> seen;
-    int left = 0, best = 0;
-    for (int right = 0; right < (int)s.size(); right++) {
-        if (seen.count(s[right])) left = seen[s[right]] + 1;
-        seen[s[right]] = right;
-        best = max(best, right - left + 1);
-    }
-    return best;
+```ts
+function largoSinRepetidos(s: string): number {
+  const seen = new Map<string, number>();
+  let left = 0, best = 0;
+  for (let right = 0; right < s.length; right++) {
+    if (seen.has(s[right])) left = seen.get(s[right])! + 1;
+    seen.set(s[right], right);
+    best = Math.max(best, right - left + 1);
+  }
+  return best;
 }
 ```
 

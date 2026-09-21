@@ -119,7 +119,7 @@ O(log n) time — the candidate range halves every frame (10 → 5 → 2 → 1).
 
 PITFALLS
 
-`mid = (lo + hi) // 2` overflows in Java/C++ for large indices; use `lo + (hi - lo) / 2`.
+`mid = (lo + hi) / 2` is not an integer in JS; use `(lo + hi) >> 1`, or `Math.floor((lo + hi) / 2)` when values can exceed 2^31.
 
 ---
 
