@@ -20,16 +20,16 @@ Referencia factual. Los números tienen que estar bien.
 |---|---|
 | `a[i]`, `a.at(-1)` | O(1) |
 | `a.push(x)` / `a.pop()` | O(1) amortizado |
-| `a.unshift(x)` / `a.shift()` | **O(n)** — reindexa todo el array |
-| `a.slice(i, j)` | O(j - i) — devuelve un array nuevo |
-| `a.splice(i, k)` | O(n) — desplaza la cola |
+| `a.unshift(x)` / `a.shift()` | **O(n)**, reindexa todo el array |
+| `a.slice(i, j)` | O(j - i), devuelve un array nuevo |
+| `a.splice(i, k)` | O(n), desplaza la cola |
 | `a.concat(b)`, `[...a, ...b]` | O(n + m) |
 | `a.sort(cmp)` | O(n log n) |
 | `a.indexOf(x)`, `a.includes(x)` (búsqueda lineal) | O(n) |
 | `Map` / `Set`: `get`, `set`, `has`, `delete` | O(1) promedio |
 | Objeto plano `{}` como diccionario: `obj[k]` | O(1) promedio, pero ver la nota de abajo |
-| `s += c` sobre un string | O(1) amortizado — V8 usa *ropes* |
-| `s = s.slice(1)` en un bucle | O(n²) — construye un string nuevo cada vez |
+| `s += c` sobre un string | O(1) amortizado, V8 usa *ropes* |
+| `s = s.slice(1)` en un bucle | O(n²), construye un string nuevo cada vez |
 | `arr.map` / `filter` / `reduce` | O(n), y **alocan un array nuevo** (`reduce` no) |
 
 **`shift()` es la trampa número uno.** Es lo que casi todo el mundo usa para escribir una cola en
@@ -60,7 +60,7 @@ de inserción y tiene `.size` en O(1).
 - Una estructura auxiliar de tamaño k (heap de top-k, ventana fija) es O(k), sin importar n.
 - **`Map` y `Set` pesan mucho más que sus datos.** Cada entrada es un objeto con hash y punteros;
   el factor contra los bytes crudos es de un orden de magnitud. Si las claves son enteros en un
-  rango chico y conocido, un array —o un `Int32Array`— es mucho más barato.
+  rango chico y conocido, un array (o un `Int32Array`) es mucho más barato.
 - **Los intermedios de `map`/`filter` cuentan.** Encadenar tres `filter` sobre n elementos aloca
   tres arrays. Es O(n) de espacio aunque la respuesta sea un número.
 

@@ -17,7 +17,7 @@ Verifiqué con búsqueda. No acepté nada por autoridad, ni mío ni de los revis
 
 | Hallazgo | Fuente | Qué dice, con precisión |
 |---|---|---|
-| IA sin guardas daña el desempeño posterior | Bastani, Bastani, Sungu, Ge, Kabakcı & Mariman 2025, *PNAS* 122(26) e2422633122 | ~1000 alumnos de secundaria, Turquía, 4 sesiones de 90 min. **GPT Base**: +48% en práctica, **−17% en el examen sin acceso**. **GPT Tutor** (pistas en vez de respuestas): +127% en práctica, **≈0 en el examen — igual que el control, no mejor**. |
+| IA sin guardas daña el desempeño posterior | Bastani, Bastani, Sungu, Ge, Kabakcı & Mariman 2025, *PNAS* 122(26) e2422633122 | ~1000 alumnos de secundaria, Turquía, 4 sesiones de 90 min. **GPT Base**: +48% en práctica, **−17% en el examen sin acceso**. **GPT Tutor** (pistas en vez de respuestas): +127% en práctica, **≈0 en el examen, igual que el control, no mejor**. |
 | El diseño pedagógico decide el resultado | Kestin et al. 2025, *Scientific Reports* | RCT, N=194, física intro en Harvard. Tutor a medida vs **clase presencial de aprendizaje activo**: más del doble de aprendizaje en menos tiempo. |
 | Los ITS funcionan y se acercan a tutoría individual | Ma, Adesope, Nesbit & Liu 2014, *JEP* 106(4), doi 10.1037/a0037123 | 107 efectos, 14.321 participantes. g=.42 vs grupo grande, g=.57 vs instrucción computarizada no-ITS, g=.35 vs libro. **Sin diferencia significativa vs tutoría humana individual (g=−.11).** |
 | La pista mínima no es la mejor política | Rus, Banjade, Niraula & Gire, *A Study on Two Hint-Level Policies in Conversational ITS* (digitalcommons.memphis.edu/facpubs/2424) | RCT, andamiaje mínimo vs máximo en DeepTutor. Ganancias significativas en ambos, y: los alumnos **necesitan más que una pista mínimamente informativa** para inferir el paso siguiente en problemas desafiantes. |
@@ -59,7 +59,7 @@ Veredicto del revisor: base científica 8/10, disciplina al extrapolar 6/10, arq
 invariantes, registros, métricas y un gate muy elaborado. Creció de 740 a 816 líneas."
 
 **Coincido con el diagnóstico y con el remedio.** El defecto es real: cada crítica a un ritual la
-respondí con una abstracción nueva. Y la observación de fondo es la que más pesa — el sistema no
+respondí con una abstracción nueva. Y la observación de fondo es la que más pesa: el sistema no
 tuvo una sola sesión. Podé el documento a cuatro secciones y moví esto acá.
 
 ### Aceptado
@@ -68,8 +68,8 @@ tuvo una sola sesión. Podé el documento a cuatro secciones y moví esto acá.
 |---|---|---|
 | 1 | **"El aprendiz produce primero" no puede ser absoluto.** Split enseñar / practicar / medir. | Es el mejor punto de la revisión y es una **autocontradicción de la v2**: escribí esa invariante como absoluta mientras argumentaba con Sweller, Renkl y Tetzlaff que el ejemplo resuelto debe *preceder* al intento en un novato. No se puede tener las dos. |
 | 2 | **La v2 le atribuye a PNAS más de lo que prueba.** | Verificado punto por punto. No muestra que la presencia silenciosa perjudique (los brazos difieren en lo que la IA *hace*, no en si está); no valida "ayuda mínima"; no valida el problema análogo como única verificación; y el GPT Tutor terminó **igual que el control**, dato que yo mismo reporté y después usé retóricamente como si fuera una victoria. Quedan las dos conclusiones modestas de §1 del plan. |
-| 3 | **"Ayuda mínima" es mala política; va "contingente y suficiente".** | Verifiqué las dos citas y las dos aguantan (Rus et al.; Aleven et al. 2016). Peor para mí: **mi propia evidencia ya lo decía** — Van der Kleij tiene feedback elaborado en 0.49 contra 0.32 y 0.05. Cité eso en la v2 y aun así escribí "mínima ayuda necesaria" como invariante. |
-| 4 | **El gate saltaba de pista a solución completa.** | Correcto, y otra vez es inconsistencia interna: los peldaños que propone —enseñar el concepto faltante, subproblema resuelto, comparar enfoques, completar una parte, pseudocódigo, otro ejemplo— son exactamente el desvanecimiento de Renkl que la v2 citaba en R10 y no usaba en el gate. |
+| 3 | **"Ayuda mínima" es mala política; va "contingente y suficiente".** | Verifiqué las dos citas y las dos aguantan (Rus et al.; Aleven et al. 2016). Peor para mí: **mi propia evidencia ya lo decía**, Van der Kleij tiene feedback elaborado en 0.49 contra 0.32 y 0.05. Cité eso en la v2 y aun así escribí "mínima ayuda necesaria" como invariante. |
+| 4 | **El gate saltaba de pista a solución completa.** | Correcto, y otra vez es inconsistencia interna: los peldaños que propone (enseñar el concepto faltante, subproblema resuelto, comparar enfoques, completar una parte, pseudocódigo, otro ejemplo) son exactamente el desvanecimiento de Renkl que la v2 citaba en R10 y no usaba en el gate. |
 | 5 | **No decirle "acá ya no estás aprendiendo".** | Epistémicamente correcto: no lo sé. La frase alternativa es mejor y además no suena a sentencia. |
 | 6 | **"Evento observable" ≠ "dato objetivo"**, y la solución es un campo `fuente:`, no otra taxonomía. | Correcto en los cinco casos que lista. El más importante: **el veredicto de LeetCode es autorreporte** mientras yo no vea la página, y en nuestro setup no la veo. Su fix es más chico y mejor que mis tres registros: mi "regla del origen del dato" estaba bien, mi implementación era pesada. |
 | 7 | **Tres niveles de pista tampoco son una escala ordinal.** | Correcto, y me deja sin el argumento con el que defendí R4 en la v2. Reemplacé una escala mala de 5 por una escala mala de 3. Va `soporte: ninguno\|pista\|explicación\|solución`. |
@@ -92,7 +92,7 @@ tuvo una sola sesión. Podé el documento a cuatro secciones y moví esto acá.
 |---|---|---|
 | A | **"El gate de bitácora transforma una sesión real en una sesión inexistente."** Corrección fáctica menor. | La sesión **sí se persiste**: `cmd_cerrar` escribe siempre en `sessions.jsonl` con `estado: incompleta`; lo que hace es excluirla de `completas()`. El dato no se borra, la métrica se sesga. **Pero el argumento de fondo es correcto y le agrego una versión más fuerte**: `CLAUDE.md` dice "nunca uses `--sin-bitacora` por tu cuenta", así que la salida honesta está bloqueada y el camino barato es escribir una bitácora de compromiso. Es la misma trampa de fabricación que ya habíamos identificado en los flags obligatorios, aplicada al contenido cualitativo. |
 | B | **"Ante la duda, mantener el andamiaje" (mi enmienda de la v2 a R10).** El revisor la retira. | **Acepto retirarla como regla**, y la razón que él da es correcta: un promedio meta-analítico no determina la decisión de un tutor sobre una persona en un momento. Lo que queda de Tetzlaff et al. 2025 es una **advertencia sobre el sesgo de un sistema orgulloso de no ayudar**, no una regla de decisión. Queda anotada acá, no en la política. |
-| C | **El drill de discriminación.** El revisor lo subsume en su secuencia de 7 pasos. | De acuerdo con reordenarlo y con que el nombre del patrón vaya último. **Defiendo que el drill se quede** como intervención: el usuario declaró el reconocimiento como debilidad #1, y Rohrer et al. 2015 es la evidencia más cercana que existe a eso. La corrección que acepto es *qué* se contrasta: enfoques, no etiquetas — que es exactamente su punto. |
+| C | **El drill de discriminación.** El revisor lo subsume en su secuencia de 7 pasos. | De acuerdo con reordenarlo y con que el nombre del patrón vaya último. **Defiendo que el drill se quede** como intervención: el usuario declaró el reconocimiento como debilidad #1, y Rohrer et al. 2015 es la evidencia más cercana que existe a eso. La corrección que acepto es *qué* se contrasta: enfoques, no etiquetas, que es exactamente su punto. |
 
 ### Lo que este apéndice conserva y el plan no
 
@@ -156,7 +156,7 @@ pistas, el trace probatorio del bug (su mejor idea), el decodificador de jerga, 
 borde de `testgen.py`. Su reloj de interview-mode está **inventado** ("no real clock exists"); su
 log de progreso es opcional por diseño y por lo tanto no mide; sus intervalos se contradicen entre
 dos archivos (+3/+7/+21 vs 1/3/7/16/35); su Progress Score con barras ASCII es retórica disfrazada
-de medición — y la v1 y la v2 lo criticaron mientras construían un `dominio` compuesto que era la
+de medición, y la v1 y la v2 lo criticaron mientras construían un `dominio` compuesto que era la
 misma falta con mejor tipografía.
 
 **Descartado, con razón registrada**:
@@ -187,6 +187,6 @@ misma falta con mejor tipografía.
 2. ¿La función de Cepeda alrededor del óptimo es ancha? No lo pude verificar, así que no se puede
    argumentar sobre si conviene errar largo o corto.
 3. ¿Cuánto de lo que se aprende en un patrón transfiere a otro? Barnett & Ceci advierte que poco.
-   Si es así, lo único portante es reformular, generar candidatos y discriminar — y eso hay que
+   Si es así, lo único portante es reformular, generar candidatos y discriminar, y eso hay que
    medirlo, no suponerlo.
 4. Las tres decisiones que son del usuario: gate de bitácora, arranque automático, behavioral.

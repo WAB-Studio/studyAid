@@ -6,33 +6,40 @@ description: Protocolo para practicar diseño de sistemas. Usar cuando el tema s
 # System design
 
 No hay código. El entregable es una conversación estructurada con un diagrama en palabras.
-El usuario tiene 1–3 años de experiencia: es el hueco más grande y necesita andamiaje, no
-preguntas abiertas sin red.
+El usuario tiene 4+ años construyendo backends en producción: una plataforma iGaming
+multi-tenant regulada con 130+ entidades Doctrine, 15+ Lambdas con Terraform y estado remoto,
+WebSockets duales en tiempo real y un MCP Server con OAuth2. No le expliques qué es una cola,
+un índice o un cache: eso ya lo operó.
+
+El hueco es el **formato de entrevista**, no la experiencia. En la línea base no estimó capacidad:
+ni escrituras contra lecturas, ni longitud de clave, ni almacenamiento. Ahí va el andamiaje, y en
+decir los trade-offs en voz alta con un número al lado. Corregido el 2026-09-21: esta línea decía
+"1 a 3 años de experiencia", que es falso y estaba bajando el nivel de toda la skill.
 
 ## RESHADED
 
 La estructura por defecto de una pregunta de diseño. Ocho fases. En una sesión de fondo se
 cubre una o dos fases en profundidad, no las ocho.
 
-1. **Requirements** — separar funcionales de no funcionales. Preguntar alcance antes de dibujar:
+1. **Requirements**: separar funcionales de no funcionales. Preguntar alcance antes de dibujar:
    quién lo usa, qué entra en v1, si es read-heavy o write-heavy. Ponerle número a lo no
    funcional: "redirect p99 < 100 ms", nunca "rápido y confiable". Cerrar el alcance
    explícitamente antes de seguir.
-2. **Estimation** — tres números mínimo: QPS de lectura y escritura, crecimiento de
+2. **Estimation**: tres números mínimo: QPS de lectura y escritura, crecimiento de
    almacenamiento, ancho de banda. Derivarlos de supuestos declarados para que se puedan
    corregir los supuestos y no la cuenta. Pico ≈ 2–3× promedio, y se dimensiona para el pico.
-3. **Storage** — modelo de datos antes que tecnología: entidades, campos clave, relaciones, y
+3. **Storage**: modelo de datos antes que tecnología: entidades, campos clave, relaciones, y
    qué patrón de acceso pega contra cada una. Recién ahí elegir el motor. Marcar qué necesita
    transacciones y qué tolera consistencia eventual.
-4. **High-level design** — el camino de punta a punta: cliente → balanceador → servicios →
+4. **High-level design**: el camino de punta a punta: cliente → balanceador → servicios →
    cache/DB → consumidores asíncronos. Cinco a ocho cajas. Cada caja con una responsabilidad
    que se pueda decir en una oración. Trazar una lectura y una escritura en voz alta.
-5. **API design** — tres a cinco endpoints: método, path, params, forma de la respuesta, errores.
+5. **API design**: tres a cinco endpoints: método, path, params, forma de la respuesta, errores.
    Las mutaciones idempotentes, con clave de idempotencia del cliente.
-6. **Detailed design** — bajar a la parte difícil que se marcó antes, no a todas.
-7. **Evaluation** — dónde se rompe, qué pasa si se cae un componente, qué cuello de botella
+6. **Detailed design**: bajar a la parte difícil que se marcó antes, no a todas.
+7. **Evaluation**: dónde se rompe, qué pasa si se cae un componente, qué cuello de botella
    aparece primero al multiplicar por diez.
-8. **Done** — resumen de trade-offs tomados y qué se haría distinto con más tiempo.
+8. **Done**: resumen de trade-offs tomados y qué se haría distinto con más tiempo.
 
 La fase que más se saltea es Estimation, y es la que separa a un junior de un semi-senior.
 
@@ -43,7 +50,7 @@ Usá estos contrastes para mostrar la diferencia, no para leerlos como guion.
 **Requirements.** Débil: "Un acortador de URLs, dale: hasheo la URL, guardo el mapeo y redirijo."
 Fuerte: "Primero alcance: acortar y redirigir entran en v1, alias custom y analytics quedan
 afuera. Asumo 100:1 de lectura contra escritura. No funcionales: redirect p99 bajo 100 ms,
-99.9% de disponibilidad, y ningún mapeo se puede perder — durabilidad antes que frescura."
+99.9% de disponibilidad, y ningún mapeo se puede perder: durabilidad antes que frescura."
 
 **Estimation.** Débil: "Va a ser mucho tráfico, así que escalamos horizontal desde el día uno."
 Fuerte: "100M DAU × 10 lecturas/día = 1000M lecturas/día ≈ 12K RPS promedio, 30K en pico.
@@ -88,4 +95,4 @@ WhatsApp, feed tipo Twitter, key-value store distribuido.
 
 ## Referencias
 
-- `referencias/bloques.md` — estimación de capacidad y bloques de construcción.
+- `referencias/bloques.md`: estimación de capacidad y bloques de construcción.

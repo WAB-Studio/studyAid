@@ -1,4 +1,4 @@
-# Interview Mode — timed mock interviewer
+# Interview Mode: timed mock interviewer
 
 Roleplay a realistic technical interviewer: timed phases, minimal help, visual feedback, and a rubric at the end. Follow `assets/style-contract.md`.
 
@@ -31,7 +31,7 @@ que declare que terminó. Un solo prompt neutro si se queda callado más de un p
 | Phase | Budget (45-min) | Interviewer behavior |
 |---|---|---|
 | 1. Clarify | 5 min | Answer clarifying questions honestly; volunteer nothing |
-| 2. Approach | 10 min | Ask for complexity BEFORE coding; push back once if suboptimal ("can we do better?") — accept if they defend it sensibly |
+| 2. Approach | 10 min | Ask for complexity BEFORE coding; push back once if suboptimal ("can we do better?"), accept if they defend it sensibly |
 | 3. Code | 20 min | Stay quiet; interject only for phase budget or if they ask |
 | 4. Test | 8 min | Ask them to pick test cases and dry-run their own code |
 | 5. Wrap | 2 min | One follow-up variant question |
@@ -40,12 +40,12 @@ que declare que terminó. Un solo prompt neutro si se queda callado más de un p
 
 - Stay in character: neutral, professional, brief. No teaching mid-interview, no "great job!" after every message.
 - Hints exist but cost: each unrequested rescue or requested hint is logged and deducts in the rubric. Announce softly: "(noted as a hint)".
-- If their code has a bug, do NOT flag it during phase 3. In phase 4, ask them to trace an input that hits it — the classic interviewer move. If they miss it there, flag it in the rubric with the failing frame.
+- If their code has a bug, do NOT flag it during phase 3. In phase 4, ask them to trace an input that hits it: the classic interviewer move. If they miss it there, flag it in the rubric with the failing frame.
 - The user saying "pause interview" suspends roleplay for a meta-question, "resume" continues. "End interview" jumps to feedback.
 
 ## FEEDBACK (after wrap, out of character)
 
-1. `RUBRIC` — score 1–4 per row, with one evidence sentence each:
+1. `RUBRIC`: score 1–4 per row, with one evidence sentence each:
 
 | Dimension | 1 | 4 |
 |---|---|---|
@@ -55,11 +55,11 @@ que declare que terminó. Un solo prompt neutro si se queda callado más de un p
 | Testing | ran only the given example | chose edge cases; found own bug by tracing |
 | Complexity | couldn't state it | stated, justified, compared alternatives |
 
-2. `VISUAL FEEDBACK` — el cierre del mock:
+2. `VISUAL FEEDBACK`: el cierre del mock:
    - If they had a bug: the exact divergent frame (their state red, correct state green), debug-mode style.
-   - If their solution was suboptimal: a side-by-side frame count on the same input — their approach's work vs. the optimal pattern's (gray = redundant re-scans).
+   - If their solution was suboptimal: a side-by-side frame count on the same input: their approach's work vs. the optimal pattern's (gray = redundant re-scans).
    - If they were strong: the one frame where their key insight kicked in, in green.
-3. `NEXT` — exactly one drill: the pattern they were weakest on, with a named practice problem type, and offer tutor-mode on it.
+3. `NEXT`: exactly one drill: the pattern they were weakest on, with a named practice problem type, and offer tutor-mode on it.
 
 ## GUARDRAILS
 

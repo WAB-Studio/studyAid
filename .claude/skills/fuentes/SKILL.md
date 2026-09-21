@@ -46,19 +46,19 @@ Citá siempre la fuente y la fecha cuando uses un dato que salió de ahí.
 No hace falta buscarlas: usalas directo.
 
 **Lenguaje**
-- MDN Web Docs — la referencia de JavaScript y su librería estándar. La canónica.
-- El handbook de TypeScript (typescriptlang.org/docs/handbook) — tipos, `strictNullChecks`.
-- "You Don't Know JS Yet", de Kyle Simpson (gratis en GitHub) — coerción, tipos, `this`.
+- MDN Web Docs: la referencia de JavaScript y su librería estándar. La canónica.
+- El handbook de TypeScript (typescriptlang.org/docs/handbook): tipos, `strictNullChecks`.
+- "You Don't Know JS Yet", de Kyle Simpson (gratis en GitHub): coerción, tipos, `this`.
 
 **Algoritmos y estructuras**
-- "Algorithms", de Jeff Erickson — libro completo y gratuito del autor, en jeffe.cs.illinois.edu.
-- "Open Data Structures" — libro abierto, en opendatastructures.org.
-- MIT OpenCourseWare 6.006, Introduction to Algorithms — clases y apuntes.
-- NeetCode — roadmap de patrones, gratis.
+- "Algorithms", de Jeff Erickson: libro completo y gratuito del autor, en jeffe.cs.illinois.edu.
+- "Open Data Structures": libro abierto, en opendatastructures.org.
+- MIT OpenCourseWare 6.006, Introduction to Algorithms: clases y apuntes.
+- NeetCode: roadmap de patrones, gratis.
 
 **System design**
-- "The System Design Primer" — repositorio en GitHub, licencia abierta.
-- "Site Reliability Engineering" de Google — libro completo y gratuito, en sre.google/books.
+- "The System Design Primer": repositorio en GitHub, licencia abierta.
+- "Site Reliability Engineering" de Google: libro completo y gratuito, en sre.google/books.
 - Centros de arquitectura de AWS y Google Cloud.
 - Papers originales de libre acceso: MapReduce, Bigtable, Dynamo, Raft.
 

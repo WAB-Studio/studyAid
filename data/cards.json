@@ -1,0 +1,727 @@
+{
+  "version": 1,
+  "next_id": 33,
+  "cards": [
+    {
+      "id": "c0001",
+      "tema": "complejidad",
+      "frente": "¿Qué cuenta exactamente el log n de una complejidad como O(log n) u O(n log n)?",
+      "dorso": "Cuántas veces se puede partir n a la mitad hasta llegar a 1. n=8 → 3 partidas; n=10⁶ → ~20. Doblar n suma un solo paso.",
+      "creada": "2026-09-16",
+      "sm2": {
+        "ease": 2.36,
+        "reps": 2,
+        "interval": 6,
+        "lapses": 0,
+        "due": "2026-09-25"
+      },
+      "historial": [
+        {
+          "fecha": "2026-09-17",
+          "calidad": 3
+        },
+        {
+          "fecha": "2026-09-19",
+          "calidad": 4
+        }
+      ]
+    },
+    {
+      "id": "c0002",
+      "tema": "complejidad",
+      "frente": "Dos bucles anidados: uno recorre n² pares, otro solo n(n-1)/2. ¿Por qué se escriben con el mismo Big-O?",
+      "dorso": "Big-O describe cómo crece el costo con n grande, no cuántas operaciones son. La constante 1/2 no cambia la forma: al doblar n, las dos se cuadruplican.",
+      "creada": "2026-09-16",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 2,
+        "interval": 6,
+        "lapses": 0,
+        "due": "2026-09-25"
+      },
+      "historial": [
+        {
+          "fecha": "2026-09-17",
+          "calidad": 4
+        },
+        {
+          "fecha": "2026-09-19",
+          "calidad": 4
+        }
+      ]
+    },
+    {
+      "id": "c0003",
+      "tema": "complejidad",
+      "frente": "Escribes .sort() en tu solución. ¿Cuál es el piso de complejidad temporal de esa solución, y por qué?",
+      "dorso": "O(n log n). Ordenar son log n niveles de partición × n de trabajo para mezclar cada nivel. Nada que agregues después baja de ahí.",
+      "creada": "2026-09-16",
+      "sm2": {
+        "ease": 2.06,
+        "reps": 2,
+        "interval": 6,
+        "lapses": 1,
+        "due": "2026-09-26"
+      },
+      "historial": [
+        {
+          "fecha": "2026-09-17",
+          "calidad": 1
+        },
+        {
+          "fecha": "2026-09-19",
+          "calidad": 4
+        },
+        {
+          "fecha": "2026-09-20",
+          "calidad": 5
+        }
+      ]
+    },
+    {
+      "id": "c0004",
+      "tema": "complejidad",
+      "frente": "El enunciado dice n <= 100.000. ¿Qué complejidades entran y cuál queda descartada antes de escribirla?",
+      "dorso": "Entran O(n log n), O(n), O(log n). O(n²) son 10¹⁰ pasos ≈ 1.000 s en JS (que hace ~10⁷ por segundo): descartada.",
+      "creada": "2026-09-16",
+      "sm2": {
+        "ease": 1.8,
+        "reps": 2,
+        "interval": 6,
+        "lapses": 1,
+        "due": "2026-09-26"
+      },
+      "historial": [
+        {
+          "fecha": "2026-09-17",
+          "calidad": 0
+        },
+        {
+          "fecha": "2026-09-19",
+          "calidad": 4
+        },
+        {
+          "fecha": "2026-09-20",
+          "calidad": 5
+        }
+      ]
+    },
+    {
+      "id": "c0005",
+      "tema": "complejidad",
+      "frente": "¿Cuáles son los tres pasos que van antes de escribir la primera línea de código?",
+      "dorso": "1) Leer hasta cuánto llega n en las constraints. 2) Contar la complejidad de mi idea. 3) Comparar: si no entra, no la escribo y sigo pensando.",
+      "creada": "2026-09-16",
+      "sm2": {
+        "ease": 2.36,
+        "reps": 2,
+        "interval": 6,
+        "lapses": 0,
+        "due": "2026-09-25"
+      },
+      "historial": [
+        {
+          "fecha": "2026-09-17",
+          "calidad": 3
+        },
+        {
+          "fecha": "2026-09-19",
+          "calidad": 4
+        }
+      ]
+    },
+    {
+      "id": "c0006",
+      "tema": "complejidad",
+      "frente": "Cuando se reporta que una solución usa 'espacio O(n)', ¿qué memoria se está contando y cuál no?",
+      "dorso": "Solo el espacio auxiliar: las estructuras que crea tu función. No cuenta la entrada que te dieron; la salida se menciona aparte si es grande.",
+      "creada": "2026-09-16",
+      "sm2": {
+        "ease": 1.42,
+        "reps": 2,
+        "interval": 6,
+        "lapses": 2,
+        "due": "2026-09-27"
+      },
+      "historial": [
+        {
+          "fecha": "2026-09-17",
+          "calidad": 1
+        },
+        {
+          "fecha": "2026-09-19",
+          "calidad": 1
+        },
+        {
+          "fecha": "2026-09-20",
+          "calidad": 4
+        },
+        {
+          "fecha": "2026-09-21",
+          "calidad": 4
+        }
+      ]
+    },
+    {
+      "id": "c0007",
+      "tema": "complejidad",
+      "frente": "Una función recursiva de profundidad n que no declara ningún array ni Map. ¿Cuánta memoria usa?",
+      "dorso": "O(n). La pila de llamadas cuenta como espacio: cada llamada pendiente ocupa un frame hasta que retorna.",
+      "creada": "2026-09-16",
+      "sm2": {
+        "ease": 1.68,
+        "reps": 2,
+        "interval": 6,
+        "lapses": 1,
+        "due": "2026-09-26"
+      },
+      "historial": [
+        {
+          "fecha": "2026-09-17",
+          "calidad": 1
+        },
+        {
+          "fecha": "2026-09-19",
+          "calidad": 3
+        },
+        {
+          "fecha": "2026-09-20",
+          "calidad": 3
+        }
+      ],
+      "retirada": {
+        "fecha": "2026-09-20",
+        "motivo": "El frente pedia una cantidad ('cuanta memoria usa') y por eso solo entrenaba recuperar el numero. Tres repasos (2026-09-17 calidad 1, 09-19 calidad 3, 09-20 calidad 3) dando O(n) correcto sin nombrar nunca la pila de llamadas ni los frames; el 09-20, pedido el porque, dijo 'es un gasto contra n'. Refuerza un patron ya documentado en el perfil (numero correcto, mecanismo ausente). Reemplazada por una que entrega el numero y pide el mecanismo. El ease de 1.68 no se hereda a proposito: medía la dificultad de recuperar un numero, no este mecanismo."
+      }
+    },
+    {
+      "id": "c0008",
+      "tema": "complejidad",
+      "frente": "Contains Duplicate con un Set es O(n) en tiempo; con dos bucles anidados es O(n²). ¿Por qué el Set no es 'estrictamente mejor'?",
+      "dorso": "Es un trade-off tiempo/espacio: bajas de O(n²) a O(n) en tiempo, pero subes de O(1) a O(n) en espacio auxiliar.",
+      "creada": "2026-09-16",
+      "sm2": {
+        "ease": 1.48,
+        "reps": 2,
+        "interval": 6,
+        "lapses": 2,
+        "due": "2026-09-27"
+      },
+      "historial": [
+        {
+          "fecha": "2026-09-17",
+          "calidad": 0
+        },
+        {
+          "fecha": "2026-09-19",
+          "calidad": 2
+        },
+        {
+          "fecha": "2026-09-20",
+          "calidad": 4
+        },
+        {
+          "fecha": "2026-09-21",
+          "calidad": 5
+        }
+      ]
+    },
+    {
+      "id": "c0009",
+      "tema": "arrays-strings",
+      "frente": "Escribes s[0] = \"z\" sobre el string s = \"abc\". ¿Qué queda en s y por qué?",
+      "dorso": "Queda \"abc\": no pasa nada. Los strings en JS son inmutables; no existe modificarlos, solo crear uno nuevo.",
+      "creada": "2026-09-19",
+      "sm2": {
+        "ease": 2.46,
+        "reps": 2,
+        "interval": 6,
+        "lapses": 0,
+        "due": "2026-09-27"
+      },
+      "historial": [
+        {
+          "fecha": "2026-09-20",
+          "calidad": 3
+        },
+        {
+          "fecha": "2026-09-21",
+          "calidad": 5
+        }
+      ]
+    },
+    {
+      "id": "c0010",
+      "tema": "arrays-strings",
+      "frente": "Construyes un string con out += c dentro de un bucle sobre n caracteres. ¿Cuánto cuesta y cuál es el reemplazo?",
+      "dorso": "O(n²): cada += copia entero lo acumulado antes de pegar la letra. Reemplazo: push a un array y .join(\"\") al final, O(n).",
+      "creada": "2026-09-19",
+      "sm2": {
+        "ease": 2.18,
+        "reps": 1,
+        "interval": 1,
+        "lapses": 1,
+        "due": "2026-09-22"
+      },
+      "historial": [
+        {
+          "fecha": "2026-09-20",
+          "calidad": 2
+        },
+        {
+          "fecha": "2026-09-21",
+          "calidad": 4
+        }
+      ]
+    },
+    {
+      "id": "c0011",
+      "tema": "arrays-strings",
+      "frente": "Haces const b = a con un array y luego b.push(4). ¿Qué le pasó a a, y cómo se copia de verdad?",
+      "dorso": "a también cambió: b es un alias, no una copia. Copia real (shallow): [...a] o a.slice().",
+      "creada": "2026-09-19",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 2,
+        "interval": 6,
+        "lapses": 0,
+        "due": "2026-09-27"
+      },
+      "historial": [
+        {
+          "fecha": "2026-09-20",
+          "calidad": 4
+        },
+        {
+          "fecha": "2026-09-21",
+          "calidad": 4
+        }
+      ]
+    },
+    {
+      "id": "c0012",
+      "tema": "arrays-strings",
+      "frente": "¿Qué frases en el enunciado te dicen que el problema es in-place, y qué te están pidiendo exactamente que hagas con el array de entrada?",
+      "dorso": "\"in-place\", \"O(1) extra memory\", \"without allocating extra space\". Piden que SÍ modifiques el array que te dieron, sin crear ninguno nuevo.",
+      "creada": "2026-09-19",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 1,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-21"
+      },
+      "historial": [
+        {
+          "fecha": "2026-09-20",
+          "calidad": 4
+        }
+      ]
+    },
+    {
+      "id": "c0013",
+      "tema": "arrays-strings",
+      "frente": "En el idioma write/read pointer, ¿qué hace cada índice y por qué escribir nunca pisa un dato que todavía no leíste?",
+      "dorso": "read recorre y solo mira; write marca la próxima casilla libre y avanza solo al escribir. write nunca le gana a read, así que siempre escribes atrás de donde lees.",
+      "creada": "2026-09-19",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 1,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-21"
+      },
+      "historial": [
+        {
+          "fecha": "2026-09-20",
+          "calidad": 4
+        }
+      ]
+    },
+    {
+      "id": "c0014",
+      "tema": "arrays-strings",
+      "frente": "Un bucle con write pointer sobre un array de un millón de elementos. ¿Cuál es su complejidad espacial y por qué?",
+      "dorso": "O(1). Solo nacen dos enteros (read y write); la entrada no cuenta como espacio auxiliar. O(1) no es \"una variable\", es \"una cantidad que no depende de n\".",
+      "creada": "2026-09-19",
+      "sm2": {
+        "ease": 1.96,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 1,
+        "due": "2026-09-21"
+      },
+      "historial": [
+        {
+          "fecha": "2026-09-20",
+          "calidad": 1
+        }
+      ]
+    },
+    {
+      "id": "c0015",
+      "tema": "arrays-strings",
+      "frente": "Cuentas las letras de un string de 5×10⁴ caracteres en un Map, sabiendo que solo hay minúsculas del inglés. ¿Qué espacio auxiliar es, y por qué no es O(n)?",
+      "dorso": "O(1): el Map no puede pasar de 26 claves por más largo que sea el string. Un tope fijo que no depende de n es O(1).",
+      "creada": "2026-09-19",
+      "sm2": {
+        "ease": 2.6,
+        "reps": 1,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-21"
+      },
+      "historial": [
+        {
+          "fecha": "2026-09-20",
+          "calidad": 5
+        }
+      ]
+    },
+    {
+      "id": "c0016",
+      "tema": "arrays-strings",
+      "frente": "¿nums.sort() devuelve un array nuevo o modifica el original? ¿Y qué caso borde de largo revisas siempre en un problema de array?",
+      "dorso": "sort() ordena in-place y muta el original. Caso borde: el array vacío (length 0) — varias constraints lo permiten.",
+      "creada": "2026-09-19",
+      "sm2": {
+        "ease": 2.36,
+        "reps": 1,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-21"
+      },
+      "historial": [
+        {
+          "fecha": "2026-09-20",
+          "calidad": 3
+        }
+      ],
+      "retirada": {
+        "fecha": "2026-09-20",
+        "motivo": "Tarjeta compuesta: mezcla sort() mutando el original con el caso borde del array vacio, dos hechos sin relacion y con dificultades distintas. SM-2 le asignaba un solo intervalo a los dos, asi que su ease de 2.36 no describia ninguno: el 2026-09-20 acerto la primera mitad y no la segunda. Ademas la segunda pregunta estaba mal redactada ('caso borde de largo') y el lo detecto en el repaso. Reemplazada por dos tarjetas separadas."
+      }
+    },
+    {
+      "id": "c0017",
+      "tema": "hash-maps",
+      "frente": "Estás leyendo un enunciado que todavía no resolviste. ¿Qué preguntas del enunciado (no de la solución) te hacen pensar en un hash map?",
+      "dorso": "«¿ya lo vi?», «¿cuántas veces aparece?», «¿existe otro que junto a este dé X?», «agrupar los que comparten algo». Señal estructural: un bucle interno que solo está ahí para buscar.",
+      "creada": "2026-09-20",
+      "sm2": {
+        "ease": 2.36,
+        "reps": 1,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-22"
+      },
+      "historial": [
+        {
+          "fecha": "2026-09-21",
+          "calidad": 3
+        }
+      ],
+      "ediciones": [
+        {
+          "fecha": "2026-09-21",
+          "campo": "frente",
+          "de": "Estás leyendo un enunciado que todavía no resolviste. ¿Qué preguntas del enunciado —no de la solución— te hacen pensar en un hash map?",
+          "a": "Estás leyendo un enunciado que todavía no resolviste. ¿Qué preguntas del enunciado (no de la solución) te hacen pensar en un hash map?",
+          "motivo": "Solo puntuacion: el inciso pasa de guiones largos a parentesis. Misma recuperacion, se conserva el historial SM-2."
+        }
+      ]
+    },
+    {
+      "id": "c0018",
+      "tema": "hash-maps",
+      "frente": "¿Qué propiedad del problema habilita un hash map, y qué restricción del enunciado lo descarta de entrada?",
+      "dorso": "Lo habilita que el orden y la posición no importen. Lo descarta pedir O(1) de espacio auxiliar. Un Set no salva: es un hash map sin valores y cuesta O(n) igual.",
+      "creada": "2026-09-20",
+      "sm2": {
+        "ease": 2.36,
+        "reps": 1,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-22"
+      },
+      "historial": [
+        {
+          "fecha": "2026-09-21",
+          "calidad": 3
+        }
+      ]
+    },
+    {
+      "id": "c0019",
+      "tema": "hash-maps",
+      "frente": "Guardas índices en un Map y preguntas con `if (m.get(k))`. ¿Con qué entrada falla, y cómo se pregunta presencia de verdad?",
+      "dorso": "Falla cuando el índice guardado es 0: `0` es falsy y el `if` no entra aunque la clave exista. Presencia se pregunta con `m.has(k)`.",
+      "creada": "2026-09-20",
+      "sm2": {
+        "ease": 2.6,
+        "reps": 1,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-22"
+      },
+      "historial": [
+        {
+          "fecha": "2026-09-21",
+          "calidad": 5
+        }
+      ]
+    },
+    {
+      "id": "c0020",
+      "tema": "hash-maps",
+      "frente": "¿Para qué sirve `??` sobre un `Map.get()` y para qué no sirve?",
+      "dorso": "Sirve para dar un valor por defecto: `(m.get(k) ?? 0) + 1` en un contador. No sirve para preguntar presencia: `0 ?? false` da `0`, que sigue siendo falsy.",
+      "creada": "2026-09-20",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-21"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0021",
+      "tema": "hash-maps",
+      "frente": "En el complement lookup de Two Sum, ¿por qué se consulta el Map antes de guardar el elemento actual y no al revés?",
+      "dorso": "Si guardas primero, un elemento puede emparejarse consigo mismo cuando target = 2·nums[i]. Consultar primero garantiza que el índice hallado es anterior al actual.",
+      "creada": "2026-09-20",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-21"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0022",
+      "tema": "hash-maps",
+      "frente": "En 242 Valid Anagram cuentas las letras de s y las descuentas con t. ¿Por qué hace falta comparar los largos antes, si el conteo ya compara letra por letra?",
+      "dorso": "Sin eso, s=\"aab\" y t=\"ab\" pasan las dos pasadas y devuelve true: descontar nunca detecta lo que sobra en s.",
+      "creada": "2026-09-20",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-21"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0023",
+      "tema": "two-pointers",
+      "frente": "Un problema te pide encontrar dos elementos de un arreglo que cumplen una condición. Eso solo no habilita two pointers. ¿Qué tiene que ser cierto al mover un puntero para que el patrón sea correcto?",
+      "dorso": "Que el movimiento empuje el resultado en una sola dirección predecible (monotonía). Sin eso, descartar de golpe todas las parejas del puntero que moviste no está justificado.",
+      "creada": "2026-09-20",
+      "sm2": {
+        "ease": 1.7,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 1,
+        "due": "2026-09-22"
+      },
+      "historial": [
+        {
+          "fecha": "2026-09-21",
+          "calidad": 0
+        }
+      ],
+      "ediciones": [
+        {
+          "fecha": "2026-09-21",
+          "campo": "frente",
+          "de": "La respuesta de un problema es un par de elementos. ¿Alcanza eso para usar two pointers? ¿Qué propiedad hace falta además?",
+          "a": "Un problema te pide encontrar dos elementos de un arreglo que cumplen una condición. Eso solo no habilita two pointers. ¿Qué tiene que ser cierto al mover un puntero para que el patrón sea correcto?",
+          "motivo": "El frente no se sostenia solo: 'La respuesta de un problema es un par de elementos' se leia como un enunciado concreto ausente, y el 2026-09-21 quedo en blanco por eso, no por el contenido (el lo detecto y lo sostuvo al repreguntarla reformulada). Tres cambios: premisa explicita, se elimina la pregunta doble, y el frente pasa a pedir el mecanismo del movimiento en vez de admitir la etiqueta 'monotonia' como respuesta de una palabra. Es edicion y no retiro porque lo que hay que recuperar no cambia, asi que el ease de 1.7 y los dos repasos siguen siendo validos."
+        },
+        {
+          "fecha": "2026-09-21",
+          "campo": "dorso",
+          "de": "No alcanza: la fuerza bruta también mira pares. Hace falta monotonía — que mover un puntero empuje el resultado en una sola dirección predecible.",
+          "a": "Que el movimiento empuje el resultado en una sola dirección predecible (monotonía). Sin eso, descartar de golpe todas las parejas del puntero que moviste no está justificado.",
+          "motivo": "El frente no se sostenia solo: 'La respuesta de un problema es un par de elementos' se leia como un enunciado concreto ausente, y el 2026-09-21 quedo en blanco por eso, no por el contenido (el lo detecto y lo sostuvo al repreguntarla reformulada). Tres cambios: premisa explicita, se elimina la pregunta doble, y el frente pasa a pedir el mecanismo del movimiento en vez de admitir la etiqueta 'monotonia' como respuesta de una palabra. Es edicion y no retiro porque lo que hay que recuperar no cambia, asi que el ease de 1.7 y los dos repasos siguen siendo validos."
+        }
+      ]
+    },
+    {
+      "id": "c0024",
+      "tema": "two-pointers",
+      "frente": "¿De qué dos fuentes puede venir la monotonía que habilita two pointers? Un ejemplo de cada una.",
+      "dorso": "Del orden del arreglo (167 Two Sum II: lo++ solo sube la suma, hi-- solo la baja). O de una cantidad que solo se achica (11 Container: el ancho baja de a 1 y nunca vuelve).",
+      "creada": "2026-09-20",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-21"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0025",
+      "tema": "two-pointers",
+      "frente": "Un arreglo ordenado de menor a mayor, con lo en el primer índice y hi en el último. La suma a[lo] + a[hi] se pasó del objetivo. ¿Cómo se deduce cuál de los dos punteros mover, sin memorizar la regla?",
+      "dorso": "Probando los dos: con el arreglo ordenado, lo++ solo puede subir la suma y hi-- solo puede bajarla. Necesitas bajar → hi-- es el único movimiento que puede servir.",
+      "creada": "2026-09-20",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-21"
+      },
+      "historial": [],
+      "ediciones": [
+        {
+          "fecha": "2026-09-20",
+          "campo": "frente",
+          "de": "Estás en lo y hi y la suma se pasó del target. ¿Cómo se deduce qué puntero mover, sin memorizar la regla?",
+          "a": "Un arreglo ordenado de menor a mayor, con lo en el primer índice y hi en el último. La suma a[lo] + a[hi] se pasó del objetivo. ¿Cómo se deduce cuál de los dos punteros mover, sin memorizar la regla?",
+          "motivo": "Skill tarjetas: el frente no decía que el arreglo estaba ordenado, y toda la respuesta depende de eso. Tampoco decía que lo y hi eran los extremos. Misma recuperación, premisas ahora explícitas."
+        }
+      ]
+    },
+    {
+      "id": "c0026",
+      "tema": "two-pointers",
+      "frente": "En 11 Container With Most Water, ¿por qué se mueve el puntero de la pared MÁS BAJA y nunca el de la más alta?",
+      "dorso": "El área está topeada por min(izq, der). Mientras la pared baja siga ahí el alto no cambia, y el ancho solo se achica: todo movimiento de la alta da un área menor a la ya medida.",
+      "creada": "2026-09-20",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-21"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0027",
+      "tema": "two-pointers",
+      "frente": "Un bucle while (lo < hi) donde lo solo sube y hi solo baja, uno de los dos por vuelta. A diferencia de un for, no declara cuántas vueltas da. ¿Cómo se demuestra que es O(n) y no O(n²)?",
+      "dorso": "La distancia hi - lo arranca en n-1, baja exactamente 1 por vuelta y termina en 0: es un for disfrazado. Se cae si algún puntero puede volver atrás.",
+      "creada": "2026-09-20",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-21"
+      },
+      "historial": [],
+      "ediciones": [
+        {
+          "fecha": "2026-09-20",
+          "campo": "frente",
+          "de": "Un while(lo < hi) no dice cuántas vueltas da. ¿Cómo se demuestra que es O(n) y no O(n²)?",
+          "a": "Un bucle while (lo < hi) donde lo solo sube y hi solo baja, uno de los dos por vuelta. A diferencia de un for, no declara cuántas vueltas da. ¿Cómo se demuestra que es O(n) y no O(n²)?",
+          "motivo": "Skill tarjetas: el frente no decía que era un bucle de dos punteros ni que cada uno se mueve en una sola dirección, que es justo de donde sale la demostración. Misma recuperación, premisas ahora explícitas."
+        }
+      ]
+    },
+    {
+      "id": "c0028",
+      "tema": "two-pointers",
+      "frente": "Encontrar dos elementos de un arreglo que sumen un objetivo, resuelto de tres formas: fuerza bruta, hash map y two pointers. ¿Tiempo, espacio auxiliar y qué exige cada una?",
+      "dorso": "Fuerza bruta O(n²)/O(1), no exige nada. Hash map O(n)/O(n), no exige nada. Two pointers O(n)/O(1), exige orden o monotonía.",
+      "creada": "2026-09-20",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-21"
+      },
+      "historial": [],
+      "ediciones": [
+        {
+          "fecha": "2026-09-20",
+          "campo": "frente",
+          "de": "Two pointers, hash map y fuerza bruta sobre el mismo problema de pares: dame tiempo, espacio auxiliar y qué exige cada uno.",
+          "a": "Encontrar dos elementos de un arreglo que sumen un objetivo, resuelto de tres formas: fuerza bruta, hash map y two pointers. ¿Tiempo, espacio auxiliar y qué exige cada una?",
+          "motivo": "Skill tarjetas: 'el mismo problema de pares' no nombraba nada concreto y obligaba a adivinar de qué problema se hablaba. Misma recuperación, objeto ahora nombrado."
+        }
+      ]
+    },
+    {
+      "id": "c0029",
+      "tema": "two-pointers",
+      "frente": "El arreglo no viene ordenado y el problema pide pares. ¿Puedes ordenarlo tú y aplicar two pointers? ¿Qué dos cosas revisas antes?",
+      "dorso": "1) Si los índices son parte de la respuesta, ordenar la destruye (11 Container). 2) Si puedes, el sort impone un piso de O(n log n) y ya no es O(n).",
+      "creada": "2026-09-20",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-21"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0030",
+      "tema": "complejidad",
+      "frente": "Una función recursiva de profundidad n que no declara ningún array ni Map usa O(n) de espacio. ¿Qué es exactamente lo que ocupa esa memoria?",
+      "dorso": "La pila de llamadas. Cada una de las n llamadas pendientes guarda un frame (sus variables locales y a dónde volver) y no lo libera hasta retornar.",
+      "creada": "2026-09-20",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-21"
+      },
+      "historial": [],
+      "ediciones": [
+        {
+          "fecha": "2026-09-21",
+          "campo": "dorso",
+          "de": "La pila de llamadas. Cada una de las n llamadas pendientes guarda un frame —sus variables locales y a dónde volver— y no lo libera hasta retornar.",
+          "a": "La pila de llamadas. Cada una de las n llamadas pendientes guarda un frame (sus variables locales y a dónde volver) y no lo libera hasta retornar.",
+          "motivo": "Solo puntuacion: el inciso pasa de guiones largos a parentesis. Misma recuperacion, se conserva el historial SM-2."
+        }
+      ]
+    },
+    {
+      "id": "c0031",
+      "tema": "arrays-strings",
+      "frente": "¿nums.sort() devuelve un array nuevo o modifica el original? ¿Y qué haces si necesitas conservar el orden de entrada?",
+      "dorso": "Ordena in-place y muta el original; lo que devuelve es el mismo array, no una copia. Para conservarlo: [...nums].sort() o nums.slice().sort().",
+      "creada": "2026-09-20",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-21"
+      },
+      "historial": []
+    },
+    {
+      "id": "c0032",
+      "tema": "arrays-strings",
+      "frente": "Tu solución de arrays funciona con los ejemplos del enunciado. ¿Qué largo de entrada pruebas siempre antes de darla por cerrada, y qué suele romper?",
+      "dorso": "El array vacío (length 0): varias constraints lo permiten. Rompe los accesos a nums[0] y todo bucle o inicialización que asuma al menos un elemento.",
+      "creada": "2026-09-20",
+      "sm2": {
+        "ease": 2.5,
+        "reps": 0,
+        "interval": 1,
+        "lapses": 0,
+        "due": "2026-09-21"
+      },
+      "historial": []
+    }
+  ]
+}

@@ -52,7 +52,7 @@ n+1, n+2 hasta que se corte. ya lo escribo
 
 **Asistente:**
 
-Dale. Cuando lo tengas corriendo, decime la complejidad y por qué —el bucle de adentro engaña.
+Dale. Cuando lo tengas corriendo, decime la complejidad y por qué: el bucle de adentro engaña.
 
 ---
 

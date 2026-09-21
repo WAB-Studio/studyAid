@@ -18,56 +18,56 @@ resolvió al menos un ejercicio del tema. Leer no alcanza.
 
 ## 00 Fundamentos
 
-- `complejidad` — Big-O de tiempo y espacio sin mirar la tabla.
-- `arrays-strings` — recorridos, in-place, qué es inmutable en JS, copia vs referencia.
-- `hash-maps` — `Map` y `Set`, cuándo convierten O(n²) en O(n).
+- `complejidad`: Big-O de tiempo y espacio sin mirar la tabla.
+- `arrays-strings`: recorridos, in-place, qué es inmutable en JS, copia vs referencia.
+- `hash-maps`: `Map` y `Set`, cuándo convierten O(n²) en O(n).
 
 ## 01 Patrones core
 
 Es el bloque que más mueve la aguja en reconocimiento de patrón, la debilidad principal.
 
-- `two-pointers` — extremos opuestos, mismo sentido, rápido/lento.
-- `sliding-window` — ventana fija y variable.
-- `prefix-sum` — sumas acumuladas y conteo con hash map.
-- `binary-search` — sobre índices y sobre el espacio de respuestas.
-- `intervalos` — ordenar como paso previo, solapamientos, merge.
+- `two-pointers`: extremos opuestos, mismo sentido, rápido/lento.
+- `sliding-window`: ventana fija y variable.
+- `prefix-sum`: sumas acumuladas y conteo con hash map.
+- `binary-search`: sobre índices y sobre el espacio de respuestas.
+- `intervalos`: ordenar como paso previo, solapamientos, merge.
 
 ## 02 Estructuras
 
 Acá arranca system design en paralelo.
 
-- `linked-lists` — reverso, ciclo, nodo dummy.
-- `stacks-queues` — incluida la pila monótona.
-- `heaps` — top-k y merge de k listas.
-- `trees-bst` — recorridos, propiedades de BST, LCA.
-- `tries` — prefijos.
+- `linked-lists`: reverso, ciclo, nodo dummy.
+- `stacks-queues`: incluida la pila monótona.
+- `heaps`: top-k y merge de k listas.
+- `trees-bst`: recorridos, propiedades de BST, LCA.
+- `tries`: prefijos.
 
 ## 03 Recursión y grafos
 
-- `recursion` — caso base, confianza recursiva, pila de llamadas.
-- `backtracking` — permutaciones, combinaciones, poda.
-- `graphs-bfs-dfs` — representación, camino mínimo, componentes.
-- `topological-sort` — orden y detección de ciclos.
-- `union-find` — con compresión de caminos.
+- `recursion`: caso base, confianza recursiva, pila de llamadas.
+- `backtracking`: permutaciones, combinaciones, poda.
+- `graphs-bfs-dfs`: representación, camino mínimo, componentes.
+- `topological-sort`: orden y detección de ciclos.
+- `union-find`: con compresión de caminos.
 
 ## 04 Programación dinámica
 
 El bloque más duro. No adelantarlo aunque tiente.
 
-- `dp-1d` — escaleras, robo de casas, coin change.
-- `dp-2d` — grillas, subsecuencias, edit distance.
-- `greedy` — y cuándo no alcanza, frente a DP.
+- `dp-1d`: escaleras, robo de casas, coin change.
+- `dp-2d`: grillas, subsecuencias, edit distance.
+- `greedy`, y cuándo no alcanza, frente a DP.
 
 ## 05 System design
 
 Dosis chicas y sostenidas, nunca un bloque al final.
 
-- `sd-fundamentos` — latencia, throughput, consistencia, CAP.
-- `sd-almacenamiento` — SQL vs NoSQL, índices, sharding, replicación.
-- `sd-cache` — niveles, invalidación, políticas de desalojo.
-- `sd-apis` — diseño, rate limiting, idempotencia.
-- `sd-async` — colas, workers, backpressure.
-- `sd-casos` — acortador de URLs, feed, chat, notificaciones.
+- `sd-fundamentos`: latencia, throughput, consistencia, CAP.
+- `sd-almacenamiento`: SQL vs NoSQL, índices, sharding, replicación.
+- `sd-cache`: niveles, invalidación, políticas de desalojo.
+- `sd-apis`: diseño, rate limiting, idempotencia.
+- `sd-async`: colas, workers, backpressure.
+- `sd-casos`: acortador de URLs, feed, chat, notificaciones.
 
 ## Cambios al plan
 
@@ -77,7 +77,7 @@ Dosis chicas y sostenidas, nunca un bloque al final.
   detrás: `base/linea-base.md` no existe y la única sesión registrada era de `hash-maps`. Eran
   conclusiones sin datos. Lo que sobrevive abajo es lo que sí tiene respaldo: decisiones que él
   tomó explícitamente en conversación.
-- 2026-09-10: **cambio de lenguaje a C++**, decidido por él. ~~Revertido el 2026-09-15~~ — ver
+- 2026-09-10: **cambio de lenguaje a C++**, decidido por él. ~~Revertido el 2026-09-15~~: ver
   la entrada de ese día. Se deja anotado porque explica por qué varios archivos del repo hablan
   de C++.
 - 2026-09-10: **el scheduler de tarjetas no se toca hasta el 2026-10-10**, por decisión suya.
@@ -95,19 +95,19 @@ Dosis chicas y sostenidas, nunca un bloque al final.
   aciertos describió la mecánica correcta sin tener la etiqueta.
 - 2026-09-15: **vuelta a TypeScript**, revirtiendo el cambio del 2026-09-10. Decidido sobre
   evidencia de A2: escribió el ejercicio en TypeScript porque no sabe C++, y aun así reportó
-  errores de sintaxis —iteraciones, declaraciones, signos de comparación— en un lenguaje que usa
+  errores de sintaxis (iteraciones, declaraciones, signos de comparación) en un lenguaje que usa
   hace 4 años. La regla de carga cognitiva del `AGENTS.md` asumía que había algo de C++ que
   dosificar; partiendo de cero no es una rampa sino dos currículos en paralelo, contra un
   presupuesto de tiempo que ya es el recurso escaso. Justificación: carga cognitiva (Sweller), la
   sintaxis desconocida es carga extrínseca y compite con la adquisición del esquema. Costo de
   mercado bajo: Google, Meta y Amazon aceptan TypeScript; C++ sólo es obligatorio en nichos.
-  **El orden de los bloques no cambia** — el temario es de patrones, no de sintaxis. Consecuencias:
+  **El orden de los bloques no cambia**: el temario es de patrones, no de sintaxis. Consecuencias:
   (a) `heaps` se encarece, porque en TS no hay `priority_queue` en la stdlib y hay que escribir el
   heap o traer librería; (b) `linked-lists` y `trees-bst` pierden el beneficio de que los punteros
   dejen de ser teoría. C++ queda como pista aparte, a retomar cuando los patrones estén firmes.
 - 2026-09-15: **forma A de la línea base cerrada.** A2 resuelto solo pero sólo la ingenua, sin
   percibir que existiera algo mejor; A3 no salió. El orden de bloques sigue sin cambiar. Se cierra
-  el pendiente que A1 había dejado abierto —si conviene nombrar la familia del patrón explícito—
+  el pendiente que A1 había dejado abierto (si conviene nombrar la familia del patrón explícito)
   con un **sí parcial**: A1+A2 juntos muestran dos huecos, no uno. Nombrar la familia ataca el
   de vocabulario; el de repertorio de técnicas sólo lo cierra cubrir los temas. Hacer lo primero
   y no confundirlo con lo segundo.
@@ -120,8 +120,8 @@ Dosis chicas y sostenidas, nunca un bloque al final.
   ya cerradas. Sale del error del 2026-09-11, que se había arreglado editando `data/` a mano. La
   calidad de un repaso queda fuera a propósito: el scheduler ya avanzó a partir de ella y
   deshacerlo no es confiable.
-- 2026-09-16: **`complejidad` abierto y cubierto según el criterio de este archivo** —lo explicó
-  con palabras propias y resolvió 217— **pero con cinco subtemas pendientes** anotados en
+- 2026-09-16: **`complejidad` abierto y cubierto según el criterio de este archivo** (lo explicó
+  con palabras propias y resolvió 217) **pero con cinco subtemas pendientes** anotados en
   `base/temas/complejidad.md`: `log n`, los costos de las operaciones de TypeScript, complejidad de
   recursión, amortizado, y que un parámetro de la entrada no es constante. El orden de bloques no
   cambia y `arrays-strings` sigue siendo lo próximo del bloque 00. Queda anotado que el criterio
@@ -146,31 +146,31 @@ Dosis chicas y sostenidas, nunca un bloque al final.
   hoy hace visible el eje entero: el hash map compra tiempo con memoria O(n), los dos punteros
   compran lo mismo con O(1) a cambio de exigir orden.
 - 2026-09-20: **`two-pointers` abierto**, con 167 como ejemplo resuelto y **11 Container With Most
-  Water como ejercicio** — el mismo que dio TLE en A2 el 2026-09-15, ahora Accepted. La restricción
+  Water como ejercicio**: el mismo que dio TLE en A2 el 2026-09-15, ahora Accepted. La restricción
   de "11 está gastado" del archivo del tema queda **cumplida y cerrada**: volvió como ejercicio,
   que era exactamente lo previsto. Quedan sin usar 125 Valid Palindrome y 42; 15 sigue reservado
   para la línea base B.
 - 2026-09-20: **el lenguaje se vuelve a confirmar en TypeScript, esta vez a pedido suyo.** Preguntó
   si convenía moverse a algo de más bajo nivel. Evidencia contra el cambio: TS se acepta en las
   entrevistas de código de big tech, su objetivo son empresas de su stack, y el argumento de carga
-  cognitiva del 2026-09-15 sigue valiendo — hoy mismo el bloqueo fue conceptual (el invariante del
+  cognitiva del 2026-09-15 sigue valiendo: hoy mismo el bloqueo fue conceptual (el invariante del
   contenedor) y habría competido con la sintaxis. **La única contra honesta, que se le dijo:**
   TypeScript no trae heap ni priority queue en la librería estándar, así que en `heaps` (bloque 02)
   va a tener que escribirlo a mano. **Criterio para reabrirlo:** cuando llegue a ese tema y la
-  fricción sea real. Antes no, y su propia propuesta —aprender el lenguaje aparte, no dentro de
-  LeetCode— es la correcta.
+  fricción sea real. Antes no, y su propia propuesta (aprender el lenguaje aparte, no dentro de
+  LeetCode) es la correcta.
 - 2026-09-20: **`tools/study.py` acepta corregir `afk_declarado` en una sesión cerrada**, con
-  recálculo de `minutos_efectivos`. Motivo: el AFK casi siempre se sabe tarde —el que se fue es él
-  y solo lo puede contar al volver, a veces después del cierre— y hasta ahora `--afk` existía solo
+  recálculo de `minutos_efectivos`. Motivo: el AFK casi siempre se sabe tarde (el que se fue es él
+  y solo lo puede contar al volver, a veces después del cierre) y hasta ahora `--afk` existía solo
   en `sesion cerrar`. Dos incidentes en dos días: el 19 la sesión corrió toda la noche, el 20
   avisó 30 min de AFK después de cerrar. Justificación: es la misma excepción ya sancionada de
-  `externo agregar` —ningún reloj cubrió el hueco, el número lo pone él— y no colisiona con el veto
+  `externo agregar` (ningún reloj cubrió el hueco, el número lo pone él) y no colisiona con el veto
   sobre `calidad`, porque ahí SM-2 ya consumió el valor y acá `minutos_efectivos` es un recálculo
   puro. **Contra, anotada en el código y en `AGENTS.md`:** la medición concurrente es más exacta
   que la retrospectiva, así que `pausar`/`reanudar` siguen siendo el camino y esto es la red.
 - 2026-09-20: **c0007 y c0016 retiradas y reemplazadas** (→ c0030, c0031, c0032), a decisión suya
   delegada y justificado con `teoria-del-aprendizaje`. Dos criterios que valen para toda tarjeta
-  futura: **(1)** una tarjeta, un hecho — si mezcla dos, la calidad que se le pone no describe
+  futura: **(1)** una tarjeta, un hecho: si mezcla dos, la calidad que se le pone no describe
   ninguno y el `ease` se calcula sobre un número falso; **(2)** el frente tiene que pedir lo que se
   quiere retener, porque solo se retiene lo que se recupera. Un frente que pide el número entrena
   el número, y en este caso estaba reforzando un patrón ya documentado en el perfil. **Hueco de la
@@ -182,20 +182,53 @@ Dosis chicas y sostenidas, nunca un bloque al final.
   esos números siguen valiendo y tirarlos pierde datos caros; hoy c0016 y c0007 costaron 4 repasos
   entre las dos. **El límite, escrito en el docstring y en `AGENTS.md`:** editar es para la
   redacción. Si el frente pasa a exigir otra recuperación es otro ítem y corresponde retirar más
-  una nueva. La tool no puede juzgar semántica, así que no lo intenta — deja la decisión visible y
+  una nueva. La tool no puede juzgar semántica, así que no lo intenta: deja la decisión visible y
   auditable e imprime la advertencia en cada uso. No toca el scheduler, así que el freno del
   2026-10-10 no aplica.
 - 2026-09-20: **traídas tres cosas de `origin/main`**, que es una línea paralela del proyecto (sigue
   en C++, con bitácoras y tarjetas propias e incompatibles con estas). Se copiaron **a mano, nunca
   con merge**: `main` versiona `data/`, que acá está en `.gitignore`, así que un merge sobrescribe
   las tarjetas vivas. Lo traído: (1) la skill `tarjetas`, con su regla central "la tarjeta no asume
-  nada que no diga" y la prueba de leer el frente solo, sin dorso y sin tema — **adaptada**: el
+  nada que no diga" y la prueba de leer el frente solo, sin dorso y sin tema: **adaptada**: el
   original prohibía el tuteo y acá el registro es tuteo, español neutro de Colombia, por pedido
   suyo; (2) el protocolo de confianza posterior a la respuesta; (3) `.claude/settings.json`.
 - 2026-09-20: **la confianza en tarjetas se pide después de contestar.** Justificado con
   `teoria-del-aprendizaje`: un juicio previo hecho sobre la etiqueta del tema mide familiaridad con
-  el indicio, no recuperación, y el dato propio lo confirma — 14 de 14 "sí" en un día. Un juicio
+  el indicio, no recuperación, y el dato propio lo confirma: 14 de 14 "sí" en un día. Un juicio
   retrospectivo se calibra mejor porque usa la experiencia real de recuperar, y pregunta lo que
   importa en entrevista: si sabe cuándo está equivocado. **Corte de serie el 2026-09-21**, anotado
   en la skill `metricas`: las predicciones de tarjeta anteriores no se mezclan con las posteriores.
-  La predicción de ejercicio no cambió — se hace sobre el enunciado real y su serie sigue entera.
+  La predicción de ejercicio no cambió: se hace sobre el enunciado real y su serie sigue entera.
+
+- 2026-09-21: **se quitó la pregunta de confianza en tarjetas**, por decisión explícita suya.
+  Se le ofrecieron tres opciones (quitarla, reformularla como conversación, o quitarla y que él
+  se ponga la nota) y eligió quitarla: "no me importa para nada".
+  Justificación contra la evidencia: la pregunta era un instrumento de medición, no una
+  intervención. Recuperar, espaciar y ver la respuesta correcta después de intentar quedan
+  intactos, y la programación de la tarjeta nunca dependió de la confianza declarada, sino de la
+  calidad 0-5. El costo real es que se pierde el dato de calibración, que ya había detectado algo
+  concreto: el 2026-09-19, en `c0017` y `c0018`, se declaró inseguro y acertó lo central en las
+  dos, o sea que se subestima. Ese hallazgo queda anotado acá y no se va a poder seguir midiendo.
+  Pesó más la adherencia: dijo textualmente que la pregunta lo tenía cansado, y una intervención
+  que le baja las ganas de estudiar sale negativa aunque en teoría sume.
+  **No reabrir sin evidencia nueva y sin que la pida él.**
+  La predicción de ejercicio (`solo` / `con_pistas` / `no_lo_saco`) NO se tocó: se hace sobre el
+  enunciado real y él no pidió sacarla.
+
+- 2026-09-21: **el agente deja de pedir permiso para abrir sesión y toma la iniciativa.**
+  Ese día, entre un video, un recall y un bloque teórico entero de `sliding-window`, corrió más
+  de media hora de estudio real sin sesión abierta mientras se negociaba si abrirla. Él lo dijo
+  así: "no tiene sentido que yo tenga que mandarte todas las instrucciones". El costo de abrir
+  una sesión de más es borrar `data/current_session.json`; el de no abrirla es perder los eventos,
+  que no se reconstruyen.
+
+- 2026-09-21: **reglas de estilo de escritura**, en `AGENTS.md`, sección "Cómo le escribís".
+  Español neutro, sin guiones largos, sin modismos regionales, tono de profesor. Salió de que el
+  agente escribió "lo que le pregunté en cristiano", que es una expresión de España. Dijo que le
+  suena a robot y que lo saca de la explicación. Se editaron `c0017` y `c0030` para sacarles los
+  guiones largos (edición, no retiro: no cambia qué hay que recuperar). `c0016` también los tenía
+  pero está retirada desde el 2026-09-20 y no se toca.
+  Los archivos internos del repo (skills, `base/`) siguen teniendo guiones largos en su prosa.
+  Eso es texto dirigido al agente, no al usuario, y se limpia a medida que se toque cada archivo:
+  un reemplazo masivo sobre ~430 apariciones rompe la gramática de las frases sin que nadie lo vea.
+

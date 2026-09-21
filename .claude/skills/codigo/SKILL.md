@@ -14,10 +14,10 @@ Markdown ni crees archivos de ejercicio. Respondé en español.
 
 Toda sesión de código corre en una de tres intenciones. Decidila y decila en una línea.
 
-- **Enseñar** — hay conocimiento que falta. Explicaciones y ejemplos resueltos están permitidos
+- **Enseñar**: hay conocimiento que falta. Explicaciones y ejemplos resueltos están permitidos
   antes de cualquier intento suyo.
-- **Practicar** — el conocimiento está y hay que ejercitarlo. Pedí un intento real antes de ayudar.
-- **Medir** — no ayudás con nada, ni con preguntas, hasta que declare que terminó.
+- **Practicar**: el conocimiento está y hay que ejercitarlo. Pedí un intento real antes de ayudar.
+- **Medir**: no ayudás con nada, ni con preguntas, hasta que declare que terminó.
 
 La duración de la sesión no cambia la intención. Una micro-sesión puede ser de enseñar y una de
 fondo puede ser de medir.
@@ -44,23 +44,23 @@ No hay una escalera que se recorra entera. Estas son las intervenciones disponib
 más invasiva. Elegí la que probablemente le devuelva avance, y si lo que falta es conocimiento y
 no razonamiento, salteá.
 
-- **Observación** — una propiedad de la entrada o la salida que se le pasó. Sin nombrar técnicas.
-- **Patrón** — la familia, por nombre, con su señal de reconocimiento.
-- **Invariante** — qué mantiene invariante el enfoque en *este* problema.
-- **Mecánica** — qué se mueve, cuándo, y qué estructura lleva el estado. Sin código.
-- **Concepto que falta** — enseñarlo derecho, cuando el hueco es de conocimiento.
-- **Parcial** — un subproblema resuelto, comparar dos enfoques, o completar una pieza de lo que
+- **Observación**: una propiedad de la entrada o la salida que se le pasó. Sin nombrar técnicas.
+- **Patrón**: la familia, por nombre, con su señal de reconocimiento.
+- **Invariante**: qué mantiene invariante el enfoque en *este* problema.
+- **Mecánica**: qué se mueve, cuándo, y qué estructura lleva el estado. Sin código.
+- **Concepto que falta**: enseñarlo derecho, cuando el hueco es de conocimiento.
+- **Parcial**: un subproblema resuelto, comparar dos enfoques, o completar una pieza de lo que
   ya armó.
-- **Otro problema** — el mismo patrón enseñado sobre un problema **distinto** del que está resolviendo.
-- **La solución objetivo** — explicada: por qué ese enfoque, cuál es el invariante, dónde divergió
+- **Otro problema**: el mismo patrón enseñado sobre un problema **distinto** del que está resolviendo.
+- **La solución objetivo**: explicada: por qué ese enfoque, cuál es el invariante, dónde divergió
   el suyo.
 
 Escalá cuando la intervención actual dejó de mover la aguja. Nunca le digas "acá ya no estás
 aprendiendo": no lo sabés. Decí que parece más útil cambiar de estrategia y enseñarle la pieza
 que falta.
 
-Mostrar la solución objetivo crea **prioridad de repaso** del tema —vuelve antes y con un problema
-variado— no una deuda de un problema análogo uno a uno.
+Mostrar la solución objetivo crea **prioridad de repaso** del tema (vuelve antes y con un problema
+variado) no una deuda de un problema análogo uno a uno.
 
 En intención **medir** ninguna de estas intervenciones está disponible hasta que declare que terminó.
 
@@ -124,14 +124,14 @@ canónico: muchos problemas admiten más de un patrón válido.
 
 ## Referencias
 
-- `referencias-ts/patrones.md` — taxonomía: señal, template en TypeScript, complejidad, clásicos,
+- `referencias-ts/patrones.md`: taxonomía: señal, template en TypeScript, complejidad, clásicos,
   errores, y las trampas propias de JS/TS.
-- `referencias-ts/big-o.md` — leer complejidad, costos en TypeScript, espacio, amortizado.
-- `referencias-ts/problemas.md` — índice tema → problemas, con los reservados marcados.
-- `docs/constraints-to-complexity.md` — usar las cotas para podar, después de entender.
-- `docs/jargon-decoder.md` — registro llano cuando pide que se lo simplifiquen.
-- `assets/style-contract.md` — formato y semántica de colores de los traces.
-- `examples/` — transcripciones de sesión de referencia.
+- `referencias-ts/big-o.md`: leer complejidad, costos en TypeScript, espacio, amortizado.
+- `referencias-ts/problemas.md`: índice tema → problemas, con los reservados marcados.
+- `docs/constraints-to-complexity.md`: usar las cotas para podar, después de entender.
+- `docs/jargon-decoder.md`: registro llano cuando pide que se lo simplifiquen.
+- `assets/style-contract.md`: formato y semántica de colores de los traces.
+- `examples/`: transcripciones de sesión de referencia.
 
 ---
 

@@ -137,7 +137,7 @@
 <body>
 <div class="viz">
   <h1 id="title">Binary search</h1>
-  <div class="subtitle" id="subtitle">target = 23 in a sorted array — each probe eliminates half</div>
+  <div class="subtitle" id="subtitle">target = 23 in a sorted array: each probe eliminates half</div>
 
   <div class="stage" id="stage"><div class="ptr-row"><div class="ptr-cell">lo<span class="arrow">&#9660;</span></div><div class="ptr-cell"></div><div class="ptr-cell"></div><div class="ptr-cell"></div><div class="ptr-cell"></div><div class="ptr-cell"></div><div class="ptr-cell"></div><div class="ptr-cell"></div><div class="ptr-cell"></div><div class="ptr-cell">hi<span class="arrow">&#9660;</span></div></div><div class="cells"><div class="cell">2</div><div class="cell">5</div><div class="cell">8</div><div class="cell">12</div><div class="cell">16</div><div class="cell">23</div><div class="cell">38</div><div class="cell">56</div><div class="cell">72</div><div class="cell">91</div></div><div class="idx-row"><div class="idx-cell">0</div><div class="idx-cell">1</div><div class="idx-cell">2</div><div class="idx-cell">3</div><div class="idx-cell">4</div><div class="idx-cell">5</div><div class="idx-cell">6</div><div class="idx-cell">7</div><div class="idx-cell">8</div><div class="idx-cell">9</div></div></div>
   <div class="vars" id="vars"><span>lo = <b>0</b></span><span>hi = <b>9</b></span><span>mid = <b>&mdash;</b></span><span>target = <b>23</b></span></div>
@@ -168,13 +168,13 @@
    ============================================================ */
 const VIZ = {
   title: "Binary search",
-  subtitle: "target = 23 in a sorted array — each probe eliminates half",
+  subtitle: "target = 23 in a sorted array: each probe eliminates half",
   data: [2, 5, 8, 12, 16, 23, 38, 56, 72, 91],
   frames: [
     {
       pointers: { lo: 0, hi: 9 },
       states: {},
-      vars: { lo: 0, hi: 9, mid: "—", target: 23 },
+      vars: { lo: 0, hi: 9, mid: "-", target: 23 },
       caption: "Initialize. The invariant: if 23 exists, it lies inside [lo, hi]. Right now that is the whole array."
     },
     {
@@ -186,7 +186,7 @@ const VIZ = {
     {
       pointers: { lo: 5, hi: 9 },
       states: { 0: "red", 1: "red", 2: "red", 3: "red", 4: "red" },
-      vars: { lo: 5, hi: 9, mid: "—" },
+      vars: { lo: 5, hi: 9, mid: "-" },
       caption: "Eliminate the left half (red). lo jumps to mid + 1 = 5. Five candidates remain."
     },
     {
@@ -198,14 +198,14 @@ const VIZ = {
     {
       pointers: { lo: 5, hi: 6 },
       states: { 0: "gray", 1: "gray", 2: "gray", 3: "gray", 4: "gray", 7: "red", 8: "red", 9: "red" },
-      vars: { lo: 5, hi: 6, mid: "—" },
+      vars: { lo: 5, hi: 6, mid: "-" },
       caption: "Eliminate the right side (red). hi drops to mid − 1 = 6. Only indices 5–6 remain."
     },
     {
       pointers: { lo: 5, mid: 5, hi: 6 },
       states: { 0: "gray", 1: "gray", 2: "gray", 3: "gray", 4: "gray", 5: "green", 7: "gray", 8: "gray", 9: "gray" },
       vars: { lo: 5, hi: 6, mid: 5, "arr[mid]": 23 },
-      caption: "Probe mid = (5+6)/2 = 5. arr[5] = 23 — target found at index 5. Ten elements, three probes: O(log n)."
+      caption: "Probe mid = (5+6)/2 = 5. arr[5] = 23, target found at index 5. Ten elements, three probes: O(log n)."
     }
   ]
 };

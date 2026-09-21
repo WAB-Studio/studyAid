@@ -42,7 +42,7 @@ presupuestos de tiempo, no definen qué se puede hacer.
 | **Practicar** | Intento primero, ayuda contingente. |
 | **Medir** | Problema nuevo, IA en silencio hasta que termine. |
 
-La regla anterior —"ninguna explicación precede a un intento"— queda anulada. Era una restricción
+La regla anterior ("ninguna explicación precede a un intento") queda anulada. Era una restricción
 absoluta que contradecía la evidencia sobre ejemplos resueltos: para alguien sin conocimiento
 previo, forzar un intento produce ruido y frustración.
 
@@ -71,7 +71,7 @@ peldaños sin culpa.
    divergió el suyo.
 
 Escalá cuando la intervención actual dejó de mover la aguja. **No le digas "acá ya no estás
-aprendiendo"** —no lo sabés—. Decí: *"parece más útil cambiar de estrategia y enseñarte la pieza
+aprendiendo"** (no lo sabés). Decí: *"parece más útil cambiar de estrategia y enseñarte la pieza
 que falta"*.
 
 Llegar a mostrar la solución objetivo crea una **prioridad de repaso**, no una deuda de un problema análogo
@@ -92,7 +92,7 @@ heurístico superficial y específico de LeetCode.
 7. Recién ahí, si ayuda, el nombre del patrón.
 
 **Contraste discriminativo**: cuando hay confusión, baja confianza o patrón nuevo, pedir por qué
-**no** el otro candidato — y contrastar principalmente contra el candidato que él realmente
+**no** el otro candidato, y contrastar principalmente contra el candidato que él realmente
 consideró, no contra una taxonomía fija. Pares útiles como ejemplo, no como catálogo:
 `sliding-window`/`prefix-sum`, `two-pointers`/`binary-search`, `dp-1d`/`greedy`,
 `backtracking`/`dfs`. Es el mecanismo con mejor evidencia para su debilidad principal
@@ -106,15 +106,15 @@ consideró, no contra una taxonomía fija. Pares útiles como ejemplo, no como c
 - Lo que se mantiene de la guarda vieja es **el orden, no la demora**: producción antes de
   explicación. No es timing de feedback, es generación y autoexplicación.
 - **Al cierre, pedí una producción diagnóstica cuando ayude a comprobar o consolidar lo
-  trabajado** — el patrón y por qué, o el invariante, o la complejidad justificada, o el trace.
+  trabajado**: el patrón y por qué, o el invariante, o la complejidad justificada, o el trace.
   Una, nunca las cuatro, y no en toda sesión: es contextual, no un ritual de cierre.
 - El trace y el diagrama los produce **él**; yo marco dónde diverge. (Anula el contrato de
   contrato de estilo que obligaba al tutor a dibujar en toda respuesta; en modo enseñar está bien.)
 
 ### Soporte que se retira según evidencia del intento
 
-Los ejemplos resueltos y el andamiaje se retiran **según cómo le fue** —intento independiente,
-calidad de la explicación, errores, ayuda pedida—, no por número de exposición ni por una regla
+Los ejemplos resueltos y el andamiaje se retiran **según cómo le fue** (intento independiente,
+calidad de la explicación, errores, ayuda pedida), no por número de exposición ni por una regla
 fija.
 
 ### Medición fría
@@ -156,12 +156,12 @@ prediccion:  opcional
 reformulación puede revelar casi todo, nombrar "sliding window" puede ser más decisivo que dar el
 invariante, una pista de debugging no entra en la escala, y system design necesita otras clases de
 ayuda. Si más adelante sirve, se guarda el **tipo** de pista como nota (comprensión, estrategia,
-implementación, debugging) — nunca como `/3` ni `/5`.
+implementación, debugging), nunca como `/3` ni `/5`.
 
 **Procedencia declarada en el reporte, todavía no en el esquema.** El campo `fuente:` por
 registro queda en backlog hasta que haya un consumidor: agregarlo ahora es otra pieza sin uso.
 Lo que sí es obligatorio desde el día uno es que el reporte y la documentación digan de dónde
-sale cada número — el veredicto de LeetCode lo reporta él, los tiempos salen del reloj, las
+sale cada número: el veredicto de LeetCode lo reporta él, los tiempos salen del reloj, las
 evaluaciones las produzco yo. La forma futura del campo, cuando haga falta:
 
 ```
@@ -184,7 +184,7 @@ si aportan.
 
 ## 4. Cambios de ahora, y backlog
 
-### Ahora — unas pocas horas, y el momento más barato porque no hay datos que migrar
+### Ahora: unas pocas horas, y el momento más barato porque no hay datos que migrar
 
 0. **Fijar la línea base y ejecutar la forma A.** Es la única tarea que pierde valor por
    postergarse: no existe una observación del nivel de partida, y esa observación no se
@@ -207,12 +207,12 @@ si aportan.
 4. **Hacer que las sesiones cuenten aunque falte bitácora** (ver la decisión pendiente abajo).
 5. **Corregir dos cosas menores**: la ruta rota a `.claude/skills/leetcode/referencias/` en
    `fuentes/SKILL.md`, y `base/perfil.md`, donde "aprende con teoría primero" tiene que quedar
-   rotulado como **preferencia de adherencia**, no como hallazgo — no hay respaldo para emparejar
+   rotulado como **preferencia de adherencia**, no como hallazgo: no hay respaldo para emparejar
    instrucción a estilo autodeclarado (Pashler et al. 2008).
 6. **Rotular el umbral de 21 días de "temas fríos"** como heurística de interfaz, no como frontera
    científica.
 
-### Después — estudiar 6–10 sesiones antes de decidir nada más
+### Después: estudiar 6–10 sesiones antes de decidir nada más
 
 Nada de esto se construye ahora. Se decide con datos:
 
@@ -223,7 +223,7 @@ Nada de esto se construye ahora. Se decide con datos:
 - biblioteca de problemas propia;
 - métricas de confusión de patrones;
 - predicción de casos borde antes de someter, hipótesis de 60–90 s antes del bloque teórico, y la
-  producción diagnóstica de cierre — **son intervenciones disponibles para usar cuando vengan al
+  producción diagnóstica de cierre: **son intervenciones disponibles para usar cuando vengan al
   caso, no features a implementar**;
 - behavioral.
 
@@ -233,8 +233,8 @@ Tres cosas de este plan tocan restricciones que él declaró. No las cambio por 
 
 1. **El gate de bitácora.** "Toda sesión cierra con bitácora o no cuenta" es una restricción suya.
    El problema: una sesión real con metadata incompleta se vuelve una sesión que no existe para la
-   racha y los minutos, lo que sesga justamente la métrica de adherencia. Y peor —es la misma
-   trampa que ya identificamos con los flags obligatorios— si la única salida honesta está
+   racha y los minutos, lo que sesga justamente la métrica de adherencia. Y peor (es la misma
+   trampa que ya identificamos con los flags obligatorios) si la única salida honesta está
    bloqueada, el camino barato es escribir una bitácora de compromiso. Propuesta: inicio, fin y
    actividad cuentan siempre; la sesión puede quedar marcada `metadata-incompleta`; la bitácora
    cualitativa es opcional o se genera después.

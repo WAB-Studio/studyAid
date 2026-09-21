@@ -17,19 +17,19 @@ generativo, que es donde está el aprendizaje. En modo enseñar y visualizar, el
 
    `DEFINITION · INTUITION · TRACE · COMPLEXITY · PITFALLS`
 
-   Modes may add their own (e.g., `THE BUG`, `INVARIANTE`, `RUBRIC`) — always ALL-CAPS.
+   Modes may add their own (e.g., `THE BUG`, `INVARIANTE`, `RUBRIC`): always ALL-CAPS.
 
 3. **Definitions live in blockquotes** with **key terms bolded**:
 
    > A **sliding window** maintains a contiguous range `[left, right]` over a sequence and moves both ends **monotonically forward**, so each element enters and leaves the window at most once.
 
-4. **Comparisons and characteristics go in standard Markdown tables** — never paragraphs of prose comparing things.
+4. **Comparisons and characteristics go in standard Markdown tables**: never paragraphs of prose comparing things.
 
 5. Prose stays tight: 1–3 sentence paragraphs. No filler, no pep talk, no emoji.
 
 ## COLOR SEMANTICS (non-negotiable)
 
-Minimal, flat, muted. Four meanings, four colors, used SPARSELY — most elements stay ink-on-paper.
+Minimal, flat, muted. Four meanings, four colors, used SPARSELY: most elements stay ink-on-paper.
 
 | Meaning | Color | Hex |
 |---|---|---|
@@ -51,7 +51,7 @@ Array frame as a table (indices always shown; states named in a state row):
 | idx | 0 | 1 | 2 | 3 | 4 |
 |---|---|---|---|---|---|
 | val | 2 | 5 | 8 | 12 | 16 |
-| state | gray | gray | **blue: mid** | — | — |
+| state | gray | gray | **blue: mid** |, |, |
 
 Array frame as inline SVG: flat rectangles (`fill="#f8fafc"`, `stroke="#1e293b"`), index labels below cells, pointer labels/arrows above cells in blue, eliminated cells tinted red at low opacity (`fill="#dc2626" fill-opacity="0.15"` + red stroke), processed cells in gray, found cell in green. Trees/graphs: circles with straight edges, same palette. No filters, no gradients, no shadows.
 
@@ -64,7 +64,7 @@ For a complete problem walkthrough (≥ ~6 frames, or when the user wants to "pl
 - Single file, no external dependencies. (Exception: Chart.js from CDN is OPTIONALLY allowed when plotting complexity curves.)
 - **Prev / Next / Play** controls stepping through the same green/red/blue/gray states.
 - Flat, minimal design matching this palette. System font stack. No shadow-everywhere AI look.
-- MUST NOT use `localStorage` or `sessionStorage` — keep all state in JS variables.
+- MUST NOT use `localStorage` or `sessionStorage`: keep all state in JS variables.
 - Every frame has a caption; the current step number is always visible.
 
 ## WHICH RENDERING TO PICK

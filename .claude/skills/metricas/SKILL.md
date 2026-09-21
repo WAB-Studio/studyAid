@@ -45,7 +45,7 @@ Decí en cada reporte:
   **En tarjetas la confianza se pide después de que contestó, no antes.** Las predicciones de
   tarjeta anteriores al **2026-09-21** se tomaron antes del intento, y encima con el tema
   anunciado: midieron familiaridad con la etiqueta, no recuperación. **No las mezcles en la misma
-  serie con las posteriores** — el 2026-09-20 dijo "sí" en 14 de 14, que es una constante y no
+  serie con las posteriores**: el 2026-09-20 dijo "sí" en 14 de 14, que es una constante y no
   una medición. La predicción de ejercicio no cambió y su serie sigue entera.
 - **Reconocimiento de patrón**: porcentaje de aciertos en el drill intercalado. Es la métrica
   más directa de su debilidad principal. Sube más lento que el resto y eso es normal.

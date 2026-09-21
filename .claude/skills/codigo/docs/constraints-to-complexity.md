@@ -1,7 +1,7 @@
 # Las restricciones, para podar
 
 Se leen **después** de entender y reformular el problema, no antes. Leerlas primero entrena a
-emparejar por rasgos superficiales del enunciado —el heurístico de LeetCode— en vez de por la
+emparejar por rasgos superficiales del enunciado (el heurístico de LeetCode) en vez de por la
 estructura del problema.
 
 Una vez que el problema está entendido, la cota de `n` descarta complejidades y deja un conjunto

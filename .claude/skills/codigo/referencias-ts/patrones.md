@@ -85,7 +85,7 @@ function hasCycle(head: ListNode | null): boolean {
 
 **Complejidad**: O(n) tiempo, O(1) espacio.
 **Clásicos**: 141 Linked List Cycle, 142 Cycle II, 876 Middle of the Linked List, 202 Happy Number.
-**Errores típicos**: leer `fast.next.next` sin la guarda — `TypeError: Cannot read properties of
+**Errores típicos**: leer `fast.next.next` sin la guarda: `TypeError: Cannot read properties of
 null`, que al menos dice dónde; off-by-one sobre cuál puntero es la respuesta en "el del medio".
 
 ## hashing / frequency-map
@@ -109,7 +109,7 @@ function groupAnagrams(words: string[]): string[][] {
 **Clásicos**: 1 Two Sum, 49 Group Anagrams, 242 Valid Anagram, 217 Contains Duplicate,
 347 Top K Frequent, 128 Longest Consecutive Sequence.
 **Errores típicos**: usar `{}` en vez de `Map` y chocar con `Object.prototype` o con la conversión
-de claves a string; `w.sort()` sobre un string, que no existe — hay que pasar por array;
+de claves a string; `w.sort()` sobre un string, que no existe: hay que pasar por array;
 contar con `m[k]++` sobre un objeto donde la clave todavía no está, que da `NaN`.
 
 ## prefix-sum
@@ -163,13 +163,13 @@ conviene tenerlo memorizado.
 **Clásicos**: 704 Binary Search, 33 Search in Rotated Sorted Array, 153 Find Minimum in Rotated,
 875 Koko Eating Bananas, 74 Search a 2D Matrix.
 **Errores típicos**: mezclar convenciones `[lo, hi]` y `[lo, hi)` y colgarse en bucle infinito;
-`(lo + hi) / 2` sin `Math.floor` — en JS la división da decimales y `a[2.5]` es `undefined`;
+`(lo + hi) / 2` sin `Math.floor`: en JS la división da decimales y `a[2.5]` es `undefined`;
 quedarse con la mitad equivocada en el rotado; devolver `mid` en vez de `lo`.
 Ojo con `>>` si los valores pueden pasar 2³¹: ahí va `Math.floor((lo + hi) / 2)`.
 
 ## intervalos
 
-**Señal**: rangos que se solapan — mergear, insertar, contar eventos concurrentes.
+**Señal**: rangos que se solapan: mergear, insertar, contar eventos concurrentes.
 
 ```ts
 function merge(intervals: number[][]): number[][] {
@@ -189,7 +189,7 @@ function merge(intervals: number[][]): number[][] {
 
 **Complejidad**: O(n log n) por el sort, O(n) el barrido.
 **Clásicos**: 56 Merge Intervals, 57 Insert Interval, 435 Non-overlapping Intervals.
-**Errores típicos**: **`sort()` sin comparador ordena como string** — `[10, 9, 100]` queda
+**Errores típicos**: **`sort()` sin comparador ordena como string**: `[10, 9, 100]` queda
 `[10, 100, 9]`. Es el error más frecuente del patrón. Ordenar por fin cuando iba por inicio;
 el test de solapamiento `<` vs `<=` decide si los que se tocan se mergean; olvidar la guarda
 `last &&` y leer `last[1]` de `undefined`.
@@ -284,7 +284,7 @@ function bfsGrid(grid: number[][], start: [number, number]): number {
 
 **Complejidad**: O(V + E) tiempo, O(V) espacio.
 **Clásicos**: 200 Number of Islands, 994 Rotting Oranges, 127 Word Ladder, 102 Level Order Traversal.
-**Errores típicos**: **usar `q.shift()` como cola** — es O(n) porque reindexa el array, y convierte
+**Errores típicos**: **usar `q.shift()` como cola**: es O(n) porque reindexa el array, y convierte
 el BFS en O(V²); marcar visitado al desencolar (el mismo nodo entra muchas veces); leer `q.length`
 dentro del `for` mientras la cola crece; crear la matriz de vistos con
 `new Array(R).fill(new Array(C).fill(false))`, que comparte **la misma fila** R veces.
@@ -316,7 +316,7 @@ function numIslands(grid: string[][]): number {
 **Complejidad**: O(V + E) tiempo, O(V) espacio de stack.
 **Clásicos**: 200 Number of Islands, 133 Clone Graph, 695 Max Area of Island, 417 Pacific Atlantic.
 **Errores típicos**: no marcar visitado → recursión infinita con ciclos; el stack de recursión
-cuenta como espacio, y en Node se agota alrededor de 10⁴ frames — bastante antes que en un
+cuenta como espacio, y en Node se agota alrededor de 10⁴ frames: bastante antes que en un
 lenguaje compilado, así que una grilla grande puede necesitar BFS iterativo.
 
 ## backtracking
@@ -343,16 +343,16 @@ function subsets(nums: number[]): number[][] {
 }
 ```
 
-**Complejidad**: exponencial — O(2^n) subconjuntos, O(n!) permutaciones, por O(n) de copiar.
+**Complejidad**: exponencial: O(2^n) subconjuntos, O(n!) permutaciones, por O(n) de copiar.
 **Clásicos**: 78 Subsets, 46 Permutations, 39 Combination Sum, 79 Word Search, 51 N-Queens.
-**Errores típicos**: **`res.push(path)` sin copiar** — se guarda la referencia al mismo array, que
+**Errores típicos**: **`res.push(path)` sin copiar**: se guarda la referencia al mismo array, que
 se sigue mutando, y al final todos los resultados son iguales (casi siempre vacíos). Hay que
 escribir `[...path]` o `path.slice()`. Olvidar el `path.pop()`; no podar y explorar ramas
 imposibles.
 
 ## dynamic-programming
 
-**Señal**: subproblemas que se repiten y subestructura óptima — "contar formas", "costo
+**Señal**: subproblemas que se repiten y subestructura óptima: "contar formas", "costo
 mínimo/máximo", "el más largo" con decisiones.
 
 ```ts
@@ -468,7 +468,7 @@ O(n log k), contra O(n log n) de ordenar todo.
 703 Kth Largest in a Stream, 295 Find Median from Data Stream.
 **Errores típicos**: max-heap cuando se quería min-heap (invertir la comparación, o insertar `-x`);
 `pop()` sobre el heap vacío; mantener el heap de tamaño n en vez de k y perder la ventaja;
-equivocar el índice del padre — es `(i-1) >> 1`, no `i >> 1`.
+equivocar el índice del padre: es `(i-1) >> 1`, no `i >> 1`.
 
 ## trie
 
@@ -559,6 +559,6 @@ se registran en `--error-clase`, aparte del resultado del ejercicio.
 ---
 
 Estructura y contenido adaptados de `kirilxd/swe-interview-coach` (MIT) y
-`swapnil5053/algotrace` (MIT). Los templates fueron portados a TypeScript el 2026-09-15 —
-antes estaban en C++, ver `base/temario.md`, "Cambios al plan"— y la sección de trampas
+`swapnil5053/algotrace` (MIT). Los templates fueron portados a TypeScript el 2026-09-15: 
+antes estaban en C++, ver `base/temario.md`, "Cambios al plan", y la sección de trampas
 de JS/TS es propia.

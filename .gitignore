@@ -8,18 +8,10 @@ __pycache__/
 data/current_session.json
 *.tmp
 
-# Datos de estudio de una persona concreta: perfil, línea base, avance por tema,
-# bitácoras y el registro de sesiones y tarjetas. El sistema (AGENTS.md, skills,
-# tools/, temario, plantillas) sí se versiona; lo que una persona estudió, no.
-base/perfil.md
-base/linea-base.md
-base/temas/*.md
-!base/temas/PLANTILLA.md
-bitacora/*.md
-!bitacora/PLANTILLA.md
-data/cards.json
-data/sessions.jsonl
-data/externos.jsonl
+# Los datos de estudio SÍ se versionan desde el 2026-09-21, por decisión suya.
+# La regla anterior los ignoraba, pero se había escrito para no arrastrar los datos de
+# otra persona, no para esconder los de él. Esta rama es la suya y es la línea real.
+# Perfil, línea base, temas, bitácoras, tarjetas y sesiones van al repo.
 
 # Material descargado: puede ser pesado y no es nuestro.
 # El índice de qué se consultó vive en base/fuentes.md, que sí se versiona.

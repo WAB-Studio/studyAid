@@ -32,7 +32,7 @@ Cada sesión termina con una bitácora: qué hiciste, qué falló, qué sigue.
 
 ## Pendiente antes de empezar
 
-**Ejecutar la forma A de `base/linea-base.md`** — unos 70 minutos. Es una medición de tu nivel de
+**Ejecutar la forma A de `base/linea-base.md`**: unos 70 minutos. Es una medición de tu nivel de
 partida: seis clasificaciones de enfoque, un problema de código sin ayuda y un ejercicio de diseño.
 Sin eso, en dos meses no vamos a poder saber si mejoraste. La forma B queda reservada para repetir
 la medición a las 4–6 semanas.
@@ -57,7 +57,7 @@ referencia/        repos ajenos de los que salió parte del método
 .venv/bin/python tools/study.py externo listar   # lo que estudiaste por tu cuenta, fuera de sesión
 ```
 
-Los minutos de estudio por tu cuenta —un video, un capítulo— se registran aparte con
+Los minutos de estudio por tu cuenta (un video, un capítulo) se registran aparte con
 `externo agregar`. Cuentan para la racha y no se suman a los minutos de práctica: exponerse a una
 explicación y recuperarla de memoria no producen lo mismo, y un solo número no puede medir las dos.
 

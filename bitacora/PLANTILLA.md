@@ -1,4 +1,4 @@
-# AAAA-MM-DD — modo <micro|fondo> — <N> min
+# AAAA-MM-DD, modo <micro|fondo>, <N> min
 
 ## Qué hice
 - 

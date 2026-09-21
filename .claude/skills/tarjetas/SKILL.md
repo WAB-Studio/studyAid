@@ -28,3 +28,8 @@ description: Reglas de redacción de las tarjetas de repaso del sistema de estud
   (Adaptado el 2026-09-20 al traer esta skill: el original pedía impersonal.)
 - Tildes y signos de apertura siempre.
 - Sin emoji.
+- Sin guiones largos. Los incisos van entre paréntesis o con comas.
+  (Agregado el 2026-09-21, cuando pidió sacarlos de todo lo que él lee. Se editaron `c0017` y
+  `c0030` por esto; fue edición y no retiro, porque cambiar la puntuación no cambia qué hay
+  que recuperar.)
+- Palabras de uso diario. Si una palabra no la diría una persona hablando, no va en la tarjeta.

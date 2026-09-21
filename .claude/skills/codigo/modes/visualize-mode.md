@@ -8,7 +8,7 @@ Animate a data structure or algorithm step by step. The visualization IS the del
 
 ## PROCEDURE
 
-1. **Tag line** — open with `[pattern, data structure, complexity]`.
+1. **Tag line**: open with `[pattern, data structure, complexity]`.
 2. **Pick the rendering:**
 
 | Condition | Choice |
@@ -30,7 +30,7 @@ For the HTML artifact: copy `assets/visualizer-template.html`, replace the `VIZ`
 - Windows/ranges: tint the in-window cells green at low opacity; a shrinking window turns the departed cell gray.
 - State variables (`lo`, `hi`, `best`, window sum, etc.) shown per frame in a small table or the artifact's VARS strip.
 
-## WORKED EXAMPLE — binary search on a sorted array
+## WORKED EXAMPLE: binary search on a sorted array
 
 User: "Visualize binary search for 23 in [2, 5, 8, 12, 16, 23, 38, 56, 72, 91]."
 
@@ -44,37 +44,37 @@ DEFINITION
 
 > **Binary search** keeps an **invariant**: if the target exists, it lies inside `[lo, hi]`. Each probe of **mid** eliminates half of that range.
 
-TRACE — target = 23
+TRACE: target = 23
 
-Frame 1 — initialize. `lo=0` (blue), `hi=9` (blue). Everything is still possible.
+Frame 1: initialize. `lo=0` (blue), `hi=9` (blue). Everything is still possible.
 
 | idx | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
 |---|---|---|---|---|---|---|---|---|---|---|
 | val | 2 | 5 | 8 | 12 | 16 | 23 | 38 | 56 | 72 | 91 |
 | ptr | lo |  |  |  |  |  |  |  |  | hi |
 
-Frame 2 — probe `mid = (0+9)//2 = 4` (blue). `arr[4] = 16 < 23`, so the answer cannot be at index ≤ 4.
+Frame 2: probe `mid = (0+9)//2 = 4` (blue). `arr[4] = 16 < 23`, so the answer cannot be at index ≤ 4.
 
 | idx | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
 |---|---|---|---|---|---|---|---|---|---|---|
 | val | 2 | 5 | 8 | 12 | **16** | 23 | 38 | 56 | 72 | 91 |
 | ptr | lo |  |  |  | mid (blue) |  |  |  |  | hi |
 
-Frame 3 — eliminate the left half (red): indices 0–4 are out. `lo = mid + 1 = 5`.
+Frame 3: eliminate the left half (red): indices 0–4 are out. `lo = mid + 1 = 5`.
 
 | idx | ~~0~~ | ~~1~~ | ~~2~~ | ~~3~~ | ~~4~~ | 5 | 6 | 7 | 8 | 9 |
 |---|---|---|---|---|---|---|---|---|---|---|
 | val | red | red | red | red | red | 23 | 38 | 56 | 72 | 91 |
 | ptr |  |  |  |  |  | lo |  |  |  | hi |
 
-Frame 4 — probe `mid = (5+9)//2 = 7`. `arr[7] = 56 > 23`, so indices ≥ 7 are out (red). `hi = mid − 1 = 6`.
+Frame 4: probe `mid = (5+9)//2 = 7`. `arr[7] = 56 > 23`, so indices ≥ 7 are out (red). `hi = mid − 1 = 6`.
 
 | idx | ~~0–4~~ | 5 | 6 | ~~7~~ | ~~8~~ | ~~9~~ |
 |---|---|---|---|---|---|---|
 | val | red | 23 | 38 | red | red | red |
 | ptr |  | lo | hi |  |  |  |
 
-Frame 5 — probe `mid = (5+6)//2 = 5`. `arr[5] = 23` — **found** (green) at index 5.
+Frame 5: probe `mid = (5+6)//2 = 5`. `arr[5] = 23`: **found** (green) at index 5.
 
 | idx | ~~0–4~~ | 5 | 6 | ~~7–9~~ |
 |---|---|---|---|---|
@@ -115,7 +115,7 @@ Equivalent inline SVG for a single frame (Frame 2), matching the contract:
 
 COMPLEXITY
 
-O(log n) time — the candidate range halves every frame (10 → 5 → 2 → 1). O(1) space — three integers.
+O(log n) time: the candidate range halves every frame (10 → 5 → 2 → 1). O(1) space: three integers.
 
 PITFALLS
 

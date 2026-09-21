@@ -1,4 +1,4 @@
-# <tema-id> — <nombre>
+# <tema-id>: <nombre>
 
 Abierto: AAAA-MM-DD
 
