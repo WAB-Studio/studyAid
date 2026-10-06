@@ -69,6 +69,39 @@ Dosis chicas y sostenidas, nunca un bloque al final.
 - `sd-async` — colas, workers, backpressure.
 - `sd-casos` — acortador de URLs, feed, chat, notificaciones.
 
+## Calendario de lectura
+
+Desde el 2026-10-06. La lectura semanal es la "clase"; el **domingo es la fecha meta**. La
+sesión de fondo sobre lo leído se abre el día que termina el mínimo, no necesariamente el domingo.
+Cada semana tiene un **mínimo** (lo que entra en la sesión) y una **meta** (si engancha, seguir).
+
+Libros: *The Algorithm Design Manual*, Skiena, 3.ª ed. (base, en `fuentes/skiena-algorithm-design-manual/skiena-3ed.pdf`) y *Algorithms*, Jeff Erickson
+(gratis, en `fuentes/erickson-algorithms/`) para recursión, backtracking, DP, greedy y grafos.
+System design: *Designing Data-Intensive Applications*, Kleppmann (numeración de la 1.ª ed.).
+Patrones del bloque 01 y videos: NeetCode, pasivo y opcional.
+
+Sesión de fondo sobre lo leído: explica con sus palabras lo leído, yo completo lo flojo con
+explicaciones propias, y sigue el ejercicio del temario. El libro marca el tema, no el guion.
+
+| Fecha meta | Mínimo | Meta | Extra |
+|---|---|---|---|
+| [ ] 11 oct | Skiena 1 | Skiena 2 | NeetCode: Two Pointers |
+| [ ] 18 oct | Skiena 2 | Skiena 3 | NeetCode: Sliding Window · DDIA 1 |
+| [ ] 25 oct | Skiena 3 | Skiena 4 | NeetCode: Linked List, Stack |
+| [ ] 1 nov | Skiena 4 | Skiena 5 | NeetCode: Heap · DDIA 2 |
+| [ ] 8 nov | Skiena 5 | Skiena 6 | NeetCode: Binary Search, Trees |
+| [ ] 15 nov | Erickson 1 | Erickson 2 | NeetCode: Intervals · DDIA 3 |
+| [ ] 22 nov | Erickson 2 | Skiena 9 | NeetCode: Backtracking |
+| [ ] 29 nov | Skiena 7 | Erickson 5–6 | NeetCode: Graphs · DDIA 5 |
+| [ ] 6 dic | Erickson 3 | Skiena 10 | NeetCode: 1-D DP |
+| [ ] 13 dic | Erickson 4 | Skiena 8 | NeetCode: Greedy · DDIA 6 |
+
+Skiena es la 3.ª ed. (2020); la numeración es de esa edición. Se lee solo la parte I (caps
+1–13, págs. 1–436). La parte II es un catálogo de consulta y no se asigna. Los caps 11–12
+(NP-completitud) y 13 quedan fuera del calendario. Ejercicios del final de capítulo: no; los
+ejercicios salen de LeetCode. Skiena 1–2 consolidan `complejidad`; 3 abre el bloque 02; 5 trae
+búsqueda binaria; 6 repasa `hash-maps`.
+
 ## Cambios al plan
 
 - 2026-09-09: versión inicial.
@@ -119,3 +152,11 @@ Dosis chicas y sostenidas, nunca un bloque al final.
   Lo pidió él con argumento y funcionó: con la tabla hash explicada por dentro contestó sin ayuda
   un control que no era repetición. Vale para los temas que vienen, empezando por `heaps`, donde
   la tentación de enseñar solo la API de `priority_queue` es la misma.
+- 2026-10-06: **cambio de formato.** 16 días sin estudiar: las sesiones diarias frente al
+  computador exigían esfuerzo máximo para todo. Ahora el input es pasivo (libro y videos, a su
+  ritmo, con el calendario de arriba) y el esfuerzo va a la sesión de fondo, que se abre al
+  terminar el mínimo de la semana. Libros densos por preferencia suya: Skiena 3.ª ed. y
+  Erickson; DDIA para system design. Base: metas cercanas (Bandura y Schunk, 1981), plazos
+  externos y parejos (Ariely y Wertenbroch, 2002), metas en rango mínimo–meta (Scott y Nowlis,
+  2013) y recuperación después de leer (Roediger y Karpicke, 2006). El orden de bloques sigue
+  siendo el mapa; el calendario manda en el ritmo.

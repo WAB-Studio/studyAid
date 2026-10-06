@@ -8,8 +8,9 @@ Actualizado: 2026-09-10
 - Stack profesional: TypeScript/JavaScript. **Los ejercicios se resuelven en C++** desde el
   2026-09-10, por decisión suya: quiere entender el manejo de memoria, no solo pasar entrevistas.
 - Objetivo: big tech, horizonte 6–12 meses.
-- Disponibilidad: trabaja full time. 3–4 sesiones de fondo por semana, de noche.
-  Micro-sesiones en ratos muertos durante el día.
+- Disponibilidad: trabaja full time. Desde el 2026-10-06, lectura pasiva a su ritmo (libro y
+  videos, también desde el celular) y una sesión de fondo cuando termina lo asignado, con el
+  domingo como fecha meta. Micro solo si él la pide.
 - Aprende con teoría primero: necesita el modelo mental armado antes de practicar.
 - Huecos declarados al arrancar, los cuatro a la vez: reconocer el patrón del problema,
   estructuras de datos y complejidad, implementar sin bugs bajo presión, system design.
@@ -229,3 +230,13 @@ Sirve para que la próxima sesión no proponga cosas sin sentido.
   `strs` in-place para ahorrar memoria, con un argumento de costo, y se dio cuenta solo de por qué
   no servía al preguntarle qué aparecía en el output. Contra la observación del 09-09. Si se
   sostiene, dejar de pedirle "dame una segunda opción" como paso fijo.
+- 2026-10-06: 16 días sin estudiar. Las sesiones diarias frente al computador le pedían esfuerzo
+  máximo para todo, y abrir WSL, VS Code y Claude para 15 minutos no compensa. El input pasivo
+  (libro, video) lo hace a su ritmo; el esfuerzo va a la sesión de fondo. Quiere respuestas
+  compactas y le molesta esperar respuestas largas.
+- 2026-10-06: lo que lo frena es acordarse, no las ganas: cuando se acuerda está ocupado y lo
+  posterga. Con la página de lectura abierta en el navegador dice que le alcanza para acordarse.
+- 2026-10-06: no quiere que la sesión repita el libro. El libro marca qué tema toca; la
+  explicación y los ejercicios siguen siendo propios.
+- 2026-10-06: estudió dos años de física y le gusta la ciencia dura. Prefiere libros densos;
+  descartó a Wengrow por sobreexplicativo al ojearlo. Los videos pueden ser verbosos.

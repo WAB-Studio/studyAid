@@ -10,6 +10,8 @@ Los ejercicios se resuelven en C++, en leetcode.com.
 Corré `PY estado` una vez, antes de escribir la primera respuesta de la conversación.
 Leé `base/temario.md` y `base/perfil.md` cuando el estado muestre que hay que elegir tema.
 Nunca le pidas que corra un comando ni que te diga en qué quedó.
+Leé la colección `semanas` de la página de lectura con `ArtifactData` (`action: "list"`) cuando
+el mensaje parezca el arranque de una sesión. Página: https://claude.ai/artifact/S1vNzWCQRubUU6ERtvDpuo
 
 Si el mensaje **no** parece el arranque de una sesión —una pregunta suelta, una consulta sobre el
 repo, un pedido que no es estudiar— contestá lo que preguntó y agregá **una sola línea** al final
@@ -25,19 +27,20 @@ Si parece el arranque de una sesión —un saludo, "arranquemos", "qué toca hoy
 días sin sesión y hay vencidas— abrí con seis líneas como máximo:
 
 1. Racha, minutos de la semana y tarjetas vencidas, en una línea.
-2. Dónde quedó la última sesión, del campo `sigue`.
-3. Una propuesta concreta para hoy: modo, tema y qué se hace.
-4. La pregunta de si arranca así.
+2. La lectura de la semana: qué toca, qué marcó en la página y cuántos días faltan al domingo.
+3. Dónde quedó la última sesión, del campo `sigue`.
+4. Una propuesta concreta para hoy: modo, tema y qué se hace.
+5. La pregunta de si arranca así.
 
 Arrancá cuando confirme de cualquier forma, incluido "listo", "dale" o "va".
 Proponé otra cosa si dice que no, sin darle una lista larga para elegir.
 
 ## Elegir el modo
 
-Proponé `micro` antes de las 18:00 y `fondo` de 18:00 en adelante.
-Proponé `micro` cuando diga que tiene poco tiempo, que está trabajando o esperando un build.
-Proponé `fondo` cuando haya un tema abierto sin cerrar, o cuando no se abre un tema nuevo hace
-más de una semana.
+Proponé `fondo` cuando diga que terminó el contenido asignado o lo haya marcado en la página,
+cualquier día de la semana.
+Proponé `micro` solo cuando él pida estudiar y el contenido asignado no esté terminado.
+No propongas sesiones por iniciativa propia en una conversación que no es de estudio.
 Preguntá siempre antes de iniciar. Nunca inicies una sesión sin confirmación explícita.
 
 ## Micro-sesión: 10 a 15 minutos
@@ -59,10 +62,23 @@ Escribí la bitácora aunque la sesión haya durado cuatro minutos.
 
 `PY sesion iniciar --modo fondo --tema <tema>`
 
-Abrí con el modelo mental del tema antes de cualquier ejercicio.
+Si terminó el contenido asignado, abrí pidiéndole que explique con sus palabras lo que leyó o vio.
+Leé antes las notas de esa semana en la página y arrancá por esas dudas.
+Corregí y completá lo flojo de su explicación con tus propias palabras y ejemplos, no con los del libro.
+Si no terminó el contenido, abrí con el modelo mental del tema antes de cualquier ejercicio.
 Mantené ese bloque por debajo de 15 minutos y cortalo con una pregunta.
 Seguí con un ejercicio largo del tema.
 Cerrá con la explicación con palabras propias y la generación de tarjetas.
+
+## Contenido asignado
+
+Todo tema tiene una lectura o un video asignado antes de su sesión de fondo.
+Asigná el contenido sin que lo pida, siguiendo el "Calendario de lectura" de `base/temario.md`.
+Usá el libro como guía de qué tema toca y hasta dónde, no como guion de la sesión.
+Sacá los ejercicios del temario y de LeetCode, no del libro.
+Tomá el domingo de cada semana como fecha meta, no como cita.
+Si llega el domingo sin el mínimo, decilo una vez y proponé correr el calendario.
+Escribí el contenido de la próxima en `--sigue`, con capítulos o video concretos.
 
 ## Enseñar, practicar, medir
 
@@ -117,7 +133,7 @@ línea dónde divergió, y seguí. La explicación va a una sesión de fondo.
 
 ## Generar tarjetas
 
-Pedile que explique el tema con sus palabras al terminar el bloque teórico, antes de generar nada.
+Pedile que explique el tema con sus palabras al terminar el bloque teórico, o al abrir si leyó el contenido asignado, antes de generar nada.
 Preguntá por lo que quedó flojo en esa explicación antes de pasar al ejercicio.
 Generá entre 4 y 8 tarjetas por tema nuevo, después del ejercicio.
 Escribí el JSON en el scratchpad y cargalo con `PY tarjetas agregar --archivo <ruta>`.
@@ -140,7 +156,11 @@ Cerrá toda sesión, incluidas las cortadas a la mitad.
 3. Actualizá la sección "Lo que voy aprendiendo" de `base/perfil.md` si algo de esta sesión
    cambia cómo conviene trabajar con él.
 4. Ajustá `base/temario.md` si el orden dejó de tener sentido, y anotalo en "Cambios al plan".
-5. Cerrá con:
+5. Después de un fondo sobre contenido asignado, escribí una línea de resultado en el campo
+   `evaluacion` del documento de esa semana en la colección `semanas` de la página.
+   Si el calendario se corre, actualizá también `domingo`, `minimo`, `meta` y `extra` ahí y en
+   `base/temario.md`.
+6. Cerrá con:
 
 ```bash
 PY sesion cerrar --bitacora bitacora/AAAA-MM-DD.md --sigue "<acción concreta para la próxima>"
@@ -200,4 +220,9 @@ kebab-case y pasala en `--error-clase`.
 - Antes de cambiar la metodología, la skill `teoria-del-aprendizaje` obliga a justificar el
   cambio contra la evidencia.
 - `bitacora/` — una entrada por día.
-- `fuentes/` — material descargado o aportado por el usuario.
+- `fuentes/` — material descargado o aportado por el usuario. Está en `.gitignore`; el repo es público.
+- Página de lectura — https://claude.ai/artifact/S1vNzWCQRubUU6ERtvDpuo. Colección `semanas`,
+  un documento por domingo con `minimo`, `meta`, `extra`, `hecho`, `notas` y `evaluacion`.
+  Él marca y anota; vos leés y escribís con `ArtifactData`.
+  El HTML de la página está en `tools/pagina-lectura.html`. Para cambiarla, editá ese archivo y
+  publicalo con `Artifact` pasando `url` de la página; los datos de `semanas` no se tocan.

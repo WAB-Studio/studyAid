@@ -1,0 +1,220 @@
+<title>Plan de lectura</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: una columna estrecha, la semana actual arriba como "tarea de la clase", el calendario debajo como lista. */
+:root {
+  --bg: #eef2f0;
+  --surface: #ffffff;
+  --ink: #16201c;
+  --muted: #5a6963;
+  --line: #d5ddd9;
+  --accent: #0f6e66;
+  --accent-soft: #d8ece9;
+  --warn: #9a5b00;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111715; --surface: #18211e; --ink: #e6eeeb; --muted: #94a59e;
+    --line: #2a3632; --accent: #4fc2b5; --accent-soft: #173a35; --warn: #e3a64a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111715; --surface: #18211e; --ink: #e6eeeb; --muted: #94a59e;
+  --line: #2a3632; --accent: #4fc2b5; --accent-soft: #173a35; --warn: #e3a64a;
+  color-scheme: dark;
+}
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.5; }
+.wrap { max-width: 38rem; margin: 0 auto; padding-inline: 16px; padding-block: 24px 48px; display: flex; flex-direction: column; gap: 28px; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+h1, h2 { font-family: var(--display); text-wrap: balance; margin: 0; }
+h2 { font-size: 18px; font-weight: 600; }
+
+.hoy { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+.hoy-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.cuenta { font-family: var(--mono); font-size: 13px; color: var(--accent); background: var(--accent-soft); padding: 2px 10px; border-radius: 999px; }
+.cuenta.urgente { color: var(--warn); background: transparent; border: 1px solid var(--warn); }
+.hoy h1 { font-size: clamp(30px, 8vw, 42px); font-weight: 800; line-height: 1.05; }
+.sub { color: var(--muted); margin: 0; }
+
+.checks { display: flex; flex-direction: column; gap: 2px; border-top: 1px solid var(--line); padding-top: 8px; }
+.check { display: flex; gap: 12px; align-items: flex-start; padding: 10px 4px; cursor: pointer; border-radius: 8px; }
+.check:hover { background: var(--accent-soft); }
+.check input { width: 22px; height: 22px; margin: 1px 0 0; accent-color: var(--accent); flex: none; }
+.check span { min-width: 0; }
+.check b { display: block; font-size: 13px; color: var(--muted); font-weight: 700; letter-spacing: .03em; text-transform: uppercase; }
+.check input:checked + span .q { text-decoration: line-through; color: var(--muted); }
+.check input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+label.notas-label { font-size: 14px; color: var(--muted); }
+textarea { width: 100%; box-sizing: border-box; min-height: 88px; resize: vertical; font: inherit; font-size: 15px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.guardado { font-size: 13px; color: var(--muted); min-height: 1.2em; }
+
+.cal { display: flex; flex-direction: column; gap: 10px; }
+.cal ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.cal li { display: grid; grid-template-columns: 4.6rem 1fr auto; gap: 12px; align-items: baseline; padding: 12px 2px; border-bottom: 1px solid var(--line); }
+.cal li.actual { background: var(--accent-soft); border-radius: 8px; padding-inline: 10px; border-bottom-color: transparent; }
+.fecha { font-family: var(--mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.que { min-width: 0; }
+.que .ex { font-size: 14px; color: var(--muted); }
+.que .eval { font-size: 14px; margin-top: 4px; }
+.chip { font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+.chip.ok { color: var(--accent); border-color: var(--accent); }
+.chip.falta { color: var(--warn); border-color: var(--warn); }
+
+.recursos { font-size: 14px; color: var(--muted); display: flex; flex-direction: column; gap: 6px; }
+.recursos a { color: var(--accent); }
+.vacio { color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .check { transition: background .15s; } }
+</style>
+
+<div class="wrap">
+  <section class="hoy" aria-live="polite">
+    <div class="hoy-top">
+      <span class="eyebrow" id="semana-label">Esta semana</span>
+      <span class="cuenta" id="cuenta">…</span>
+    </div>
+    <div>
+      <h1 id="minimo">Cargando tu plan…</h1>
+      <p class="sub" id="libro">The Algorithm Design Manual (3.ª ed.) · Skiena  ·  Algorithms · Erickson</p>
+    </div>
+    <div class="checks" id="checks" hidden>
+      <label class="check"><input type="checkbox" id="chk-minimo"><span><b>Mínimo</b><span class="q" id="txt-minimo"></span></span></label>
+      <label class="check"><input type="checkbox" id="chk-meta"><span><b>Meta</b><span class="q" id="txt-meta"></span></span></label>
+      <label class="check"><input type="checkbox" id="chk-extra"><span><b>Extra, opcional</b><span class="q" id="txt-extra"></span></span></label>
+    </div>
+    <div id="notas-box" hidden>
+      <label class="notas-label" for="notas">Dudas y notas para la sesión</label>
+      <textarea id="notas" placeholder="Lo que no te cerró, lo que quieres preguntar…"></textarea>
+      <div class="guardado" id="guardado"></div>
+    </div>
+  </section>
+
+  <section class="cal">
+    <h2>Calendario</h2>
+    <p class="sub">El domingo es la fecha meta. Cuando termines el mínimo, abre Claude y lo evaluamos ese mismo día.</p>
+    <ol id="lista"><li class="vacio" style="display:block">El calendario aparece aquí en cuanto carga.</li></ol>
+  </section>
+
+  <section class="recursos">
+    <span class="eyebrow">Recursos</span>
+    <span>Libro base: <a href="https://link.springer.com/book/10.1007/978-3-030-54256-6">Skiena, The Algorithm Design Manual, 3.ª ed.</a></span>
+    <span>Complemento gratis: <a href="https://jeffe.cs.illinois.edu/teaching/algorithms/">Erickson, Algorithms</a></span>
+    <span>Videos por patrón: <a href="https://neetcode.io/roadmap">NeetCode roadmap</a></span>
+    <span>System design: <i>Designing Data-Intensive Applications</i>, Kleppmann</span>
+  </section>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const MESES = ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
+let db = null, semanas = [], actualId = null;
+const colas = {};
+
+function hoyISO() {
+  const d = new Date();
+  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+}
+function diasHasta(iso) {
+  const [y,m,d] = iso.split("-").map(Number);
+  const t = new Date(); t.setHours(0,0,0,0);
+  return Math.round((new Date(y, m-1, d) - t) / 86400000);
+}
+function fechaCorta(iso) { const [,m,d] = iso.split("-").map(Number); return "dom " + d + " " + MESES[m-1]; }
+function esc(s) { return String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+// Una escritura a la vez por documento.
+function escribir(id, data) {
+  colas[id] = (colas[id] || Promise.resolve()).then(() => db.doc("semanas/" + id).update(data));
+  return colas[id];
+}
+
+function render() {
+  if (!semanas.length) {
+    $("minimo").textContent = "Todavía no hay semanas cargadas";
+    $("cuenta").textContent = "—";
+    return;
+  }
+  const hoy = hoyISO();
+  const actual = semanas.find(s => s.domingo >= hoy);
+  actualId = actual ? actual.id : null;
+
+  if (!actual) {
+    $("semana-label").textContent = "Calendario terminado";
+    $("minimo").textContent = "Libro terminado";
+    $("cuenta").textContent = "listo";
+    $("checks").hidden = true; $("notas-box").hidden = true;
+  } else {
+    const n = diasHasta(actual.domingo);
+    $("semana-label").textContent = "Semana " + actual.n + " de " + semanas.length;
+    const c = $("cuenta");
+    c.textContent = n === 0 ? "la meta es hoy" : n === 1 ? "la meta es mañana" : "faltan " + n + " días";
+    c.classList.toggle("urgente", n <= 1);
+    $("minimo").textContent = actual.minimo;
+    $("txt-minimo").textContent = actual.minimo;
+    $("txt-meta").textContent = actual.meta || "—";
+    $("txt-extra").textContent = actual.extra || "—";
+    const h = actual.hecho || {};
+    $("chk-minimo").checked = !!h.minimo;
+    $("chk-meta").checked = !!h.meta;
+    $("chk-extra").checked = !!h.extra;
+    if (document.activeElement !== $("notas")) $("notas").value = actual.notas || "";
+    $("checks").hidden = false; $("notas-box").hidden = false;
+  }
+
+  $("lista").innerHTML = semanas.map(s => {
+    const h = s.hecho || {};
+    const pasada = s.domingo < hoy;
+    let chip = '<span class="chip">pendiente</span>';
+    if (h.meta) chip = '<span class="chip ok">meta</span>';
+    else if (h.minimo) chip = '<span class="chip ok">mínimo</span>';
+    else if (pasada) chip = '<span class="chip falta">sin leer</span>';
+    else if (s.id === actualId) chip = '<span class="chip">esta semana</span>';
+    return '<li class="' + (s.id === actualId ? "actual" : "") + '">' +
+      '<span class="fecha">' + fechaCorta(s.domingo) + '</span>' +
+      '<div class="que"><div>' + esc(s.minimo) + (s.meta ? ' <span class="ex">· meta ' + esc(s.meta.replace(/^Hasta /i, "hasta ")) + '</span>' : '') + '</div>' +
+      (s.extra ? '<div class="ex">' + esc(s.extra) + '</div>' : '') +
+      (s.evaluacion ? '<div class="eval">Sesión: ' + esc(s.evaluacion) + '</div>' : '') +
+      '</div>' + chip + '</li>';
+  }).join("");
+}
+
+for (const k of ["minimo","meta","extra"]) {
+  $("chk-" + k).addEventListener("change", (e) => {
+    if (!db || !actualId) return;
+    escribir(actualId, { hecho: { [k]: e.target.checked } }).catch(() => { $("guardado").textContent = "No se pudo guardar. Prueba de nuevo."; });
+  });
+}
+
+let tNotas = null;
+$("notas").addEventListener("input", () => {
+  $("guardado").textContent = "…";
+  clearTimeout(tNotas);
+  tNotas = setTimeout(() => {
+    if (!db || !actualId) return;
+    const id = actualId, val = $("notas").value;
+    escribir(id, { notas: val })
+      .then(() => { $("guardado").textContent = "Guardado"; })
+      .catch(() => { $("guardado").textContent = "No se pudo guardar. Prueba de nuevo."; });
+  }, 900);
+});
+
+(async () => {
+  db = await window.claude?.use?.("db");
+  if (!db) {
+    $("minimo").textContent = "No se pudo cargar el plan";
+    $("cuenta").textContent = "—";
+    $("libro").textContent = "Abre esta página desde claude.ai con tu cuenta para ver y marcar tu avance.";
+    return;
+  }
+  db.collection("semanas").orderBy("domingo").onSnapshot(
+    (snap) => { semanas = snap.docs.map(d => ({ id: d.id, ...d.data() })); render(); },
+    () => { $("libro").textContent = "Se perdió la conexión con tu plan. Recarga la página."; }
+  );
+})();
+</script>
