@@ -103,29 +103,27 @@ el bloque 02; 5 trae búsqueda binaria; 6 repasa `hash-maps`.
 
 ## Ejercicios del libro
 
-Cada capítulo del mínimo trae ejercicios de final de capítulo: un **mínimo en papel** (se hace
-junto con la lectura) y un **ejercicio de código** en C++ que es el largo de la sesión de fondo.
-Se cargan semana a semana; en la página aparecen bajo la lectura. `[n]` es la dificultad de Skiena.
+Por capítulo: ejercicios de final de capítulo en papel, agrupados por técnica y de fácil a difícil.
+Técnica nueva: 3 o 4 ejercicios desde el más fácil, con el método escrito antes (sin problema
+resuelto). Técnica ya practicada: 1 o 2 de dificultad 5 o más. Más un ejercicio de código en C++,
+que es el largo de la sesión de fondo. `[n]` es la dificultad de Skiena. La lista vigente, con
+los métodos, está en la página de lectura.
 
 **Skiena 1** (semana del 11 oct)
-- Mínimo en papel: 1-5 [4] contraejemplos de los tres greedy de knapsack · 1-6 [5] contraejemplo
-  del greedy de set cover · 1-9 [3] corrección de Horner con invariante · 1-17 [3] inducción
-  Σ 1/(i(i+1)) = n/(n+1) · 1-19 [3] inducción: un árbol de n vértices tiene n−1 aristas ·
-  1-29 [4] estimación de 1.000 a 10.000 ítems con n² y n log n · 1-33 [5] 25 caballos
-- Código: 1-32 división entera sin `/` ni `*` → LeetCode 29 *Divide Two Integers*
-- Opcionales: 1-1 a 1-4, 1-7, 1-8, 1-10, 1-11, 1-12 a 1-16, 1-18, 1-20, 1-23, 1-28, resto de
-  estimación (1-21 a 1-27, 1-34 a 1-38), proyectos 1-30 (TSP) y 1-31 (Lotto)
+- Contraejemplos: 1-1, 1-2, 1-5, 1-6
+- Inducción: 1-12, 1-17, 1-19
+- Invariante de ciclo: 1-9 (reconstruir la prueba ya vista), 1-10, 1-11
+- Estimación: 1-23, 1-28, 1-29
+- Entrevista: 1-33
+- Código: LeetCode 29 *Divide Two Integers* (1-32 del libro)
 - LeetCode del libro a otros temas: 739 *Daily Temperatures* → `stacks-queues` · 61 *Rotate
   List* → `linked-lists` · 324 *Wiggle Sort II* → después de `heaps`
 
 **Skiena 2** (semana del 18 oct)
-- Mínimo en papel: 2-1 y 2-2 [3] valor devuelto y Big-O de loops anidados · 2-10 [3] O entre
-  pares de funciones · 2-16 [3] mayor n que corre en una hora a 10¹⁰ op/s · 2-23 [5] ordenar
-  funciones por orden de crecimiento · 2-39 [5] el entero faltante en O(n) sin espacio extra ·
-  2-46 [3] bits de n · 2-52 [5] ocho bolas, dos pesadas
-- Código: LeetCode 18 *4Sum* (`two-pointers`, del libro)
-- Opcionales: 2-3, 2-5 a 2-9, 2-11 a 2-15, 2-17 a 2-23, 2-26 a 2-36, 2-37, 2-38, 2-40, 2-41,
-  2-44, 2-45, 2-47 a 2-53; LeetCode 338 *Counting Bits*
+- Análisis de loops: 2-3 · Big-O: 2-23, 2-28 · Estimación: 2-16
+- Sumatorias: 2-38, 2-37, 2-40 · Logaritmos: 2-45, 2-46, 2-44
+- Entrevista: 2-39, 2-52
+- Código: LeetCode 18 *4Sum* (`two-pointers`)
 - LeetCode del libro a otros temas: 402 *Remove K Digits* → `stacks-queues` (pila monótona)
 
 ## Cambios al plan
@@ -193,3 +191,10 @@ Se cargan semana a semana; en la página aparecen bajo la lectura. `[n]` es la d
   entrevista pide; la estimación ataca la debilidad medida en A1 (restricciones → complejidad).
   Se agrega un quiz corto en la sesión de fondo, después de la explicación libre. Los LeetCode
   del libro se respetan pero van al tema que les corresponde, por la rampa de C++.
+- 2026-10-11: curva de dificultad por técnica y método antes de practicar. La 1-9 (inducción
+  sobre Horner) le llevó hora y media de pistas sin haber visto nunca una prueba por inducción.
+  Los fracasos tempranos y repetidos bajan la autoeficacia y la persistencia (Bandura), y estudia
+  por gusto. Técnica nueva: método general explicado antes, ejercicios fáciles y varios; técnica
+  conocida: pocos y difíciles. Sin problema resuelto a la vista: un solo ejemplo parecido invita a
+  copiar la superficie en vez de abstraer el método (Gick y Holyoak 1983). Si se traba, se completa
+  la pieza del método que falta, y se ofrecen dos ejemplos distintos para comparar solo si los pide.

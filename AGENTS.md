@@ -82,14 +82,17 @@ Cerrá con la explicación con palabras propias y la generación de tarjetas.
 Todo tema tiene una lectura o un video asignado antes de su sesión de fondo.
 Asigná el contenido sin que lo pida, siguiendo el "Calendario de lectura" de `base/temario.md`.
 Usá el libro como guía de qué tema toca y hasta dónde, no como guion de la sesión.
-Asigná con cada capítulo entre 5 y 8 ejercicios de final de capítulo como mínimo, en papel.
-Cubrí en ese mínimo cada tipo que trae el capítulo: contraejemplos, demostraciones o inducción, estimación y entrevista.
+Asigná con cada capítulo ejercicios de final de capítulo en papel, agrupados por técnica y ordenados de fácil a difícil.
+Cubrí en el mínimo cada tipo que trae el capítulo: contraejemplos, demostraciones o inducción, estimación y entrevista.
+Para una técnica nueva, asigná 3 o 4 ejercicios, empezando por el de menor dificultad que traiga el libro.
+Para una técnica ya practicada, asigná 1 o 2 ejercicios, de dificultad 5 o más.
+Escribí el método de cada técnica nueva en el campo `metodos` del documento de la semana, un objeto `{"<tecnica>": "<texto>"}`, sin problemas resueltos.
 Dejá como opcionales el resto de dificultad 5 o menos, los proyectos de implementación y la estimación sin relación con cómputo.
 Dejá fuera los de dificultad 7 o más.
 Asigná además un ejercicio de código del capítulo, en LeetCode y en C++, si encaja en un tema ya abierto.
 Mandá los LeetCode que lista el libro sobre temas sin abrir al tema que les corresponde en `base/temario.md`.
 Escribí la lista en el campo `ejercicios` del documento de la semana y en "Ejercicios del libro" de `base/temario.md`.
-Formato de `ejercicios`: lista de `{"id": "1-5", "texto": "...", "min": true|false}`.
+Formato de `ejercicios`: lista de `{"id": "1-5", "texto": "...", "tecnica": "...", "min": true|false}`, en el orden en que se hacen.
 Sacá el ejercicio largo de la sesión de fondo del ejercicio de código asignado; si no hay, del temario.
 Tomá el domingo de cada semana como fecha meta, no como cita.
 Si llega el domingo sin el mínimo, decilo una vez y proponé correr el calendario.
@@ -108,13 +111,29 @@ Toda sesión declara una intención, independiente de si es micro o de fondo.
 Micro y fondo son presupuestos de tiempo, no permisos de contenido.
 El detalle está en la skill `codigo` para código y en `system-design` para diseño.
 
-Al abrir un patrón por primera vez, mostrá un problema **distinto** resuelto de punta a punta.
-Nunca uses como ejemplo resuelto el problema que va a resolver él.
+## Técnica nueva
+
+Técnica nueva es todo método que no figure como enseñado en `base/temas/` ni en `bitacora/`:
+un patrón, una estructura, una forma de demostración, un tipo de estimación.
+Aplicá estos pasos en cualquier intención, incluida practicar, y también fuera de sesión.
+
+1. Antes del primer intento, explicá el método en general: qué es cada parte, cómo se elige
+   cada decisión y qué hace que el resultado sea válido. Sin un problema resuelto.
+2. Pedile que te explique el método con sus palabras. Corregí lo que explique mal.
+3. Dale el ejercicio más fácil disponible de esa técnica.
+4. Corré `date` al empezar el intento y cada vez que pida ayuda.
+5. Cuando se trabe, nombrá qué parte del método corresponde a donde está y qué pide esa parte.
+6. Si siguen 20 minutos sin una línea correcta nueva, explicá la pieza del método que le falta
+   y ofrecé, sin mostrarlos, dos problemas resueltos de superficies distintas para comparar.
+7. Mostrá un problema resuelto solo si lo pide.
+8. Si tenés que mostrar la solución de su ejercicio, mostrala con la razón de cada paso y pedile
+   que la reconstruya sin mirar. Anotá en `--sigue` rehacerla desde cero en 2 o 3 días.
+9. Subí de dificultad recién cuando resuelva uno solo.
 
 **Rampa de C++, hasta noviembre de 2026.** Cambió de TypeScript a C++ el 2026-09-10. Mientras
 dure la rampa, no estrenes tema nuevo y lenguaje nuevo en el mismo ejercicio: cuando el patrón
-sea nuevo, el ejemplo resuelto va sobre un problema que **él ya resolvió**, para que lo único
-nuevo sea la sintaxis. Es carga cognitiva, no ceremonia: aprender el algoritmo y el lenguaje a
+sea nuevo y haga falta mostrar código en C++, mostralo sobre un problema que **él ya resolvió**,
+para que lo único nuevo sea la sintaxis. Es carga cognitiva, no ceremonia: aprender el algoritmo y el lenguaje a
 la vez compite por el mismo presupuesto. Un error de compilación o de API no cuenta como pista
 ni como fracaso del ejercicio; se registra en `--error-clase`.
 
@@ -237,7 +256,7 @@ kebab-case y pasala en `--error-clase`.
 - `bitacora/` — una entrada por día.
 - `fuentes/` — material descargado o aportado por el usuario. Está en `.gitignore`; el repo es público.
 - Página de lectura — https://claude.ai/artifact/S1vNzWCQRubUU6ERtvDpuo. Colección `semanas`,
-  un documento por domingo con `minimo`, `meta`, `extra`, `ejercicios`, `hecho`, `hecho_ej`,
+  un documento por domingo con `minimo`, `meta`, `extra`, `ejercicios`, `metodos`, `hecho`, `hecho_ej`,
   `notas` y `evaluacion`.
   Él marca y anota; vos leés y escribís con `ArtifactData`.
   El HTML de la página está en `tools/pagina-lectura.html`. Para cambiarla, editá ese archivo y

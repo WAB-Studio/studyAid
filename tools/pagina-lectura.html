@@ -56,6 +56,10 @@ h2 { font-size: 18px; font-weight: 600; }
 .ejs .id { font-family: var(--mono); font-size: 13px; color: var(--muted); margin-right: 6px; }
 .ejs details { margin-top: 6px; }
 .ejs summary { cursor: pointer; font-size: 14px; color: var(--muted); padding: 6px 4px; }
+.tecnica { font-size: 13px; font-weight: 700; color: var(--muted); letter-spacing: .03em; text-transform: uppercase; margin-top: 12px; padding-inline: 4px; }
+.metodo { margin: 4px 0 2px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); }
+.metodo summary { color: var(--accent); }
+.metodo div { white-space: pre-wrap; font-size: 15px; padding: 4px 12px 12px; }
 .cuenta-ej { font-family: var(--mono); font-size: 13px; color: var(--muted); }
 label.notas-label { font-size: 14px; color: var(--muted); }
 textarea { width: 100%; box-sizing: border-box; min-height: 88px; resize: vertical; font: inherit; font-size: 15px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
@@ -156,7 +160,19 @@ function renderEjs(s) {
   if (!ejs.length) return;
   const h = s.hecho_ej || {};
   const min = ejs.filter(e => e.min), opt = ejs.filter(e => !e.min);
-  $("ejs-min").innerHTML = min.map(e => itemEj(e, h)).join("");
+  const metodos = s.metodos || {};
+  const grupos = [];
+  for (const e of min) {
+    const t = e.tecnica || "";
+    let g = grupos.find(g => g.t === t);
+    if (!g) grupos.push(g = { t, items: [] });
+    g.items.push(e);
+  }
+  $("ejs-min").innerHTML = grupos.map(g =>
+    (g.t ? '<div class="tecnica">' + esc(g.t) + '</div>' : '') +
+    (metodos[g.t] ? '<details class="metodo"><summary>Cómo se hace</summary><div>' + esc(metodos[g.t]) + '</div></details>' : '') +
+    g.items.map(e => itemEj(e, h)).join("")
+  ).join("");
   $("ejs-opt").innerHTML = opt.map(e => itemEj(e, h)).join("");
   $("ejs-opt-box").hidden = !opt.length;
   $("cuenta-ej").textContent = min.filter(e => h[e.id]).length + " de " + min.length;
