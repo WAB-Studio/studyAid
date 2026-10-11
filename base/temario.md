@@ -98,9 +98,35 @@ explicaciones propias, y sigue el ejercicio del temario. El libro marca el tema,
 
 Skiena es la 3.ª ed. (2020); la numeración es de esa edición. Se lee solo la parte I (caps
 1–13, págs. 1–436). La parte II es un catálogo de consulta y no se asigna. Los caps 11–12
-(NP-completitud) y 13 quedan fuera del calendario. Ejercicios del final de capítulo: no; los
-ejercicios salen de LeetCode. Skiena 1–2 consolidan `complejidad`; 3 abre el bloque 02; 5 trae
-búsqueda binaria; 6 repasa `hash-maps`.
+(NP-completitud) y 13 quedan fuera del calendario. Skiena 1–2 consolidan `complejidad`; 3 abre
+el bloque 02; 5 trae búsqueda binaria; 6 repasa `hash-maps`.
+
+## Ejercicios del libro
+
+Cada capítulo del mínimo trae ejercicios de final de capítulo: un **mínimo en papel** (se hace
+junto con la lectura) y un **ejercicio de código** en C++ que es el largo de la sesión de fondo.
+Se cargan semana a semana; en la página aparecen bajo la lectura. `[n]` es la dificultad de Skiena.
+
+**Skiena 1** (semana del 11 oct)
+- Mínimo en papel: 1-5 [4] contraejemplos de los tres greedy de knapsack · 1-6 [5] contraejemplo
+  del greedy de set cover · 1-9 [3] corrección de Horner con invariante · 1-17 [3] inducción
+  Σ 1/(i(i+1)) = n/(n+1) · 1-19 [3] inducción: un árbol de n vértices tiene n−1 aristas ·
+  1-29 [4] estimación de 1.000 a 10.000 ítems con n² y n log n · 1-33 [5] 25 caballos
+- Código: 1-32 división entera sin `/` ni `*` → LeetCode 29 *Divide Two Integers*
+- Opcionales: 1-1 a 1-4, 1-7, 1-8, 1-10, 1-11, 1-12 a 1-16, 1-18, 1-20, 1-23, 1-28, resto de
+  estimación (1-21 a 1-27, 1-34 a 1-38), proyectos 1-30 (TSP) y 1-31 (Lotto)
+- LeetCode del libro a otros temas: 739 *Daily Temperatures* → `stacks-queues` · 61 *Rotate
+  List* → `linked-lists` · 324 *Wiggle Sort II* → después de `heaps`
+
+**Skiena 2** (semana del 18 oct)
+- Mínimo en papel: 2-1 y 2-2 [3] valor devuelto y Big-O de loops anidados · 2-10 [3] O entre
+  pares de funciones · 2-16 [3] mayor n que corre en una hora a 10¹⁰ op/s · 2-23 [5] ordenar
+  funciones por orden de crecimiento · 2-39 [5] el entero faltante en O(n) sin espacio extra ·
+  2-46 [3] bits de n · 2-52 [5] ocho bolas, dos pesadas
+- Código: LeetCode 18 *4Sum* (`two-pointers`, del libro)
+- Opcionales: 2-3, 2-5 a 2-9, 2-11 a 2-15, 2-17 a 2-23, 2-26 a 2-36, 2-37, 2-38, 2-40, 2-41,
+  2-44, 2-45, 2-47 a 2-53; LeetCode 338 *Counting Bits*
+- LeetCode del libro a otros temas: 402 *Remove K Digits* → `stacks-queues` (pila monótona)
 
 ## Cambios al plan
 
@@ -160,3 +186,10 @@ búsqueda binaria; 6 repasa `hash-maps`.
   externos y parejos (Ariely y Wertenbroch, 2002), metas en rango mínimo–meta (Scott y Nowlis,
   2013) y recuperación después de leer (Roediger y Karpicke, 2006). El orden de bloques sigue
   siendo el mapa; el calendario manda en el ritmo.
+- 2026-10-11: vuelven los ejercicios de final de capítulo de Skiena, que el plan del 10-06 había
+  sacado. Leer sin recuperar deja ilusión de dominio; el efecto de testeo y la práctica de
+  generación son de lo más robusto que hay (Roediger y Karpicke 2006; Dunlosky et al. 2013).
+  Contraejemplos de greedy, invariantes e inducción entrenan justificar corrección, que una
+  entrevista pide; la estimación ataca la debilidad medida en A1 (restricciones → complejidad).
+  Se agrega un quiz corto en la sesión de fondo, después de la explicación libre. Los LeetCode
+  del libro se respetan pero van al tema que les corresponde, por la rampa de C++.

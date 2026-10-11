@@ -13,7 +13,8 @@ description: Asignar lectura o video a cada tema antes de su sesión de fondo, d
 - Escribí capítulos o videos concretos, con mínimo y meta. Nunca "leé sobre X".
 - Cuando el calendario se corra, actualizá `base/temario.md` y la colección `semanas` de la página
   de lectura (URL en `AGENTS.md`).
-- Usá el libro como guía de temas. No repitas sus explicaciones ni uses sus ejercicios en sesión.
+- Usá el libro como guía de temas. No repitas sus explicaciones en sesión.
+- Asigná los ejercicios de final de capítulo según "Contenido asignado" en `AGENTS.md`.
 - Elegí libros densos y rigurosos: alta proporción de ideas por página, con formalismo y
   demostraciones cuando aportan. Descartá libros tipo "for dummies" que dedican páginas a explicar
   una sola frase.

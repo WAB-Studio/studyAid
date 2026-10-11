@@ -65,6 +65,13 @@ Escribí la bitácora aunque la sesión haya durado cuatro minutos.
 Si terminó el contenido asignado, abrí pidiéndole que explique con sus palabras lo que leyó o vio.
 Leé antes las notas de esa semana en la página y arrancá por esas dudas.
 Corregí y completá lo flojo de su explicación con tus propias palabras y ejemplos, no con los del libro.
+Seguí con un quiz de 6 a 10 preguntas cortas del capítulo, sacadas del `.txt` del libro en `fuentes/`.
+Priorizá en el quiz lo que no apareció en su explicación.
+Mezclá en el quiz definiciones, cálculos chicos y problemas de una línea; una pregunta por vez.
+Ante un error del quiz, mostrá la respuesta, nombrá en una línea dónde divergió y seguí.
+Pasá cada pregunta fallada del quiz a candidata de tarjeta.
+Después pedile el razonamiento de dos o tres ejercicios del libro que hizo y corregilo.
+Si no hizo los ejercicios del libro, resolvé dos del mínimo en la sesión, en intención practicar.
 Si no terminó el contenido, abrí con el modelo mental del tema antes de cualquier ejercicio.
 Mantené ese bloque por debajo de 15 minutos y cortalo con una pregunta.
 Seguí con un ejercicio largo del tema.
@@ -75,7 +82,15 @@ Cerrá con la explicación con palabras propias y la generación de tarjetas.
 Todo tema tiene una lectura o un video asignado antes de su sesión de fondo.
 Asigná el contenido sin que lo pida, siguiendo el "Calendario de lectura" de `base/temario.md`.
 Usá el libro como guía de qué tema toca y hasta dónde, no como guion de la sesión.
-Sacá los ejercicios del temario y de LeetCode, no del libro.
+Asigná con cada capítulo entre 5 y 8 ejercicios de final de capítulo como mínimo, en papel.
+Cubrí en ese mínimo cada tipo que trae el capítulo: contraejemplos, demostraciones o inducción, estimación y entrevista.
+Dejá como opcionales el resto de dificultad 5 o menos, los proyectos de implementación y la estimación sin relación con cómputo.
+Dejá fuera los de dificultad 7 o más.
+Asigná además un ejercicio de código del capítulo, en LeetCode y en C++, si encaja en un tema ya abierto.
+Mandá los LeetCode que lista el libro sobre temas sin abrir al tema que les corresponde en `base/temario.md`.
+Escribí la lista en el campo `ejercicios` del documento de la semana y en "Ejercicios del libro" de `base/temario.md`.
+Formato de `ejercicios`: lista de `{"id": "1-5", "texto": "...", "min": true|false}`.
+Sacá el ejercicio largo de la sesión de fondo del ejercicio de código asignado; si no hay, del temario.
 Tomá el domingo de cada semana como fecha meta, no como cita.
 Si llega el domingo sin el mínimo, decilo una vez y proponé correr el calendario.
 Escribí el contenido de la próxima en `--sigue`, con capítulos o video concretos.
@@ -222,7 +237,8 @@ kebab-case y pasala en `--error-clase`.
 - `bitacora/` — una entrada por día.
 - `fuentes/` — material descargado o aportado por el usuario. Está en `.gitignore`; el repo es público.
 - Página de lectura — https://claude.ai/artifact/S1vNzWCQRubUU6ERtvDpuo. Colección `semanas`,
-  un documento por domingo con `minimo`, `meta`, `extra`, `hecho`, `notas` y `evaluacion`.
+  un documento por domingo con `minimo`, `meta`, `extra`, `ejercicios`, `hecho`, `hecho_ej`,
+  `notas` y `evaluacion`.
   Él marca y anota; vos leés y escribís con `ArtifactData`.
   El HTML de la página está en `tools/pagina-lectura.html`. Para cambiarla, editá ese archivo y
   publicalo con `Artifact` pasando `url` de la página; los datos de `semanas` no se tocan.

@@ -50,6 +50,13 @@ h2 { font-size: 18px; font-weight: 600; }
 .check input:checked + span .q { text-decoration: line-through; color: var(--muted); }
 .check input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
+.ejs { display: flex; flex-direction: column; gap: 2px; border-top: 1px solid var(--line); padding-top: 12px; }
+.ejs-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.ejs .check { padding-block: 6px; }
+.ejs .id { font-family: var(--mono); font-size: 13px; color: var(--muted); margin-right: 6px; }
+.ejs details { margin-top: 6px; }
+.ejs summary { cursor: pointer; font-size: 14px; color: var(--muted); padding: 6px 4px; }
+.cuenta-ej { font-family: var(--mono); font-size: 13px; color: var(--muted); }
 label.notas-label { font-size: 14px; color: var(--muted); }
 textarea { width: 100%; box-sizing: border-box; min-height: 88px; resize: vertical; font: inherit; font-size: 15px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
 textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
@@ -87,6 +94,11 @@ textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; 
       <label class="check"><input type="checkbox" id="chk-minimo"><span><b>Mínimo</b><span class="q" id="txt-minimo"></span></span></label>
       <label class="check"><input type="checkbox" id="chk-meta"><span><b>Meta</b><span class="q" id="txt-meta"></span></span></label>
       <label class="check"><input type="checkbox" id="chk-extra"><span><b>Extra, opcional</b><span class="q" id="txt-extra"></span></span></label>
+    </div>
+    <div class="ejs" id="ejs-box" hidden>
+      <div class="ejs-top"><h2>Ejercicios del libro</h2><span class="cuenta-ej" id="cuenta-ej"></span></div>
+      <div id="ejs-min"></div>
+      <details id="ejs-opt-box"><summary>Opcionales</summary><div id="ejs-opt"></div></details>
     </div>
     <div id="notas-box" hidden>
       <label class="notas-label" for="notas">Dudas y notas para la sesión</label>
@@ -134,6 +146,28 @@ function escribir(id, data) {
   return colas[id];
 }
 
+function itemEj(e, hecho) {
+  return '<label class="check"><input type="checkbox" data-ej="' + esc(e.id) + '"' + (hecho[e.id] ? " checked" : "") + '>' +
+    '<span><span class="q"><span class="id">' + esc(e.id) + '</span>' + esc(e.texto) + '</span></span></label>';
+}
+function renderEjs(s) {
+  const ejs = s.ejercicios || [];
+  $("ejs-box").hidden = !ejs.length;
+  if (!ejs.length) return;
+  const h = s.hecho_ej || {};
+  const min = ejs.filter(e => e.min), opt = ejs.filter(e => !e.min);
+  $("ejs-min").innerHTML = min.map(e => itemEj(e, h)).join("");
+  $("ejs-opt").innerHTML = opt.map(e => itemEj(e, h)).join("");
+  $("ejs-opt-box").hidden = !opt.length;
+  $("cuenta-ej").textContent = min.filter(e => h[e.id]).length + " de " + min.length;
+}
+function contarEjs(s) {
+  const min = (s.ejercicios || []).filter(e => e.min);
+  if (!min.length) return "";
+  const h = s.hecho_ej || {};
+  return ' <span class="ex">· ejercicios ' + min.filter(e => h[e.id]).length + '/' + min.length + '</span>';
+}
+
 function render() {
   if (!semanas.length) {
     $("minimo").textContent = "Todavía no hay semanas cargadas";
@@ -148,7 +182,7 @@ function render() {
     $("semana-label").textContent = "Calendario terminado";
     $("minimo").textContent = "Libro terminado";
     $("cuenta").textContent = "listo";
-    $("checks").hidden = true; $("notas-box").hidden = true;
+    $("checks").hidden = true; $("notas-box").hidden = true; $("ejs-box").hidden = true;
   } else {
     const n = diasHasta(actual.domingo);
     $("semana-label").textContent = "Semana " + actual.n + " de " + semanas.length;
@@ -163,6 +197,7 @@ function render() {
     $("chk-minimo").checked = !!h.minimo;
     $("chk-meta").checked = !!h.meta;
     $("chk-extra").checked = !!h.extra;
+    renderEjs(actual);
     if (document.activeElement !== $("notas")) $("notas").value = actual.notas || "";
     $("checks").hidden = false; $("notas-box").hidden = false;
   }
@@ -177,7 +212,7 @@ function render() {
     else if (s.id === actualId) chip = '<span class="chip">esta semana</span>';
     return '<li class="' + (s.id === actualId ? "actual" : "") + '">' +
       '<span class="fecha">' + fechaCorta(s.domingo) + '</span>' +
-      '<div class="que"><div>' + esc(s.minimo) + (s.meta ? ' <span class="ex">· meta ' + esc(s.meta.replace(/^Hasta /i, "hasta ")) + '</span>' : '') + '</div>' +
+      '<div class="que"><div>' + esc(s.minimo) + (s.meta ? ' <span class="ex">· meta ' + esc(s.meta.replace(/^Hasta /i, "hasta ")) + '</span>' : '') + contarEjs(s) + '</div>' +
       (s.extra ? '<div class="ex">' + esc(s.extra) + '</div>' : '') +
       (s.evaluacion ? '<div class="eval">Sesión: ' + esc(s.evaluacion) + '</div>' : '') +
       '</div>' + chip + '</li>';
@@ -190,6 +225,12 @@ for (const k of ["minimo","meta","extra"]) {
     escribir(actualId, { hecho: { [k]: e.target.checked } }).catch(() => { $("guardado").textContent = "No se pudo guardar. Prueba de nuevo."; });
   });
 }
+
+$("ejs-box").addEventListener("change", (e) => {
+  const id = e.target.dataset?.ej;
+  if (!id || !db || !actualId) return;
+  escribir(actualId, { hecho_ej: { [id]: e.target.checked } }).catch(() => { $("guardado").textContent = "No se pudo guardar. Prueba de nuevo."; });
+});
 
 let tNotas = null;
 $("notas").addEventListener("input", () => {
