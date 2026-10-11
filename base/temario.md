@@ -121,7 +121,7 @@ los métodos, está en la página de lectura.
 
 **Skiena 2** (semana del 18 oct)
 - Análisis de loops: 2-3 · Big-O: 2-23, 2-28 · Estimación: 2-16
-- Sumatorias: 2-38, 2-37, 2-40 · Logaritmos: 2-45, 2-46, 2-44
+- Sumatorias: 2-38 · Logaritmos: 2-45, 2-46 · opcionales: 2-37, 2-40, 2-44
 - Entrevista: 2-39, 2-52
 - Código: LeetCode 18 *4Sum* (`two-pointers`)
 - LeetCode del libro a otros temas: 402 *Remove K Digits* → `stacks-queues` (pila monótona)
@@ -198,3 +198,13 @@ los métodos, está en la página de lectura.
   conocida: pocos y difíciles. Sin problema resuelto a la vista: un solo ejemplo parecido invita a
   copiar la superficie en vez de abstraer el método (Gick y Holyoak 1983). Si se traba, se completa
   la pieza del método que falta, y se ofrecen dos ejemplos distintos para comparar solo si los pide.
+- 2026-10-11: sin racha ni minutos, tarjetas acotadas. Con el plan semanal, la racha diaria se
+  cortaba por diseño, y cortar una racha baja el compromiso después (Silverman y Barasch 2023);
+  el feedback que se siente como control baja la motivación intrínseca (Deci, Koestner y Ryan
+  1999). Los minutos no contaban la lectura. El avance se mide con lo marcado en la página. Las
+  tarjetas se mantienen porque el repaso espaciado tiene evidencia fuerte (Dunlosky y otros 2013;
+  Cepeda y otros 2006), pero solo de lo fallado, máximo 3 por capítulo y 10 repasos por sesión: la
+  regla de 4 a 8 por tema había generado 40 tarjetas en 4 temas.
+- 2026-10-11: semana 2 sin los [5] de técnicas nuevas en el mínimo (2-37, 2-40, 2-44 pasan a
+  opcionales); los ejercicios no hechos de la semana 1 pasan a opcionales. Cerró la semana 1 con
+  una seguidilla de fallos y sin ganas de seguir; lo mismo de Bandura de arriba.

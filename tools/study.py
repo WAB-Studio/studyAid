@@ -426,7 +426,7 @@ def cmd_retiradas(args) -> None:
 # ----------------------------------------------------------------- agregado
 
 def cerradas() -> list:
-    """Todas las sesiones cerradas cuentan para tiempo y racha.
+    """Todas las sesiones cerradas cuentan en las metricas.
 
     Falta de bitacora es metadata incompleta, no una sesion inexistente:
     borrarla sesgaba la adherencia y hacia que inventar una bitacora de
@@ -437,29 +437,6 @@ def cerradas() -> list:
 
 def incompletas() -> list:
     return [s for s in sessions() if s.get("estado") != "completa"]
-
-
-def racha() -> int:
-    dias = {parse_dt(s["iniciada"]).date() for s in cerradas()}
-    if not dias:
-        return 0
-    cursor = today()
-    if cursor not in dias:
-        cursor -= timedelta(days=1)
-        if cursor not in dias:
-            return 0
-    n = 0
-    while cursor in dias:
-        n += 1
-        cursor -= timedelta(days=1)
-    return n
-
-
-def minutos_por_dia() -> dict:
-    acc = defaultdict(int)
-    for s in cerradas():
-        acc[parse_dt(s["iniciada"]).date()] += efectivos(s)
-    return acc
 
 
 def ultimo_contacto() -> dict:
@@ -552,11 +529,9 @@ def cmd_estado(args) -> None:
         print("\nTemas con actividad: ninguno todavia.")
     print("Lee base/temario.md para saber que sigue sin tocar.")
 
-    mpd = minutos_por_dia()
     y, w, _ = today().isocalendar()
     sem = [s for s in cerradas() if parse_dt(s["iniciada"]).date().isocalendar()[:2] == (y, w)]
-    print(f"\nRacha: {racha()} dia(s). Hoy: {mpd.get(today(), 0)} min. "
-          f"Esta semana: {sum(efectivos(s) for s in sem)} min en {len(sem)} sesiones.")
+    print(f"\nSesiones esta semana: {len(sem)}.")
 
     ss = cerradas()
     if ss:
@@ -583,34 +558,11 @@ def cmd_metricas(args) -> None:
             print(f"Hay {len(sin_bitacora)} sesion(es) sin bitacora.")
         return
 
-    mpd = minutos_por_dia()
-    total = sum(mpd.values())
-    print(f"\nRacha actual: {racha()} dia(s) seguidos")
-    print(f"Total: {total} min en {len(ss)} sesiones ({round(total / len(ss))} min promedio)")
-
-    print("\nUltimos 14 dias:")
-    for i in range(13, -1, -1):
-        d = today() - timedelta(days=i)
-        m = mpd.get(d, 0)
-        print(f"  {d.isoformat()} {m:>4} min {'#' * min(30, m // 5)}"
-              f"{'  <- hoy' if i == 0 else ''}")
-
-    semanas, sesiones_semana = defaultdict(int), defaultdict(int)
+    por_modo = defaultdict(int)
     for s in ss:
-        y, w, _ = parse_dt(s["iniciada"]).date().isocalendar()
-        semanas[(y, w)] += efectivos(s)
-        sesiones_semana[(y, w)] += 1
-    print("\nPor semana (ultimas 8):")
-    for k in sorted(semanas)[-8:]:
-        print(f"  {k[0]}-S{k[1]:02d}  {semanas[k]:>4} min  {sesiones_semana[k]} sesiones")
-
-    por_modo = defaultdict(lambda: [0, 0])
-    for s in ss:
-        por_modo[s["modo"]][0] += 1
-        por_modo[s["modo"]][1] += efectivos(s)
-    print("\nPor modo:")
-    for modo, (n, m) in sorted(por_modo.items()):
-        print(f"  {modo:<7} {n} sesiones, {m} min")
+        por_modo[s["modo"]] += 1
+    print(f"\nSesiones: {len(ss)} ("
+          + ", ".join(f"{m} {n}" for m, n in sorted(por_modo.items())) + ")")
 
     ejercicios = [e for s in ss for e in s.get("ejercicios", [])]
     if ejercicios:
@@ -718,8 +670,8 @@ def cmd_metricas(args) -> None:
 
     print("\nCompara esto contra base/temario.md para juzgar cobertura.")
     if sin_bitacora:
-        print(f"\n{len(sin_bitacora)} de {len(ss)} sesion(es) sin bitacora. Cuentan para tiempo y "
-              "racha; lo que falta es el registro cualitativo de que paso.")
+        print(f"\n{len(sin_bitacora)} de {len(ss)} sesion(es) sin bitacora. Cuentan como "
+              "sesiones; lo que falta es el registro cualitativo de que paso.")
 
 
 def build_parser() -> argparse.ArgumentParser:

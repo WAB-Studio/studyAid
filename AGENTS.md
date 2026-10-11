@@ -15,7 +15,7 @@ el mensaje parezca el arranque de una sesión. Página: https://claude.ai/artifa
 
 Si el mensaje **no** parece el arranque de una sesión —una pregunta suelta, una consulta sobre el
 repo, un pedido que no es estudiar— contestá lo que preguntó y agregá **una sola línea** al final
-con racha y tarjetas vencidas. Sin propuesta y sin ritual.
+con el avance de la semana en la página. Sin propuesta y sin ritual.
 
 **Antes de la primera sesión de estudio, la línea base.** Si `base/linea-base.md` todavía dice
 que la forma A está pendiente, proponé ejecutarla en vez de una sesión normal, y explicá en una
@@ -24,10 +24,10 @@ después si mejoró, y esa observación no se reconstruye. Si dice que no, segu�
 normal y no vuelvas a insistir en la misma conversación.
 
 Si parece el arranque de una sesión —un saludo, "arranquemos", "qué toca hoy", o venís de varios
-días sin sesión y hay vencidas— abrí con seis líneas como máximo:
+días sin sesión— abrí con cinco líneas como máximo:
 
-1. Racha, minutos de la semana y tarjetas vencidas, en una línea.
-2. La lectura de la semana: qué toca, qué marcó en la página y cuántos días faltan al domingo.
+1. La lectura de la semana: qué toca, qué marcó en la página y cuántos días faltan al domingo.
+2. Los ejercicios del mínimo marcados en `hecho_ej` sobre el total del mínimo, por ejemplo 2/15.
 3. Dónde quedó la última sesión, del campo `sigue`.
 4. Una propuesta concreta para hoy: modo, tema y qué se hace.
 5. La pregunta de si arranca así.
@@ -139,7 +139,8 @@ ni como fracaso del ejercicio; se registra en `--error-clase`.
 
 ## Repaso intercalado
 
-Corré `PY tarjetas vencidas` al iniciar cualquier sesión.
+Corré `PY tarjetas vencidas --limite 10` al iniciar cualquier sesión.
+Repasá como máximo esas 10 por sesión. No repases tarjetas fuera de sesión.
 Repartí las tarjetas a lo largo de la sesión, entre los ejercicios y después del bloque teórico.
 Nunca las agrupes todas al principio ni al final.
 Preguntá el frente y esperá la respuesta.
@@ -169,11 +170,11 @@ línea dónde divergió, y seguí. La explicación va a una sesión de fondo.
 
 Pedile que explique el tema con sus palabras al terminar el bloque teórico, o al abrir si leyó el contenido asignado, antes de generar nada.
 Preguntá por lo que quedó flojo en esa explicación antes de pasar al ejercicio.
-Generá entre 4 y 8 tarjetas por tema nuevo, después del ejercicio.
+Generá tarjetas solo de preguntas del quiz falladas y de pasos de ejercicios que fallaron, después del ejercicio.
+Generá como máximo 3 tarjetas por capítulo o tema.
 Escribí el JSON en el scratchpad y cargalo con `PY tarjetas agregar --archivo <ruta>`.
 Formato: lista de objetos `{"tema": "<tema>", "frente": "...", "dorso": "..."}`.
 Redactá siguiendo la skill `tarjetas`, que es la que fija frente, dorso y registro.
-Cubrí: señal de reconocimiento del patrón, complejidad, error típico y caso borde.
 
 Retirá con `PY tarjetas retirar` la tarjeta que quedó mal escrita, falsa o fuera de temario,
 con el motivo escrito. No se borra: los repasos ya registrados apuntan a su id, y borrarla
@@ -204,7 +205,7 @@ Escribí en `--sigue` una acción, no un tema suelto.
 
 Usá `--sin-bitacora` cuando la sesión se cortó y no tengas material honesto para escribirla.
 Declarar el hueco es preferible a redactar una bitácora de compromiso.
-La sesión cuenta para tiempo y racha en ambos casos: lo que falta es el registro de qué pasó.
+La sesión cuenta en las métricas en ambos casos: lo que falta es el registro de qué pasó.
 
 ## Datos
 
@@ -214,8 +215,8 @@ Escribí a mano `base/`, `bitacora/` y `fuentes/`.
 Nunca estimes minutos: salen del reloj de la tool.
 Si se va un rato largo —comer, una reunión, cualquier cosa fuera de la sesión— corré
 `PY sesion pausar` y `PY sesion reanudar` al volver. Si te enterás después de que estuvo AFK,
-pasá `--afk MINUTOS` al cerrar. El reloj crudo se guarda igual: lo que cambia es qué minutos
-cuentan para racha y métricas. Preguntale si estuvo AFK cuando el reloj no coincida con lo que
+pasá `--afk MINUTOS` al cerrar. El reloj crudo se guarda igual: lo que cambia son los minutos
+efectivos. Preguntale si estuvo AFK cuando el reloj no coincida con lo que
 efectivamente pasó en la conversación.
 
 ## Comandos

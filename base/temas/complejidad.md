@@ -66,3 +66,9 @@ descarta al menos un enfoque por ser demasiado lento, sin escribir código.
   La lectura restricción → orden ya tiene tres repeticiones y sale sola. Lo que sigue pendiente
   es lo de siempre desde el 09-10: recursión (nodos × trabajo por nodo, más la pila como espacio
   auxiliar) y amortizado.
+
+- 2026-10-11 (fondo, Skiena 1): inducción entendida en su lógica (condicional k → k+1 + base) y
+  una prueba con desigualdad completada con mucha guía; la de igualdad (1-12) sigue sin hacer.
+  Contraejemplos: 1-5 y 1-6 bien. Estimación: falló convertir operaciones en tiempo. Método de
+  duplicar el paso (LC 29) explicado e implementado casi entero; pendientes los desbordes de
+  `int` en C++. Pendiente: invariante de ciclo sin ejercitar.

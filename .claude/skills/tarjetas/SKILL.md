@@ -22,6 +22,10 @@ description: Reglas de redacción de las tarjetas de repaso del sistema de estud
 
 - Un hecho por tarjeta.
 - Frente: una pregunta de recuperación activa. Nunca un título de concepto.
+- Frente: una situación chica y concreta que pide un resultado concreto: un valor, una complejidad, qué devuelve o imprime un código, o qué patrón aplica y por qué en una oración.
+- Pregunta un hecho suelto solo si la respuesta es un único dato sin ambigüedad: la complejidad de una operación, qué devuelve una función de C++, una fórmula.
+- Nunca preguntes por un término ni por una definición.
+- Nunca preguntes "¿qué es X?" ni "¿para qué sirve Y?".
 - Dorso: dos líneas como máximo.
 - Registro neutral: sin voseo y sin tuteo. Usa impersonal o infinitivo.
 - Tildes y signos de apertura siempre.

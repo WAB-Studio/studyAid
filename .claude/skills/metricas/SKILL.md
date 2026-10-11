@@ -1,6 +1,6 @@
 ---
 name: metricas
-description: Generar e interpretar el reporte de progreso: minutos por día y semana, racha, ejercicios intentados contra resueltos sin ayuda, precisión en tarjetas y resultados por tema. Usar cuando el usuario pregunte cómo viene, cuánto estudió, cómo va la racha, si está mejorando, o pida un reporte. Triggers "cómo voy", "cómo vengo", "métricas", "reporte", "cuánto estudié", "la racha", "estoy mejorando", "dominio".
+description: Generar e interpretar el reporte de progreso: sesiones, ejercicios intentados contra resueltos sin ayuda, precisión en tarjetas y resultados por tema. Usar cuando el usuario pregunte cómo viene, cuánto estudió, si está mejorando, o pida un reporte. Triggers "cómo voy", "cómo vengo", "métricas", "reporte", "cuánto estudié", "estoy mejorando", "dominio".
 ---
 
 # Métricas
@@ -19,13 +19,10 @@ Decí en cada reporte:
 
 - El tema más frío y hace cuánto que no se toca.
 - El hueco más grande entre lo que está cubierto y lo que falta en `base/temario.md`.
-- Si la racha sube pero la cobertura está quieta, decilo explícitamente. El usuario pidió que se
-  vigile esto.
+- El avance de la semana en la página: ejercicios del mínimo marcados en `hecho_ej` sobre el total.
 
 ## Qué significa cada número
 
-- **Racha**: días seguidos con al menos una sesión cerrada con bitácora. Una sesión sin bitácora
-  no cuenta y corta la racha.
 - **Resueltos solo**: sin ninguna pista. Es la métrica que de verdad mide si mejora. Que suba el
   porcentaje importa más que el volumen de ejercicios.
 - **Nivel de pista promedio**: si baja con el tiempo sobre el mismo tema, está internalizando el
@@ -52,8 +49,8 @@ Decí en cada reporte:
 
 ## Señales de alarma
 
-- Muchos minutos y pocos ejercicios: está leyendo de más y practicando de menos. Es el riesgo
-  conocido de su estilo de aprendizaje.
+- Capítulos marcados y ejercicios del mínimo sin marcar: está leyendo de más y practicando de menos.
+  Es el riesgo conocido de su estilo de aprendizaje.
 - Ejercicios que suben pero precisión de tarjetas que baja: está avanzando temas sin consolidar.
 - Micro-sesiones que desplazan a las de fondo durante dos semanas: el temario se frena. Proponé
   una sesión de fondo explícitamente.

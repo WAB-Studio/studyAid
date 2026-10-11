@@ -416,13 +416,22 @@
       "dorso": "Una afirmacion verdadera antes y despues de cada vuelta. Al salir del bucle, combinada con la condicion de corte, demuestra que el codigo es correcto sin simular casos.",
       "creada": "2026-09-10",
       "sm2": {
-        "ease": 2.5,
+        "ease": 1.7,
         "reps": 0,
         "interval": 1,
-        "lapses": 0,
-        "due": "2026-09-11"
+        "lapses": 1,
+        "due": "2026-10-12"
       },
-      "historial": []
+      "historial": [
+        {
+          "fecha": "2026-10-11",
+          "calidad": 0
+        }
+      ],
+      "retirada": {
+        "fecha": "2026-10-11",
+        "motivo": "Pregunta por un término sin contexto; reemplazo por tarjetas de situación concreta (cambio del 2026-10-11)"
+      }
     },
     {
       "id": "c0021",
@@ -590,12 +599,17 @@
       "creada": "2026-09-17",
       "sm2": {
         "ease": 2.5,
-        "reps": 0,
+        "reps": 1,
         "interval": 1,
         "lapses": 0,
-        "due": "2026-09-18"
+        "due": "2026-10-12"
       },
-      "historial": []
+      "historial": [
+        {
+          "fecha": "2026-10-11",
+          "calidad": 4
+        }
+      ]
     },
     {
       "id": "c0032",

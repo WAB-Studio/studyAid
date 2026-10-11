@@ -25,8 +25,7 @@ Actualizado: 2026-09-10
   Juzgá siempre la oración completa, nunca el primer fragmento, y no registres como error algo
   que él ya corrigió al hablar. Esperá lo mismo en enunciados largos: repite y se reencauza en
   voz alta, y eso es pensar, no titubear.
-- Le importa mucho la métrica de tiempo real y la racha, pero pidió explícitamente que la
-  cobertura del temario no se pierda de vista por perseguir la racha.
+- Le pesa el volumen de tarjetas: pocas, solo de lo que falló.
 
 ## Lo que voy aprendiendo
 
@@ -240,3 +239,8 @@ Sirve para que la próxima sesión no proponga cosas sin sentido.
   explicación y los ejercicios siguen siendo propios.
 - 2026-10-06: estudió dos años de física y le gusta la ciencia dura. Prefiere libros densos;
   descartó a Wengrow por sobreexplicativo al ojearlo. Los videos pueden ser verbosos.
+- 2026-10-11: después de un fracaso, no subir la dificultad en la misma sesión. Una seguidilla
+  de fallos (Horner, desigualdad, tarjeta mal escrita, LC 29) lo llevó a no querer estudiar más.
+  Cortar la sesión antes en vez de agregar un ejercicio largo cuando ya está frustrado.
+- 2026-10-11: las demostraciones no las trae de antes; el libro las asume. Primer ejercicio de
+  prueba siempre una igualdad de nivel [3].
